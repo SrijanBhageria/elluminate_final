@@ -370,8 +370,6 @@ export default function Home() {
                       )}
                     </div>
                   ))}
-                  
-                  <button className="company-detail-arrow">→</button>
                 </div>
               </div>
             ))}

@@ -377,6 +377,9 @@ export const metadata: Metadata = {
   keywords: 'investment banking, financial services, capital markets, advisory',
   authors: [{ name: 'Elluminate Capital' }],
   robots: 'index, follow',
+  icons: {
+    icon: '/icon.png',
+  },
   openGraph: {
     title: 'Elluminate Capital',
     description: 'Professional Investment Banking Services',

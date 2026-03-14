@@ -77,20 +77,16 @@ export const leadershipContent: HeroContent = {
   displayStats: [],
   features: [
     {
-      title: 'Sarah Johnson',
-      description: 'Chief Executive Officer'
+      title: 'Anuj Saraiwala',
+      description: 'Managing Partner'
     },
     {
-      title: 'Michael Chen',
-      description: 'Chief Investment Officer'
+      title: 'Aman Bhageria',
+      description: 'Managing Partner'
     },
     {
-      title: 'Emily Rodriguez',
-      description: 'Head of Research'
-    },
-    {
-      title: 'David Thompson',
-      description: 'Managing Director'
+      title: 'Shashwat Bhageria',
+      description: 'Investment Banking Associate'
     }
   ],
   buttons: []
