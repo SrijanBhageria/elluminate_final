@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Download } from 'lucide-react';
 
 interface PDFCardProps {
@@ -58,18 +59,18 @@ export default function PDFCard({ title, excerpt, pdfPath, imageUrl }: PDFCardPr
         e.currentTarget.style.background = '#E5D4C1';
       }}
     >
-      <div style={{ position: 'relative' }}>
-        <img
+      <div style={{ position: 'relative', width: '100%', height: '200px' }}>
+        <Image
           src={imageUrl || defaultImage}
           alt={title}
+          fill
           style={{
-            width: '100%',
-            height: '200px',
             objectFit: 'cover',
             filter: 'grayscale(30%)',
             transition: 'filter var(--transition-normal)',
           }}
-          loading="lazy"
+          sizes="(max-width: 768px) 100vw, 400px"
+          className="pdf-card-image"
           onMouseEnter={(e) => {
             e.currentTarget.style.filter = 'grayscale(0%)';
           }}

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { HeroContent } from '../types/api';
@@ -197,7 +198,11 @@ export default function HeroSection({ heroContent, visionContent, isVisible: par
           <div className="video-overlay"></div>
         </div>
         
-        <img src="/image.png" alt="Classical Statue" className={`statue-image ${videoSectionVisible ? 'animate-slide-in-right' : ''}`} />
+        <div className={`statue-image ${videoSectionVisible ? 'animate-slide-in-right' : ''}`} style={{ width: '45%', maxWidth: '600px' }}>
+          <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+            <Image src="/image.png" alt="Classical Statue" fill sizes="50vw" style={{ objectFit: 'contain' }} priority />
+          </div>
+        </div>
         
         <div className="merged-content">
           <h2 className={`merged-title ${videoSectionVisible ? 'animate-fade-in-up delay-statue' : ''}`}>

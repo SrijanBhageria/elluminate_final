@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Calendar, User, Clock } from 'lucide-react';
 import ShareButton from '@/components/ShareButton';
@@ -162,8 +163,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     <div style={{ paddingTop: '80px' }}>
       {/* Cover */}
       <section style={{ position: 'relative', height: '360px', overflow: 'hidden', background: 'var(--bg-secondary)' }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={article.cover} alt={article.title} style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.8)' }} loading="lazy" />
+        <Image src={article.cover} alt={article.title} fill style={{ objectFit: 'cover', filter: 'brightness(0.8)' }} sizes="100vw" priority />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,15,26,0.9), rgba(26,15,26,0.2))' }} />
         <div style={{ position: 'absolute', bottom: 24, left: '50%', transform: 'translateX(-50%)', width: 'min(1100px, 92%)' }}>
           <h1 style={{ color: 'var(--text-inverse)', fontSize: 'var(--text-5xl)', marginBottom: 8 }}>{article.title}</h1>
@@ -185,8 +185,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                 <p style={{ color: 'var(--text-secondary)', marginBottom: 16 }}>{s.body}</p>
                 {s.image && (
                   <figure style={{ borderRadius: 'var(--radius-xl)', overflow: 'hidden', border: '1px solid var(--border-primary)', marginBottom: 8, background: 'var(--bg-secondary)' }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={s.image} alt={s.heading} style={{ width: '100%', height: 'auto', display: 'block' }} loading="lazy" />
+                    <Image src={s.image} alt={s.heading} width={800} height={450} style={{ width: '100%', height: 'auto', display: 'block' }} sizes="(min-width: 1100px) 800px, 92vw" />
                     {s.caption && (
                       <figcaption style={{ padding: 12, color: 'var(--text-muted)', fontSize: 'var(--text-xs)' }}>{s.caption}</figcaption>
                     )}

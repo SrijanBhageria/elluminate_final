@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { TrendingUp, Users, Award, ArrowRight, BarChart3, Globe, DollarSign, Building2, Shield, ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -322,7 +323,7 @@ export default function Home() {
               {leadershipContent.features.map((member, index) => (
                 <div key={index} className="team-member">
                   <div className="member-image">
-                    <img src="/CompanyLogo.jpeg" alt="Team Member" loading="lazy" />
+                    <Image src="/CompanyLogo.jpeg" alt="Team Member" width={120} height={120} sizes="120px" />
                   </div>
                   <div className="member-info">
                     <h3 className="member-name">{member.title}</h3>
@@ -348,12 +349,12 @@ export default function Home() {
             {companies.map((company, index) => (
               <div key={index} className="company-logo-item">
                 <div className="company-logo-card">
-                  <img src={company.logo} alt={company.name} className="company-logo-img" loading="lazy" />
+                  <Image src={company.logo} alt={company.name} className="company-logo-img" width={160} height={80} sizes="(max-width: 768px) 120px, 160px" />
                 </div>
                 
                 <div className="company-hover-details">
                   <div className="company-detail-header">
-                    <img src={company.logo} alt={company.name} className="company-detail-logo" loading="lazy" />
+                    <Image src={company.logo} alt={company.name} className="company-detail-logo" width={50} height={50} sizes="50px" />
                     <h3 className="company-detail-name">{company.name}</h3>
                   </div>
                   
