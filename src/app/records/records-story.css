@@ -1,0 +1,168 @@
+/* Records page – story-like narrative sections (THE BELIEF, THE APPROACH, THE IMPACT) */
+
+:root {
+  --story-gold: #B8956A;
+  --story-gold-soft: rgba(184, 149, 106, 0.25);
+  --story-gold-muted: rgba(184, 149, 106, 0.6);
+  --story-glass: rgba(255, 255, 255, 0.04);
+  --story-glass-border: rgba(184, 149, 106, 0.2);
+  --story-text: rgba(255, 255, 255, 0.95);
+  --story-text-soft: rgba(255, 255, 255, 0.8);
+}
+
+/* Chapter container: section number + title block */
+.story-chapter {
+  position: relative;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.story-chapter-number {
+  font-family: var(--font-family-mono);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.2em;
+  color: var(--story-gold-muted);
+  margin-bottom: var(--space-3);
+  text-transform: uppercase;
+}
+
+.story-chapter-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--story-gold);
+  font-family: var(--font-family-heading);
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-12);
+  line-height: 1.15;
+}
+
+/* Card-style content block (glass, subtle border) */
+.story-card {
+  background: var(--story-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--story-glass-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8) var(--space-10);
+  margin-bottom: var(--space-8);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.story-card:hover {
+  border-color: rgba(184, 149, 106, 0.35);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.story-card p {
+  font-size: var(--text-xl);
+  color: var(--story-text);
+  line-height: 1.8;
+  margin-bottom: var(--space-6);
+  font-weight: var(--font-weight-normal);
+}
+
+.story-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* Pull-quote: key statement with left accent */
+.story-quote {
+  position: relative;
+  padding-left: var(--space-8);
+  margin: var(--space-10) 0;
+  border-left: 3px solid var(--story-gold);
+}
+
+.story-quote-inner {
+  font-size: clamp(1.25rem, 2.5vw, 1.875rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--story-gold);
+  font-family: var(--font-family-heading);
+  line-height: 1.5;
+  font-style: normal;
+}
+
+/* Lead-in line above a quote (e.g. "Elluminate Capital was founded with a singular belief:") */
+.story-lead {
+  font-size: var(--text-xl);
+  color: var(--story-gold-muted);
+  font-style: italic;
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-4);
+}
+
+/* Divider between story sections */
+.story-divider {
+  height: 1px;
+  max-width: 200px;
+  margin: var(--space-16) auto;
+  background: linear-gradient(90deg, transparent, var(--story-gold-soft), transparent);
+  opacity: 0.8;
+}
+
+/* Section wrapper with staggered reveal */
+.story-section-block {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.story-section-block.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.story-section-block.stagger-1 { transition-delay: 0.1s; }
+.story-section-block.stagger-2 { transition-delay: 0.25s; }
+.story-section-block.stagger-3 { transition-delay: 0.4s; }
+.story-section-block.stagger-4 { transition-delay: 0.55s; }
+.story-section-block.stagger-5 { transition-delay: 0.7s; }
+
+/* Impact section: slightly different background treatment */
+.story-impact-wrap {
+  position: relative;
+  padding: var(--space-12) var(--space-6);
+}
+
+.story-impact-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, var(--story-gold-soft) 0%, transparent 60%);
+  pointer-events: none;
+  border-radius: var(--radius-2xl);
+}
+
+/* One-liner highlight (e.g. "We work differently.") */
+.story-oneliner {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--story-text);
+  margin-bottom: var(--space-8);
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 768px) {
+  .story-card {
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .story-quote {
+    padding-left: var(--space-5);
+    margin: var(--space-8) 0;
+  }
+
+  .story-quote-inner {
+    font-size: var(--text-xl);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-section-block {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

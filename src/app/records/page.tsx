@@ -9,11 +9,13 @@ import {
   performanceMetricsContent,
   joinSuccessContent
 } from '../../data/pageContent';
+import './records-story.css';
 
 export default function RecordsPage() {
   const [isVisible, setIsVisible] = useState(false);
   const [heroVisible, setHeroVisible] = useState(false);
   const [beliefVisible, setBeliefVisible] = useState(false);
+  const [approachVisible, setApproachVisible] = useState(false);
   const [awardsVisible, setAwardsVisible] = useState(false);
   const [ctaVisible, setCtaVisible] = useState(false);
 
@@ -33,18 +35,27 @@ export default function RecordsPage() {
     const observers: IntersectionObserver[] = [];
 
     const beliefSection = document.getElementById('belief-section');
+    const approachSection = document.getElementById('approach-section');
     const awardsSection = document.getElementById('awards-section');
     const ctaSection = document.getElementById('cta-section');
 
     if (beliefSection) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setBeliefVisible(true);
-          }
+          if (entry.isIntersecting) setBeliefVisible(true);
         });
       }, observerOptions);
       observer.observe(beliefSection);
+      observers.push(observer);
+    }
+
+    if (approachSection) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setApproachVisible(true);
+        });
+      }, observerOptions);
+      observer.observe(approachSection);
       observers.push(observer);
     }
 
@@ -259,165 +270,54 @@ export default function RecordsPage() {
         >
           <source src="/videos/176521-855920743_small.mp4" type="video/mp4" />
         </video>
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.75) 100%)',
+            zIndex: 2,
+          }}
+          aria-hidden
+        />
 
         {/* THE BELIEF Content */}
-        <div style={{ maxWidth: '1200px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 2 }}>
-          <div
-            style={{
-              maxWidth: '900px',
-              margin: '0 auto',
-              textAlign: 'center',
-            }}
-          >
-            <h2
-              style={{
-                fontSize: 'var(--text-5xl)',
-                fontWeight: 'var(--font-weight-bold)',
-                color: '#B8956A',
-                marginBottom: 'var(--space-12)',
-                fontFamily: 'var(--font-family-heading)',
-                opacity: beliefVisible ? 1 : 0,
-                transform: beliefVisible ? 'translateY(0)' : 'translateY(30px)',
-                transition: 'all 0.8s ease 0.2s',
-                letterSpacing: '0.05em',
-              }}
-            >
-              {performanceMetricsContent.title}
-            </h2>
-            
-            <div
-              style={{
-                opacity: beliefVisible ? 1 : 0,
-                transform: beliefVisible ? 'translateY(0)' : 'translateY(30px)',
-                transition: 'all 0.8s ease 0.4s',
-              }}
-            >
-              <p
-                style={{
-                  fontSize: 'var(--text-2xl)',
-                  color: 'rgba(255, 255, 255, 0.95)',
-                  lineHeight: '1.8',
-                  marginBottom: 'var(--space-8)',
-                  fontWeight: 'var(--font-weight-normal)',
-                }}
-              >
-                Every transformational company begins with a bold ambition.
-              </p>
-              
-              <p
-                style={{
-                  fontSize: 'var(--text-2xl)',
-                  color: 'rgba(255, 255, 255, 0.95)',
-                  lineHeight: '1.8',
-                  marginBottom: 'var(--space-8)',
-                  fontWeight: 'var(--font-weight-normal)',
-                }}
-              >
-                But scaling that ambition requires the right partner — one driven by integrity, trust, and aligned purpose.
-              </p>
-              
-              <p
-                style={{
-                  fontSize: 'var(--text-xl)',
-                  color: '#B8956A',
-                  lineHeight: '1.8',
-                  marginBottom: 'var(--space-6)',
-                  fontWeight: 'var(--font-weight-semibold)',
-                  fontStyle: 'italic',
-                }}
-              >
-                Elluminate Capital was founded with a singular belief:
-              </p>
-              
-              <p
-                style={{
-                  fontSize: 'var(--text-3xl)',
-                  color: '#B8956A',
-                  lineHeight: '1.6',
-                  fontWeight: 'var(--font-weight-bold)',
-                  fontFamily: 'var(--font-family-heading)',
-                  maxWidth: '800px',
-                  margin: '0 auto',
-                }}
-              >
-                Founders deserve more than transactional bankers — they deserve long-term allies in their journey.
-              </p>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 3 }}>
+          <div className={`story-chapter ${beliefVisible ? 'story-section-block is-visible' : 'story-section-block'}`}>
+            <div className="story-chapter-number">01</div>
+            <h2 className="story-chapter-title">{performanceMetricsContent.title}</h2>
+
+            <div className="story-card story-section-block stagger-1" style={{ opacity: beliefVisible ? 1 : 0, transform: beliefVisible ? 'translateY(0)' : 'translateY(28px)' }}>
+              <p>Every transformational company begins with a bold ambition.</p>
+              <p>But scaling that ambition requires the right partner — one driven by integrity, trust, and aligned purpose.</p>
+            </div>
+
+            <div className="story-section-block stagger-2" style={{ opacity: beliefVisible ? 1 : 0, transform: beliefVisible ? 'translateY(0)' : 'translateY(28px)' }}>
+              <p className="story-lead">Elluminate Capital was founded with a singular belief:</p>
+              <blockquote className="story-quote">
+                <p className="story-quote-inner">Founders deserve more than transactional bankers — they deserve long-term allies in their journey.</p>
+              </blockquote>
             </div>
           </div>
 
+          <div className="story-divider" />
+
           {/* THE APPROACH */}
-          <div
-            style={{
-              maxWidth: '900px',
-              margin: 'var(--space-20) auto 0',
-              textAlign: 'center',
-              opacity: beliefVisible ? 1 : 0,
-              transform: beliefVisible ? 'translateY(0)' : 'translateY(30px)',
-              transition: 'all 0.8s ease 0.6s',
-            }}
-          >
-            <h2
-              style={{
-                fontSize: 'var(--text-5xl)',
-                fontWeight: 'var(--font-weight-bold)',
-                color: '#B8956A',
-                marginBottom: 'var(--space-12)',
-                fontFamily: 'var(--font-family-heading)',
-                letterSpacing: '0.05em',
-              }}
-            >
-              THE APPROACH
-            </h2>
-            
-            <p
-              style={{
-                fontSize: 'var(--text-2xl)',
-                color: 'rgba(255, 255, 255, 0.95)',
-                lineHeight: '1.8',
-                marginBottom: 'var(--space-8)',
-                fontWeight: 'var(--font-weight-bold)',
-              }}
-            >
+          <div id="approach-section" className={`story-chapter ${approachVisible ? 'story-section-block is-visible' : 'story-section-block'}`}>
+            <div className="story-chapter-number">02</div>
+            <h2 className="story-chapter-title">THE APPROACH</h2>
+
+            <p className={`story-oneliner story-section-block stagger-1`} style={{ opacity: approachVisible ? 1 : 0, transform: approachVisible ? 'translateY(0)' : 'translateY(28px)' }}>
               We work differently.
             </p>
-            
-            <p
-              style={{
-                fontSize: 'var(--text-2xl)',
-                color: 'rgba(255, 255, 255, 0.95)',
-                lineHeight: '1.8',
-                marginBottom: 'var(--space-8)',
-                fontWeight: 'var(--font-weight-normal)',
-              }}
-            >
-              Instead of running standardized processes, we build deeply tailored pathways — curated for the company, the market moment, and the founder&apos;s vision.
-            </p>
-            
-            <p
-              style={{
-                fontSize: 'var(--text-2xl)',
-                color: 'rgba(255, 255, 255, 0.95)',
-                lineHeight: '1.8',
-                marginBottom: 'var(--space-8)',
-                fontWeight: 'var(--font-weight-normal)',
-              }}
-            >
-              We embed ourselves like an internal corporate development function, shaping strategy, narrative, and investor alignment long before capital meets the table. Our work is anchored in absolute discretion, built on long-standing global investor relationships, and executed with the precision of seasoned dealmakers.
-            </p>
-            
-            <p
-              style={{
-                fontSize: 'var(--text-2xl)',
-                color: '#B8956A',
-                lineHeight: '1.8',
-                fontWeight: 'var(--font-weight-bold)',
-                fontFamily: 'var(--font-family-heading)',
-                maxWidth: '800px',
-                margin: '0 auto',
-              }}
-            >
-              This enables us to unlock the right capital from world-class investors — not just capital that closes a round, but capital that elevates the trajectory of the business.
-            </p>
+
+            <div className="story-card story-section-block stagger-2" style={{ opacity: approachVisible ? 1 : 0, transform: approachVisible ? 'translateY(0)' : 'translateY(28px)' }}>
+              <p>Instead of running standardized processes, we build deeply tailored pathways — curated for the company, the market moment, and the founder&apos;s vision.</p>
+              <p>We embed ourselves like an internal corporate development function, shaping strategy, narrative, and investor alignment long before capital meets the table. Our work is anchored in absolute discretion, built on long-standing global investor relationships, and executed with the precision of seasoned dealmakers.</p>
+            </div>
+
+            <blockquote className={`story-quote story-section-block stagger-3`} style={{ opacity: approachVisible ? 1 : 0, transform: approachVisible ? 'translateY(0)' : 'translateY(28px)' }}>
+              <p className="story-quote-inner">This enables us to unlock the right capital from world-class investors — not just capital that closes a round, but capital that elevates the trajectory of the business.</p>
+            </blockquote>
           </div>
         </div>
       </section>
@@ -433,92 +333,24 @@ export default function RecordsPage() {
         style={{
           minHeight: '70vh',
           padding: 'var(--space-20) var(--space-6)',
-          opacity: awardsVisible ? 1 : 0,
-          transform: awardsVisible ? 'translateY(0)' : 'translateY(80px)',
-          transition: 'all 1.2s ease-out',
+          position: 'relative',
         }}
       >
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div
-            style={{
-              maxWidth: '900px',
-              margin: '0 auto',
-              textAlign: 'center',
-            }}
-          >
-            <h2
-              style={{
-                fontSize: 'var(--text-5xl)',
-                fontWeight: 'var(--font-weight-bold)',
-                color: '#B8956A',
-                marginBottom: 'var(--space-12)',
-                fontFamily: 'var(--font-family-heading)',
-                letterSpacing: '0.05em',
-                opacity: awardsVisible ? 1 : 0,
-                transform: awardsVisible ? 'translateY(0)' : 'translateY(30px)',
-                transition: 'all 0.8s ease 0.2s',
-              }}
-            >
-              THE IMPACT & THE FUTURE
-            </h2>
-            
-            <div
-              style={{
-                opacity: awardsVisible ? 1 : 0,
-                transform: awardsVisible ? 'translateY(0)' : 'translateY(30px)',
-                transition: 'all 0.8s ease 0.4s',
-              }}
-            >
-              <p
-                style={{
-                  fontSize: 'var(--text-2xl)',
-                  color: 'rgba(255, 255, 255, 0.95)',
-                  lineHeight: '1.8',
-                  marginBottom: 'var(--space-8)',
-                  fontWeight: 'var(--font-weight-normal)',
-                }}
-              >
-                We&apos;ve partnered with pioneering companies across AgriTech, CleanTech, FinTech, Consumer, EdTech, and AutoTech—helping them scale at defining moments across India and Southeast Asia.
-              </p>
-              
-              <p
-                style={{
-                  fontSize: 'var(--text-2xl)',
-                  color: 'rgba(255, 255, 255, 0.95)',
-                  lineHeight: '1.8',
-                  marginBottom: 'var(--space-8)',
-                  fontWeight: 'var(--font-weight-normal)',
-                }}
-              >
-                Our work goes beyond capital. We help ensure clarity, alignment, and momentum—so companies not only raise funds, but raise the right capital at the right time.
-              </p>
-              
-              <p
-                style={{
-                  fontSize: 'var(--text-xl)',
-                  color: '#B8956A',
-                  lineHeight: '1.8',
-                  marginBottom: 'var(--space-6)',
-                  fontWeight: 'var(--font-weight-semibold)',
-                  fontStyle: 'italic',
-                }}
-              >
-                As we look ahead, our commitment remains the same:
-              </p>
-              
-              <p
-                style={{
-                  fontSize: 'var(--text-2xl)',
-                  color: '#B8956A',
-                  lineHeight: '1.8',
-                  fontWeight: 'var(--font-weight-bold)',
-                  fontFamily: 'var(--font-family-heading)',
-                  maxWidth: '800px',
-                  margin: '0 auto',
-                }}
-              >
-                to be the trusted North Star for founders and investors, guiding them through critical decisions and helping build companies that endure.
-              </p>
+        <div className="story-impact-wrap" style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+          <div className={`story-chapter ${awardsVisible ? 'story-section-block is-visible' : 'story-section-block'}`}>
+            <div className="story-chapter-number">03</div>
+            <h2 className="story-chapter-title">THE IMPACT & THE FUTURE</h2>
+
+            <div className="story-card story-section-block stagger-1" style={{ opacity: awardsVisible ? 1 : 0, transform: awardsVisible ? 'translateY(0)' : 'translateY(28px)' }}>
+              <p>We&apos;ve partnered with pioneering companies across AgriTech, CleanTech, FinTech, Consumer, EdTech, and AutoTech—helping them scale at defining moments across India and Southeast Asia.</p>
+              <p>Our work goes beyond capital. We help ensure clarity, alignment, and momentum—so companies not only raise funds, but raise the right capital at the right time.</p>
+            </div>
+
+            <div className="story-section-block stagger-2" style={{ opacity: awardsVisible ? 1 : 0, transform: awardsVisible ? 'translateY(0)' : 'translateY(28px)' }}>
+              <p className="story-lead">As we look ahead, our commitment remains the same:</p>
+              <blockquote className="story-quote">
+                <p className="story-quote-inner">to be the trusted North Star for founders and investors, guiding them through critical decisions and helping build companies that endure.</p>
+              </blockquote>
             </div>
           </div>
         </div>
