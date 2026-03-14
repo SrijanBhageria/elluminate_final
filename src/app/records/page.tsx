@@ -349,7 +349,7 @@ export default function RecordsPage() {
             <div className="story-section-block stagger-2" style={{ opacity: awardsVisible ? 1 : 0, transform: awardsVisible ? 'translateY(0)' : 'translateY(28px)' }}>
               <p className="story-lead">As we look ahead, our commitment remains the same:</p>
               <blockquote className="story-quote">
-                <p className="story-quote-inner">to be the trusted North Star for founders and investors, guiding them through critical decisions and helping build companies that endure.</p>
+                <p className="story-quote-inner">To be the trusted North Star for founders and investors, guiding them through critical decisions and helping build companies that endure.</p>
               </blockquote>
             </div>
           </div>
