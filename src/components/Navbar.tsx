@@ -9,6 +9,9 @@ import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
 const Navbar: React.FC = () => {
   const pathname = usePathname();
   const isHomePage = pathname === '/';
+  const isInsightsPage = pathname === '/insights' || pathname.startsWith('/insights/');
+  const isContactPage = pathname === '/contact' || pathname.startsWith('/contact/');
+  const isRecordsPage = pathname === '/records' || pathname.startsWith('/records/');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOverVideo, setIsOverVideo] = useState(false);
   const [isLogoHovered, setIsLogoHovered] = useState(false);
@@ -169,23 +172,38 @@ const Navbar: React.FC = () => {
         </div>
 
 
-        {/* Center Section - Navigation Links (only on home page) */}
-        {isHomePage && (
-          <div className="navbar-center">
-            <Link href="/insights/" className="nav-link">
-              Insights
-            </Link>
-            <button onClick={() => scrollToSection('story')} className="nav-link">
-              Story
-            </button>
-            <button onClick={() => scrollToSection('companies')} className="nav-link">
-              Companies
-            </button>
-            <Link href="/contact/" className="nav-link">
-              Contact Us
-            </Link>
-          </div>
-        )}
+        {/* Center Section - Page-specific: Insights = Home, Our Story→/records, Contact | Contact = Home, Insights, Our Story→/records | Records = Home, Insights, Contact | Home = Insights, Story (scroll), Companies, Contact */}
+        <div className="navbar-center">
+          {isInsightsPage && (
+            <>
+              <Link href="/" className="nav-link">Home</Link>
+              <Link href="/records/" className="nav-link">Our Story</Link>
+              <Link href="/contact/" className="nav-link">Contact Us</Link>
+            </>
+          )}
+          {isContactPage && (
+            <>
+              <Link href="/" className="nav-link">Home</Link>
+              <Link href="/insights/" className="nav-link">Insights</Link>
+              <Link href="/records/" className="nav-link">Our Story</Link>
+            </>
+          )}
+          {isRecordsPage && (
+            <>
+              <Link href="/" className="nav-link">Home</Link>
+              <Link href="/insights/" className="nav-link">Insights</Link>
+              <Link href="/contact/" className="nav-link">Contact Us</Link>
+            </>
+          )}
+          {isHomePage && (
+            <>
+              <Link href="/insights/" className="nav-link">Insights</Link>
+              <button onClick={() => scrollToSection('story')} className="nav-link">Our Story</button>
+              <button onClick={() => scrollToSection('companies')} className="nav-link">Companies</button>
+              <Link href="/contact/" className="nav-link">Contact Us</Link>
+            </>
+          )}
+        </div>
       </div>
 
       {/* Overlay */}
@@ -211,18 +229,32 @@ const Navbar: React.FC = () => {
             </button>
           </div>
           <nav className="drawer-nav">
-            {isHomePage ? (
+            {isInsightsPage && (
+              <>
+                <Link className="drawer-link" href="/" onClick={closeMenu}>Home</Link>
+                <Link className="drawer-link" href="/records/" onClick={closeMenu}>Our Story</Link>
+                <Link className="drawer-link" href="/contact/" onClick={closeMenu}>Contact Us</Link>
+              </>
+            )}
+            {isContactPage && (
+              <>
+                <Link className="drawer-link" href="/" onClick={closeMenu}>Home</Link>
+                <Link className="drawer-link" href="/insights/" onClick={closeMenu}>Insights</Link>
+                <Link className="drawer-link" href="/records/" onClick={closeMenu}>Our Story</Link>
+              </>
+            )}
+            {isRecordsPage && (
+              <>
+                <Link className="drawer-link" href="/" onClick={closeMenu}>Home</Link>
+                <Link className="drawer-link" href="/insights/" onClick={closeMenu}>Insights</Link>
+                <Link className="drawer-link" href="/contact/" onClick={closeMenu}>Contact Us</Link>
+              </>
+            )}
+            {isHomePage && (
               <>
                 <Link className="drawer-link" href="/insights/" onClick={closeMenu}>Insights</Link>
                 <button className="drawer-link" onClick={() => { scrollToSection('story'); closeMenu(); }}>Story</button>
                 <button className="drawer-link" onClick={() => { scrollToSection('companies'); closeMenu(); }}>Companies</button>
-                <Link className="drawer-link" href="/contact/" onClick={closeMenu}>Contact Us</Link>
-              </>
-            ) : (
-              <>
-                <Link className="drawer-link" href="/insights/" onClick={closeMenu}>Insights</Link>
-                <Link className="drawer-link" href="/#story" onClick={closeMenu}>Story</Link>
-                <Link className="drawer-link" href="/#companies" onClick={closeMenu}>Companies</Link>
                 <Link className="drawer-link" href="/contact/" onClick={closeMenu}>Contact Us</Link>
               </>
             )}
@@ -285,7 +317,8 @@ const Navbar: React.FC = () => {
           gap: var(--space-8);
         }
         
-        .nav-link {
+        /* :global so Link-rendered <a> (no styled-jsx class) get same hover/focus as <button> */
+        :global(.navbar-center .nav-link) {
           background: transparent;
           border: none;
           color: var(--text-primary);
@@ -301,23 +334,23 @@ const Navbar: React.FC = () => {
           display: inline-block;
         }
         
-        .nav-link:focus {
+        :global(.navbar-center .nav-link:focus) {
           outline: none !important;
           box-shadow: none !important;
         }
         
-        .nav-link:active {
+        :global(.navbar-center .nav-link:active) {
           outline: none !important;
           box-shadow: none !important;
           background: transparent !important;
         }
         
-        .nav-link:focus-visible {
+        :global(.navbar-center .nav-link:focus-visible) {
           outline: none !important;
           box-shadow: none !important;
         }
         
-        .nav-link::after {
+        :global(.navbar-center .nav-link::after) {
           content: '';
           position: absolute;
           bottom: 0;
@@ -329,11 +362,11 @@ const Navbar: React.FC = () => {
           transition: transform var(--transition-fast);
         }
         
-        .nav-link:hover {
+        :global(.navbar-center .nav-link:hover) {
           color: #B8956A;
         }
         
-        .nav-link:hover::after {
+        :global(.navbar-center .nav-link:hover::after) {
           transform: translateX(-50%) scaleX(1);
         }
         

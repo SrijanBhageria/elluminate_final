@@ -299,7 +299,7 @@ export default function Home() {
       </section>
 
       {/* Leadership Team Section */}
-      <section className="team-section-wrapper">
+      <section id="leadership" className="team-section-wrapper">
         <div className="team-background">
           <div className="team-gradient"></div>
         </div>
