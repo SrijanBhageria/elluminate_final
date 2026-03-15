@@ -12,6 +12,58 @@
   .show-on-mobile { display: initial !important; }
 }
 
+/* Navbar layout + drawer hidden + nav-link reset: in global CSS so first paint is correct before client JS (avoids FOUC/coalesce and drawer flash) */
+.navbar .navbar-container {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+.navbar .navbar-left {
+  position: absolute;
+  left: var(--space-6);
+  top: 50%;
+  transform: translateY(-50%);
+}
+.navbar .navbar-right {
+  position: absolute;
+  right: var(--space-6);
+  top: 50%;
+  transform: translateY(-50%);
+}
+.navbar .navbar-center {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+@media (max-width: 768px) {
+  .navbar .navbar-center {
+    display: none;
+  }
+}
+/* Drawer hidden by default so it doesn't flash on first paint before styled-jsx */
+.navbar .mobile-drawer {
+  width: 0;
+  overflow: hidden;
+}
+/* Nav links: no button/link boxes on first paint */
+.navbar .navbar-center .nav-link {
+  background: transparent;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  display: inline-block;
+  color: var(--text-primary);
+  cursor: pointer;
+  font: inherit;
+  padding: var(--space-2) var(--space-4);
+}
+.navbar .navbar-center .nav-link:focus,
+.navbar .navbar-center .nav-link:focus-visible,
+.navbar .navbar-center .nav-link:active {
+  outline: none;
+  box-shadow: none;
+}
+
 .visually-hidden {
   position: absolute !important;
   height: 1px; width: 1px;
