@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, ArrowUp } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, ArrowUp } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -29,9 +29,7 @@ const Footer: React.FC = () => {
   ];
 
   const socialLinks = [
-    { name: 'LinkedIn', href: '#', icon: Linkedin },
-    { name: 'Twitter', href: '#', icon: Twitter },
-    { name: 'Facebook', href: '#', icon: Facebook },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/company/elluminate-capital/', icon: Linkedin },
   ];
 
   return (
@@ -303,42 +301,6 @@ const Footer: React.FC = () => {
           >
             © {currentYear} Elluminate Capital. All rights reserved.
           </p>
-          <div style={{ display: 'flex', gap: 'var(--space-6)' }}>
-            <Link
-              href="/privacy/"
-              style={{
-                color: 'var(--text-muted)',
-                textDecoration: 'none',
-                fontSize: 'var(--text-sm)',
-                transition: 'color var(--transition-fast)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = '#B8956A';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = 'var(--text-muted)';
-              }}
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/terms/"
-              style={{
-                color: 'var(--text-muted)',
-                textDecoration: 'none',
-                fontSize: 'var(--text-sm)',
-                transition: 'color var(--transition-fast)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = '#B8956A';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = 'var(--text-muted)';
-              }}
-            >
-              Terms of Service
-            </Link>
-          </div>
         </div>
       </div>
     </footer>
