@@ -92,6 +92,7 @@ If you need to use environment variables, create a `.env.local` file:
    # Example: EmailJS configuration for contact form
    NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
    NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+   NEXT_PUBLIC_EMAILJS_DOWNLOAD_TEMPLATE_ID=your_download_template_id
    NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
    ```
    These will be embedded in the static build.

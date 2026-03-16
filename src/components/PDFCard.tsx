@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Download } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import DownloadEmailModal from './DownloadEmailModal';
 
 interface PDFCardProps {
@@ -35,9 +36,13 @@ export default function PDFCard({ title, excerpt, pdfPath, imageUrl }: PDFCardPr
   };
 
   const handleEmailSubmit = (email: string) => {
-    // Capture email (e.g. send to your backend for lead tracking)
-    if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
-      console.log('Report download – email:', email, 'report:', title);
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const downloadTemplateId = process.env.NEXT_PUBLIC_EMAILJS_DOWNLOAD_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    if (serviceId && downloadTemplateId && publicKey) {
+      emailjs
+        .send(serviceId, downloadTemplateId, { article_name: title, downloader_email: email }, publicKey)
+        .catch((err) => console.error('EmailJS download notification failed:', err));
     }
     triggerDownload();
   };
