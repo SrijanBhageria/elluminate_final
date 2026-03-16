@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Download } from 'lucide-react';
+import DownloadEmailModal from './DownloadEmailModal';
 
 interface PDFCardProps {
   title: string;
@@ -12,23 +13,33 @@ interface PDFCardProps {
 }
 
 export default function PDFCard({ title, excerpt, pdfPath, imageUrl }: PDFCardProps) {
-  const [downloadCount, setDownloadCount] = useState(0);
   const [fileSize, setFileSize] = useState('0.0');
+  const [showEmailModal, setShowEmailModal] = useState(false);
 
   useEffect(() => {
-    // Generate random values only on client to avoid hydration mismatch
-    setDownloadCount(Math.floor(Math.random() * 5000) + 1000);
+    // Generate file size only on client to avoid hydration mismatch
     setFileSize((Math.random() * 2 + 1).toFixed(1));
   }, []);
 
-  const handleDownload = () => {
-    // Create a temporary anchor element to trigger download
+  const triggerDownload = () => {
     const link = document.createElement('a');
     link.href = pdfPath;
     link.download = pdfPath.split('/').pop() || 'download.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const handleDownloadClick = () => {
+    setShowEmailModal(true);
+  };
+
+  const handleEmailSubmit = (email: string) => {
+    // Capture email (e.g. send to your backend for lead tracking)
+    if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+      console.log('Report download – email:', email, 'report:', title);
+    }
+    triggerDownload();
   };
 
   const defaultImage = 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop&auto=format&q=80';
@@ -125,20 +136,9 @@ export default function PDFCard({ title, excerpt, pdfPath, imageUrl }: PDFCardPr
           {excerpt}
         </p>
         
-        {/* Download count */}
-        <div
-          style={{
-            color: '#4A4A4A',
-            fontSize: 'var(--text-sm)',
-            marginBottom: 'var(--space-4)',
-          }}
-        >
-          {downloadCount.toLocaleString()} downloads
-        </div>
-        
         {/* Download Report Button */}
         <button
-          onClick={handleDownload}
+          onClick={handleDownloadClick}
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -170,6 +170,13 @@ export default function PDFCard({ title, excerpt, pdfPath, imageUrl }: PDFCardPr
           Download Report
         </button>
       </div>
+
+      <DownloadEmailModal
+        isOpen={showEmailModal}
+        onClose={() => setShowEmailModal(false)}
+        reportTitle={title}
+        onSubmit={handleEmailSubmit}
+      />
     </article>
   );
 }

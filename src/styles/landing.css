@@ -1084,7 +1084,7 @@
 
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--space-6);
   max-width: 1200px;
   margin: 0 auto;
@@ -1527,6 +1527,13 @@
   transition: transform 0.3s ease;
 }
 
+.company-logo-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
 .company-logo-card {
   background: rgba(255, 248, 235, 0.85);
   border: 1px solid rgba(255, 215, 0, 0.4);
@@ -1911,4 +1918,13 @@
   .client-item { width: 85vw; }
   .client-card { height: 60vh; }
   .client-meta { font-size: var(--text-base); }
+}
+
+/* Contact form submit spinner */
+@keyframes contactSubmitSpin {
+  to { transform: rotate(360deg); }
+}
+.contact-submit-spinner {
+  display: inline-block;
+  animation: contactSubmitSpin 0.85s linear infinite;
 }

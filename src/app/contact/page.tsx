@@ -211,24 +211,24 @@ export default function ContactPage() {
                 <div
                   style={{
                     padding: 'var(--space-8)',
-                    background: 'var(--bg-secondary)',
+                    background: '#B3986D',
                     borderRadius: 'var(--radius-xl)',
-                    border: '1px solid var(--border-accent)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
                     textAlign: 'center',
                   }}
                 >
-                  <CheckCircle size={60} color="var(--color-accent)" style={{ marginBottom: 'var(--space-4)' }} />
+                  <CheckCircle size={60} color="#FFFFFF" style={{ marginBottom: 'var(--space-4)' }} />
                   <h3
                     style={{
                       fontSize: 'var(--text-2xl)',
                       fontWeight: 'var(--font-weight-semibold)',
-                      color: 'var(--text-primary)',
+                      color: '#FFFFFF',
                       marginBottom: 'var(--space-2)',
                     }}
                   >
                     Message Sent!
                   </h3>
-                  <p style={{ color: 'var(--text-secondary)' }}>
+                  <p style={{ color: '#EAEAEA' }}>
                     Thank you for your inquiry. We&apos;ll get back to you within 24 hours.
                   </p>
                 </div>
@@ -490,8 +490,10 @@ export default function ContactPage() {
                   >
                     {isLoading ? (
                       <>
-                        <Loader2 size={20} className="animate-spin" />
-                        Sending...
+                        <span className="contact-submit-spinner" style={{ display: 'inline-flex', alignItems: 'center' }}>
+                          <Loader2 size={22} strokeWidth={2.5} />
+                        </span>
+                        <span>Sending...</span>
                       </>
                     ) : (
                       <>

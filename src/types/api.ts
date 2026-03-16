@@ -6,6 +6,7 @@ export interface StatNumber {
 export interface FeatureItem {
   title: string;
   description: string;
+  image?: string;
 }
 
 // Transformed data for component usage

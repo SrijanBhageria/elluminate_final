@@ -17,14 +17,11 @@ export default function BlogCard({ blog, categoryName, isFeatured = false }: Blo
   const isReportStyle = categoryName === 'Technology & Innovation';
   console.log('isReportStyle:', isReportStyle, 'for category:', categoryName);
 
-  // Generate random download count and file size for demo (only for report style)
-  // Use useState/useEffect to avoid hydration mismatch
-  const [downloadCount, setDownloadCount] = useState(0);
+  // Generate file size for demo (only for report style)
   const [fileSize, setFileSize] = useState('0.0');
 
   useEffect(() => {
     if (isReportStyle) {
-      setDownloadCount(Math.floor(Math.random() * 5000) + 1000);
       setFileSize((Math.random() * 2 + 1).toFixed(1));
     }
   }, [isReportStyle]);
@@ -124,17 +121,6 @@ export default function BlogCard({ blog, categoryName, isFeatured = false }: Blo
           >
             {blog.excerpt}
           </p>
-          
-          {/* Download count */}
-          <div
-            style={{
-              color: 'var(--text-secondary)',
-              fontSize: 'var(--text-sm)',
-              marginBottom: 'var(--space-4)',
-            }}
-          >
-            {downloadCount.toLocaleString()} downloads
-          </div>
           
           {/* Download Report Button */}
           <button

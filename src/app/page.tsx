@@ -48,6 +48,7 @@ export default function Home() {
     {
       name: "Sunstone",
       logo: "/logos/Sunstone-logo.png",
+      website: "https://www.sunstone.edu.in/",
       sections: [
         {
           title: "About",
@@ -55,13 +56,14 @@ export default function Home() {
         },
         {
           title: "Investment Stage",
-          content: "Series A"
+          content: "Growth"
         }
       ]
     },
     {
       name: "One",
       logo: "/logos/one-logo.png",
+      website: "https://www.getonecard.app/",
       sections: [
         {
           title: "About",
@@ -69,13 +71,14 @@ export default function Home() {
         },
         {
           title: "Investment Stage",
-          content: "Series B"
+          content: "Growth"
         }
       ]
     },
     {
       name: "Battery Smart",
       logo: "/logos/battery-smart.webp",
+      website: "https://www.batterysmart.in/",
       sections: [
         {
           title: "About",
@@ -83,13 +86,14 @@ export default function Home() {
         },
         {
           title: "Investment Stage",
-          content: "Series A"
+          content: "Growth"
         }
       ]
     },
     {
       name: "Jiraaf",
       logo: "/logos/jiraaf-launches-indias-first-bond-analyser-to-decode-fixed-income-investing.webp",
+      website: "https://www.jiraaf.com/",
       sections: [
         {
           title: "About",
@@ -97,13 +101,14 @@ export default function Home() {
         },
         {
           title: "Investment Stage",
-          content: "Seed"
+          content: "Growth"
         }
       ]
     },
     {
       name: "Farmart",
       logo: "/logos/Farmart-logo.webp",
+      website: "https://farmart.co.in/",
       sections: [
         {
           title: "About",
@@ -111,13 +116,14 @@ export default function Home() {
         },
         {
           title: "Investment Stage",
-          content: "Series A"
+          content: "Growth"
         }
       ]
     },
     {
       name: "Damensch",
       logo: "/logos/Damensch.png",
+      website: "https://www.damensch.com/",
       sections: [
         {
           title: "About",
@@ -125,13 +131,14 @@ export default function Home() {
         },
         {
           title: "Investment Stage",
-          content: "Series B"
+          content: "Growth"
         }
       ]
     },
     {
       name: "Vegrow",
       logo: "/logos/vegrow.webp",
+      website: "https://www.vegrow.in/",
       sections: [
         {
           title: "About",
@@ -139,13 +146,14 @@ export default function Home() {
         },
         {
           title: "Investment Stage",
-          content: "Series A"
+          content: "Growth"
         }
       ]
     },
     {
       name: "Captain Fresh",
       logo: "/logos/captainFresh.png",
+      website: "https://www.captainfresh.com/",
       sections: [
         {
           title: "About",
@@ -153,7 +161,67 @@ export default function Home() {
         },
         {
           title: "Investment Stage",
-          content: "Series B"
+          content: "Growth"
+        }
+      ]
+    },
+    {
+      name: "AstroTalk",
+      logo: "/logos/astrotalk.png",
+      website: "https://www.astrotalk.com/",
+      sections: [
+        {
+          title: "About",
+          content: "Online astrology platform connecting users with certified astrologers for personalized consultations."
+        },
+        {
+          title: "Investment Stage",
+          content: "Growth"
+        }
+      ]
+    },
+    {
+      name: "Seekho",
+      logo: "/logos/seekho.png",
+      website: "https://seekho.in/",
+      sections: [
+        {
+          title: "About",
+          content: "EdTech platform offering skill-based learning and professional development courses."
+        },
+        {
+          title: "Investment Stage",
+          content: "Growth"
+        }
+      ]
+    },
+    {
+      name: "Solar Square",
+      logo: "/logos/solar-square.png",
+      website: "https://www.solarsquare.in/",
+      sections: [
+        {
+          title: "About",
+          content: "CleanTech company providing solar energy solutions and rooftop solar installations."
+        },
+        {
+          title: "Investment Stage",
+          content: "Growth"
+        }
+      ]
+    },
+    {
+      name: "Tractor Junction",
+      logo: "/logos/tractor-junction.png",
+      website: "https://tractorjunction.com/",
+      sections: [
+        {
+          title: "About",
+          content: "AgriTech platform connecting farmers with tractor and farm equipment dealers across India."
+        },
+        {
+          title: "Investment Stage",
+          content: "Growth"
         }
       ]
     }
@@ -323,11 +391,11 @@ export default function Home() {
               {leadershipContent.features.map((member, index) => (
                 <div key={index} className="team-member">
                   <div className="member-image">
-                    <Image src="/CompanyLogo.jpeg" alt="Team Member" width={120} height={120} sizes="120px" />
+                    <Image src={member.image ?? '/CompanyLogo.jpeg'} alt={member.title} width={120} height={120} sizes="120px" />
                   </div>
                   <div className="member-info">
                     <h3 className="member-name">{member.title}</h3>
-                    <p className="member-position">{member.description}</p>
+                    {member.description ? <p className="member-position">{member.description}</p> : null}
                   </div>
                 </div>
               ))}
@@ -346,31 +414,39 @@ export default function Home() {
           <h2 className="companies-grid-title">Companies</h2>
           
           <div className="companies-logos-grid">
-            {companies.map((company, index) => (
+            {[...companies].sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })).map((company, index) => (
               <div key={index} className="company-logo-item">
-                <div className="company-logo-card">
-                  <Image src={company.logo} alt={company.name} className="company-logo-img" width={160} height={80} sizes="(max-width: 768px) 120px, 160px" />
-                </div>
-                
-                <div className="company-hover-details">
-                  <div className="company-detail-header">
-                    <Image src={company.logo} alt={company.name} className="company-detail-logo" width={50} height={50} sizes="50px" />
-                    <h3 className="company-detail-name">{company.name}</h3>
+                <a
+                  href={company.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="company-logo-link"
+                  aria-label={`Visit ${company.name} website`}
+                >
+                  <div className="company-logo-card">
+                    <Image src={company.logo} alt={company.name} className="company-logo-img" width={160} height={80} sizes="(max-width: 768px) 120px, 160px" />
                   </div>
                   
-                  {company.sections.map((section, sectionIdx) => (
-                      <div key={sectionIdx} className="company-detail-info">
-                      <h4>{section.title}</h4>
-                      {Array.isArray(section.content) ? (
-                        section.content.map((item, itemIdx) => (
-                          <p key={itemIdx}>{item}</p>
-                        ))
-                      ) : (
-                        <p>{section.content}</p>
-                      )}
+                  <div className="company-hover-details">
+                    <div className="company-detail-header">
+                      <Image src={company.logo} alt={company.name} className="company-detail-logo" width={50} height={50} sizes="50px" />
+                      <h3 className="company-detail-name">{company.name}</h3>
                     </div>
-                  ))}
-                </div>
+                    
+                    {company.sections.map((section, sectionIdx) => (
+                        <div key={sectionIdx} className="company-detail-info">
+                        <h4>{section.title}</h4>
+                        {Array.isArray(section.content) ? (
+                          section.content.map((item, itemIdx) => (
+                            <p key={itemIdx}>{item}</p>
+                          ))
+                        ) : (
+                          <p>{section.content}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </a>
               </div>
             ))}
           </div>

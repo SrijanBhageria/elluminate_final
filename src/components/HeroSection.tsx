@@ -152,9 +152,9 @@ export default function HeroSection({ heroContent, visionContent, isVisible: par
             
             <div className="hero-divider"></div>
             
-            <p className="hero-description">
-              {heroContent?.subtitle || "Empowering strategic growth through expert investment banking solutions and unparalleled financial advisory services."}
-            </p>
+            {heroContent?.subtitle ? (
+              <p className="hero-description">{heroContent.subtitle}</p>
+            ) : null}
           </div>
           
           {/* Statistics on the right */}
@@ -170,11 +170,11 @@ export default function HeroSection({ heroContent, visionContent, isVisible: par
               </div>
               <div className="stat-item">
                 <div className="stat-number">{formatStatValue(stats.years, heroContent?.displayStats?.[2]?.value)}</div>
-                <div className="stat-label">{heroContent?.displayStats?.[2]?.label || 'Years Experience'}</div>
+                <div className="stat-label">{heroContent?.displayStats?.[2]?.label || 'Portfolio Completes'}</div>
               </div>
               <div className="stat-item">
                 <div className="stat-number">{formatStatValue(stats.assets, heroContent?.displayStats?.[3]?.value)}</div>
-                <div className="stat-label">{heroContent?.displayStats?.[3]?.label || 'Assets Under Management'}</div>
+                <div className="stat-label">{heroContent?.displayStats?.[3]?.label || 'Years of Experience'}</div>
               </div>
             </div>
           </div>

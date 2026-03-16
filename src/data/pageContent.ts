@@ -2,18 +2,18 @@ import { HeroContent } from '../types/api';
 
 export const landingPageContent: HeroContent = {
   title: 'Extended Team of New Age Founders',
-  subtitle: 'Much more than a transactional deal maker',
+  subtitle: '',
   stats: {
-    clients: 500,
-    deals: 1200,
+    clients: 800,
+    deals: 25,
     years: 15,
-    assets: 50
+    assets: 25
   },
   displayStats: [
-    { value: '500+', label: 'Funds Raised' },
-    { value: '1,200+', label: 'Deals Completed' },
-    { value: '15+', label: '' },
-    { value: '$50B+', label: 'Assets Under Management' }
+    { value: '$800 Mn +', label: 'Funds Raised' },
+    { value: '25+', label: 'Deals Completed' },
+    { value: '15+', label: 'Portfolio Completes' },
+    { value: '25+', label: 'Years of Experience' }
   ],
   features: [
     {
@@ -36,16 +36,16 @@ export const visionContent: HeroContent = {
   title: 'Our Vision',
   subtitle: 'To be the North Star for founders and investors, steering them through their most consequential strategic and financial decisions and leaving behind a legacy of businesses that redefine industries.',
   stats: {
-    clients: 500,
-    deals: 1200,
+    clients: 800,
+    deals: 25,
     years: 15,
-    assets: 50
+    assets: 25
   },
   displayStats: [
-    { value: '500+', label: 'Global Clients' },
-    { value: '1,200+', label: 'Deals Completed' },
-    { value: '15+', label: 'Years Experience' },
-    { value: '$50B+', label: 'Assets Under Management' }
+    { value: '$800 Mn +', label: 'Funds Raised' },
+    { value: '25+', label: 'Deals Completed' },
+    { value: '15+', label: 'Portfolio Completes' },
+    { value: '25+', label: 'Years of Experience' }
   ],
   features: [],
   buttons: []
@@ -76,18 +76,10 @@ export const leadershipContent: HeroContent = {
   },
   displayStats: [],
   features: [
-    {
-      title: 'Anuj Saraiwala',
-      description: 'Managing Partner'
-    },
-    {
-      title: 'Aman Bhageria',
-      description: 'Managing Partner'
-    },
-    {
-      title: 'Shashwat Bhageria',
-      description: 'Investment Banking Associate'
-    }
+    { title: 'Anuj Saraiwala', description: '', image: '/anuj-saraiwala.png' },
+    { title: 'Aman Bhageria', description: '', image: '/aman-bhageria.png' },
+    { title: 'Shashwat Bhageria', description: '', image: '/shashwat-bhageria.png' },
+    { title: 'Shubham Agarwal', description: '', image: '/shubham-agarwal.png' }
   ],
   buttons: []
 };
@@ -104,7 +96,7 @@ export const investmentStrategyContent: HeroContent = {
   displayStats: [
     { value: '500+', label: 'Global Clients' },
     { value: '2,500+', label: 'Deals Completed' },
-    { value: '15+', label: 'Years Experience' },
+    { value: '15+', label: 'Portfolio' },
     { value: '$98B+', label: 'Assets Under Management' }
   ],
   features: [],
