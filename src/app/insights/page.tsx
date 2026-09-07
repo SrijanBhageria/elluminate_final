@@ -23,7 +23,7 @@ export default function InsightsPage() {
   }> = [
     {
       title: 'India Electronics: The Market Memo',
-      excerpt: 'In-depth market memo on India’s electronics (ESDM) opportunity — the industry’s value chain, the assembly-to-design shift, and the investment case for domestic manufacturing.',
+      excerpt: 'In-depth market memo on India’s electronics (ESDM) opportunity - mapping where value accrues across the ecosystem, the shift from assembly to design-led manufacturing, and the investment case for India’s next phase of electronics growth.',
       pdfPath: '/blogs/elecbits-market-memo.html',
       mode: 'view',
     },
