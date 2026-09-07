@@ -101,6 +101,16 @@ svg.ic{vertical-align:-3px}
 .ptab.active{color:#08131b;background:var(--sky)}
 .ptab small{display:block;font-size:12px;font-weight:700;letter-spacing:.14em;opacity:.75;text-transform:uppercase}
 @media(max-width:760px){.ptab small{display:none}.topbar{gap:10px}}
+/* The memo is one self-contained file, so the bar hands it over directly.
+   Sits after the tabs; drops to the glyph alone where the tabs also shrink. */
+.dlbtn{display:inline-flex;align-items:center;gap:7px;flex-shrink:0;text-decoration:none;white-space:nowrap;
+  border:1px solid rgba(127,168,190,.5);background:rgba(127,168,190,.12);color:#DCE7EF;
+  font-size:13px;font-weight:750;letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 12px;border-radius:4px;transition:color .18s,background .18s,border-color .18s}
+.dlbtn:hover{color:#08131b;background:var(--sky);border-color:var(--sky)}
+.dlbtn svg{width:14px;height:14px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.9;
+  stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:1100px){.dlbtn span{display:none}.dlbtn{padding:6px 9px}}
 
 /* ============ COVERS ============ */
 .cover{min-height:92vh;display:flex;align-items:center;color:#E6EDF3;position:relative;overflow:hidden;
@@ -1638,6 +1648,11 @@ section[id],.cover{scroll-margin-top:52px}
     <a class="ptab" href="#p5">V <small>Why it is hard</small></a>
     <a class="ptab" href="#p6">VI <small>What is missing</small></a>
   </nav>
+  <a class="dlbtn" href="elecbits-market-memo.html" download="India Electronics - The Market Memo.html"
+     title="Download this memo as a single self-contained HTML file">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5v11.2"/><path d="M7.8 10.6 12 14.8l4.2-4.2"/><path d="M4.5 19.8h15"/></svg>
+    <span>Download</span>
+  </a>
 </header>
 
 <!-- ================= MASTER COVER ================= -->
@@ -6925,6 +6940,7 @@ html:not(.bm-open) #top .fl{display:none}}
     <span class="bm-lbl" id="bmLbl"></span>
     <button class="bm-btn vo" id="bmVo" aria-pressed="false" aria-label="Narration paused. Press N to play."><span class="volbl">N &middot; Play</span><span class="vodot"></span></button>
     <button class="bm-btn" id="bmFs" aria-pressed="false" title="Full screen (F). Press again, or Escape, to leave it."><span class="fsico" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11"><path class="fsin" d="M1 4.2V1h3.2M7.8 1H11v3.2M11 7.8V11H7.8M4.2 11H1V7.8" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/><path class="fsout" d="M4.2 1v3.2H1M7.8 1v3.2H11M11 7.8H7.8V11M1 7.8h3.2V11" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="fslbl">F &middot; Full screen</span></button>
+    <a class="bm-btn bm-dl" id="bmDl" href="elecbits-market-memo.html" download="India Electronics - The Market Memo.html" title="Download this memo as a single self-contained HTML file"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5v11.2"/><path d="M7.8 10.6 12 14.8l4.2-4.2"/><path d="M4.5 19.8h15"/></svg><span>Download</span></a>
     <button class="bm-btn bm-x" id="bmExit">Esc &middot; Exit</button>
   </div>
 </div>
@@ -14787,6 +14803,12 @@ var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 .bm-bar #bmFs.fson .fsin{display:none}
 .bm-bar #bmFs.fson .fsout{display:inline}
 .bm-bar #bmFs.fson{color:#DAE4ED;border-color:rgba(255,255,255,.28)}
+/* Download: the deck is one self-contained file, so the bar hands it over. Ordered
+   last so the JS-appended narration and currency controls keep their places. */
+.bm-bar .bm-dl{display:inline-flex;align-items:center;gap:7px;flex:none;text-decoration:none;order:9}
+.bm-bar .bm-x{order:10}
+.bm-bar .bm-dl svg{display:block;width:12px;height:12px;flex:none;fill:none;stroke:currentColor;
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
 </style>
 <style id="b246-cumulative-css">
 /* B-246 · the walk's instrument panel, all four tiles cumulative.
