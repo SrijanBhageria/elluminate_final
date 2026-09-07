@@ -14,7 +14,13 @@ export default function InsightsPage() {
   }, []);
 
   // PDF data for Market Analysis section
-  const marketAnalysisPDFs = [
+  const marketAnalysisPDFs: Array<{
+    title: string;
+    excerpt: string;
+    pdfPath: string;
+    imageUrl?: string;
+    mode?: 'download' | 'view';
+  }> = [
     {
       title: 'Residential Rooftop Solar Market in India',
       excerpt: 'Comprehensive analysis of the residential rooftop solar market in India, including market trends, growth opportunities, and investment insights.',
@@ -26,6 +32,12 @@ export default function InsightsPage() {
       excerpt: 'Detailed market memorandum on the used tractors market in India, covering market dynamics, key players, and strategic opportunities.',
       pdfPath: '/blogs/Used Tractors in india - Market Memo_vJan\'25.pdf',
       imageUrl: '/tractor.png',
+    },
+    {
+      title: 'India Electronics: The Market Memo',
+      excerpt: 'In-depth market memo on India’s electronics (ESDM) opportunity — the industry’s value chain, the assembly-to-design shift, and the investment case for domestic manufacturing.',
+      pdfPath: '/blogs/elecbits-market-memo.html',
+      mode: 'view',
     },
   ];
 
@@ -185,12 +197,13 @@ export default function InsightsPage() {
               }}
             >
               {marketAnalysisPDFs.map((pdf, index) => (
-                <PDFCard 
+                <PDFCard
                   key={index}
                   title={pdf.title}
                   excerpt={pdf.excerpt}
                   pdfPath={pdf.pdfPath}
                   imageUrl={pdf.imageUrl}
+                  mode={pdf.mode}
                 />
               ))}
             </div>

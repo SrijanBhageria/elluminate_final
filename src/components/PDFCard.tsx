@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Download } from 'lucide-react';
+import { Download, ExternalLink } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import DownloadEmailModal from './DownloadEmailModal';
 
@@ -11,9 +11,16 @@ interface PDFCardProps {
   excerpt: string;
   pdfPath: string;
   imageUrl?: string;
+  /**
+   * 'download' (default) gates the file behind the email-capture modal, then
+   * triggers a browser download. 'view' opens pdfPath directly in a new tab —
+   * no gate, no download prompt. Use 'view' for reports meant to be opened or
+   * shared as a plain link (e.g. HTML investor memos).
+   */
+  mode?: 'download' | 'view';
 }
 
-export default function PDFCard({ title, excerpt, pdfPath, imageUrl }: PDFCardProps) {
+export default function PDFCard({ title, excerpt, pdfPath, imageUrl, mode = 'download' }: PDFCardProps) {
   const [fileSize, setFileSize] = useState('0.0');
   const [showEmailModal, setShowEmailModal] = useState(false);
 
@@ -31,7 +38,11 @@ export default function PDFCard({ title, excerpt, pdfPath, imageUrl }: PDFCardPr
     document.body.removeChild(link);
   };
 
-  const handleDownloadClick = () => {
+  const handleCardActionClick = () => {
+    if (mode === 'view') {
+      window.open(pdfPath, '_blank', 'noopener,noreferrer');
+      return;
+    }
     setShowEmailModal(true);
   };
 
@@ -141,9 +152,9 @@ export default function PDFCard({ title, excerpt, pdfPath, imageUrl }: PDFCardPr
           {excerpt}
         </p>
         
-        {/* Download Report Button */}
+        {/* Download / View Report Button */}
         <button
-          onClick={handleDownloadClick}
+          onClick={handleCardActionClick}
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -171,17 +182,19 @@ export default function PDFCard({ title, excerpt, pdfPath, imageUrl }: PDFCardPr
             e.currentTarget.style.boxShadow = '0 8px 25px rgba(212, 175, 55, 0.4)';
           }}
         >
-          <Download size={16} />
-          Download Report
+          {mode === 'view' ? <ExternalLink size={16} /> : <Download size={16} />}
+          {mode === 'view' ? 'View Report' : 'Download Report'}
         </button>
       </div>
 
-      <DownloadEmailModal
-        isOpen={showEmailModal}
-        onClose={() => setShowEmailModal(false)}
-        reportTitle={title}
-        onSubmit={handleEmailSubmit}
-      />
+      {mode === 'download' && (
+        <DownloadEmailModal
+          isOpen={showEmailModal}
+          onClose={() => setShowEmailModal(false)}
+          reportTitle={title}
+          onSubmit={handleEmailSubmit}
+        />
+      )}
     </article>
   );
 }
