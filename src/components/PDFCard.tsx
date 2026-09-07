@@ -15,9 +15,11 @@ interface PDFCardProps {
    * 'download' (default) gates the file behind the email-capture modal, then
    * triggers a browser download. 'view' opens pdfPath directly in a new tab —
    * no gate, no download prompt. Use 'view' for reports meant to be opened or
-   * shared as a plain link (e.g. HTML investor memos).
+   * shared as a plain link (e.g. HTML investor memos). 'view-and-download'
+   * offers both: an ungated "View Report" link plus an email-gated download of
+   * the same file.
    */
-  mode?: 'download' | 'view';
+  mode?: 'download' | 'view' | 'view-and-download';
 }
 
 export default function PDFCard({ title, excerpt, pdfPath, imageUrl, mode = 'download' }: PDFCardProps) {
@@ -29,6 +31,9 @@ export default function PDFCard({ title, excerpt, pdfPath, imageUrl, mode = 'dow
     setFileSize((Math.random() * 2 + 1).toFixed(1));
   }, []);
 
+  const showView = mode === 'view' || mode === 'view-and-download';
+  const showDownload = mode === 'download' || mode === 'view-and-download';
+
   const triggerDownload = () => {
     const link = document.createElement('a');
     link.href = pdfPath;
@@ -38,11 +43,11 @@ export default function PDFCard({ title, excerpt, pdfPath, imageUrl, mode = 'dow
     document.body.removeChild(link);
   };
 
-  const handleCardActionClick = () => {
-    if (mode === 'view') {
-      window.open(pdfPath, '_blank', 'noopener,noreferrer');
-      return;
-    }
+  const handleViewClick = () => {
+    window.open(pdfPath, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleDownloadClick = () => {
     setShowEmailModal(true);
   };
 
@@ -59,6 +64,56 @@ export default function PDFCard({ title, excerpt, pdfPath, imageUrl, mode = 'dow
   };
 
   const defaultImage = 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop&auto=format&q=80';
+
+  // Gold CTA used on its own, or as the first of the two stacked actions.
+  const primaryButtonStyle: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 'var(--space-2)',
+    background: 'linear-gradient(135deg, #D4AF37, #FFD700)',
+    color: '#000',
+    border: 'none',
+    borderRadius: 'var(--radius-lg)',
+    padding: 'var(--space-3) var(--space-6)',
+    fontSize: 'var(--text-sm)',
+    fontWeight: 'var(--font-weight-bold)',
+    cursor: 'pointer',
+    transition: 'all var(--transition-normal)',
+    boxShadow: '0 8px 25px rgba(212, 175, 55, 0.4)',
+    width: '100%',
+  };
+
+  // Outlined variant so two stacked CTAs don't compete for attention.
+  const secondaryButtonStyle: React.CSSProperties = {
+    ...primaryButtonStyle,
+    background: 'transparent',
+    color: '#6B4F2A',
+    border: '1px solid #B8956A',
+    boxShadow: 'none',
+  };
+
+  const primaryHoverProps = {
+    onMouseEnter: (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.currentTarget.style.transform = 'translateY(-2px) scale(1.05)';
+      e.currentTarget.style.boxShadow = '0 15px 35px rgba(212, 175, 55, 0.6)';
+    },
+    onMouseLeave: (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.currentTarget.style.transform = 'translateY(0) scale(1)';
+      e.currentTarget.style.boxShadow = '0 8px 25px rgba(212, 175, 55, 0.4)';
+    },
+  };
+
+  const secondaryHoverProps = {
+    onMouseEnter: (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.currentTarget.style.transform = 'translateY(-2px)';
+      e.currentTarget.style.background = 'rgba(184, 149, 106, 0.22)';
+    },
+    onMouseLeave: (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.currentTarget.style.transform = 'translateY(0)';
+      e.currentTarget.style.background = 'transparent';
+    },
+  };
 
   return (
     <article
@@ -152,42 +207,36 @@ export default function PDFCard({ title, excerpt, pdfPath, imageUrl, mode = 'dow
           {excerpt}
         </p>
         
-        {/* Download / View Report Button */}
-        <button
-          onClick={handleCardActionClick}
+        {/* View / Download actions */}
+        <div
           style={{
             display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 'var(--space-2)',
-            background: 'linear-gradient(135deg, #D4AF37, #FFD700)',
-            color: '#000',
-            border: 'none',
-            borderRadius: 'var(--radius-lg)',
-            padding: 'var(--space-3) var(--space-6)',
-            fontSize: 'var(--text-sm)',
-            fontWeight: 'var(--font-weight-bold)',
-            cursor: 'pointer',
-            transition: 'all var(--transition-normal)',
-            boxShadow: '0 8px 25px rgba(212, 175, 55, 0.4)',
-            width: '100%',
+            flexDirection: 'column',
+            gap: 'var(--space-3)',
             marginTop: 'auto',
           }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-2px) scale(1.05)';
-            e.currentTarget.style.boxShadow = '0 15px 35px rgba(212, 175, 55, 0.6)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translateY(0) scale(1)';
-            e.currentTarget.style.boxShadow = '0 8px 25px rgba(212, 175, 55, 0.4)';
-          }}
         >
-          {mode === 'view' ? <ExternalLink size={16} /> : <Download size={16} />}
-          {mode === 'view' ? 'View Report' : 'Download Report'}
-        </button>
+          {showView && (
+            <button onClick={handleViewClick} style={primaryButtonStyle} {...primaryHoverProps}>
+              <ExternalLink size={16} />
+              View Report
+            </button>
+          )}
+
+          {showDownload && (
+            <button
+              onClick={handleDownloadClick}
+              style={showView ? secondaryButtonStyle : primaryButtonStyle}
+              {...(showView ? secondaryHoverProps : primaryHoverProps)}
+            >
+              <Download size={16} />
+              {showView ? 'Download HTML' : 'Download Report'}
+            </button>
+          )}
+        </div>
       </div>
 
-      {mode === 'download' && (
+      {showDownload && (
         <DownloadEmailModal
           isOpen={showEmailModal}
           onClose={() => setShowEmailModal(false)}

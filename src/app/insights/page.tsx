@@ -19,13 +19,13 @@ export default function InsightsPage() {
     excerpt: string;
     pdfPath: string;
     imageUrl?: string;
-    mode?: 'download' | 'view';
+    mode?: 'download' | 'view' | 'view-and-download';
   }> = [
     {
       title: 'India Electronics: The Market Memo',
       excerpt: 'In-depth market memo on India’s electronics (ESDM) opportunity - mapping where value accrues across the ecosystem, the shift from assembly to design-led manufacturing, and the investment case for India’s next phase of electronics growth.',
       pdfPath: '/blogs/elecbits-market-memo.html',
-      mode: 'view',
+      mode: 'view-and-download',
     },
     {
       title: 'Residential Rooftop Solar Market in India',
