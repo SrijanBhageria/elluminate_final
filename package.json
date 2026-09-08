@@ -15,6 +15,7 @@
     "@studio-freight/lenis": "1.0.42",
     "canvas": "^3.2.0",
     "fzf": "^0.5.2",
+    "googleapis": "^178.1.1",
     "gsap": "^3.13.0",
     "imagetracer": "^0.2.2",
     "jimp": "^1.6.0",

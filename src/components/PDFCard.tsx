@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { Download, ExternalLink } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 import DownloadEmailModal from './DownloadEmailModal';
+import { identifyUserInClarity, trackClarityEvent, ClarityEvents } from '@/utils/clarity';
 
 interface PDFCardProps {
   title: string;
@@ -22,17 +22,23 @@ interface PDFCardProps {
   mode?: 'download' | 'view' | 'view-and-download';
 }
 
-export default function PDFCard({ title, excerpt, pdfPath, imageUrl, mode = 'download' }: PDFCardProps) {
-  const [fileSize, setFileSize] = useState('0.0');
-  const [showEmailModal, setShowEmailModal] = useState(false);
+const DEFAULT_IMAGE =
+  'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop&auto=format&q=80';
 
-  useEffect(() => {
-    // Generate file size only on client to avoid hydration mismatch
-    setFileSize((Math.random() * 2 + 1).toFixed(1));
-  }, []);
+function getFormatLabel(path: string): string {
+  const ext = path.split('.').pop()?.toLowerCase();
+  if (ext === 'html' || ext === 'htm') return 'HTML';
+  if (ext === 'pdf') return 'PDF';
+  return 'Report';
+}
+
+export default function PDFCard({ title, excerpt, pdfPath, imageUrl, mode = 'download' }: PDFCardProps) {
+  const [showEmailModal, setShowEmailModal] = useState(false);
+  const [modalAction, setModalAction] = useState<'view' | 'download'>('download');
 
   const showView = mode === 'view' || mode === 'view-and-download';
   const showDownload = mode === 'download' || mode === 'view-and-download';
+  const formatLabel = getFormatLabel(pdfPath);
 
   const triggerDownload = () => {
     const link = document.createElement('a');
@@ -43,208 +49,129 @@ export default function PDFCard({ title, excerpt, pdfPath, imageUrl, mode = 'dow
     document.body.removeChild(link);
   };
 
-  const handleViewClick = () => {
-    window.open(pdfPath, '_blank', 'noopener,noreferrer');
-  };
-
-  const handleDownloadClick = () => {
+  const handleViewClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setModalAction('view');
     setShowEmailModal(true);
   };
 
-  const handleEmailSubmit = (email: string) => {
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const downloadTemplateId = process.env.NEXT_PUBLIC_EMAILJS_DOWNLOAD_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-    if (serviceId && downloadTemplateId && publicKey) {
-      emailjs
-        .send(serviceId, downloadTemplateId, { article_name: title, downloader_email: email }, publicKey)
-        .catch((err) => console.error('EmailJS download notification failed:', err));
+  const handleDownloadClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setModalAction('download');
+    setShowEmailModal(true);
+  };
+
+  const handleEmailSubmit = async (email: string) => {
+    try {
+      // 1. Save to Google Sheets via secure API route
+      const response = await fetch('/api/save-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          reportTitle: title,
+          action: modalAction,
+        }),
+      });
+
+      if (!response.ok) {
+        console.error('Failed to save email to Google Sheets');
+      } else {
+        console.log('✓ Email saved successfully');
+      }
+
+      // 2. Track in Microsoft Clarity
+      identifyUserInClarity(email);
+      trackClarityEvent(
+        modalAction === 'view' ? ClarityEvents.EMAIL_CAPTURED_VIEW : ClarityEvents.EMAIL_CAPTURED_DOWNLOAD,
+        {
+          report: title,
+          action: modalAction,
+        }
+      );
+
+      // 3. Execute the intended action
+      if (modalAction === 'download') {
+        triggerDownload();
+        trackClarityEvent(ClarityEvents.REPORT_DOWNLOADED, { report: title });
+      } else {
+        window.open(pdfPath, '_blank', 'noopener,noreferrer');
+        trackClarityEvent(ClarityEvents.REPORT_VIEWED, { report: title });
+      }
+
+      // 4. Close modal after action completes
+      setTimeout(() => {
+        setShowEmailModal(false);
+      }, 500);
+      
+    } catch (error) {
+      console.error('Error handling email submission:', error);
+      // Still allow the action even if tracking fails
+      if (modalAction === 'download') {
+        triggerDownload();
+      } else {
+        window.open(pdfPath, '_blank', 'noopener,noreferrer');
+      }
+      // Close modal
+      setTimeout(() => {
+        setShowEmailModal(false);
+      }, 500);
     }
-    triggerDownload();
-  };
-
-  const defaultImage = 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop&auto=format&q=80';
-
-  // Gold CTA used on its own, or as the first of the two stacked actions.
-  const primaryButtonStyle: React.CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 'var(--space-2)',
-    background: 'linear-gradient(135deg, #D4AF37, #FFD700)',
-    color: '#000',
-    border: 'none',
-    borderRadius: 'var(--radius-lg)',
-    padding: 'var(--space-3) var(--space-6)',
-    fontSize: 'var(--text-sm)',
-    fontWeight: 'var(--font-weight-bold)',
-    cursor: 'pointer',
-    transition: 'all var(--transition-normal)',
-    boxShadow: '0 8px 25px rgba(212, 175, 55, 0.4)',
-    width: '100%',
-  };
-
-  // Outlined variant so two stacked CTAs don't compete for attention.
-  const secondaryButtonStyle: React.CSSProperties = {
-    ...primaryButtonStyle,
-    background: 'transparent',
-    color: '#6B4F2A',
-    border: '1px solid #B8956A',
-    boxShadow: 'none',
-  };
-
-  const primaryHoverProps = {
-    onMouseEnter: (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.currentTarget.style.transform = 'translateY(-2px) scale(1.05)';
-      e.currentTarget.style.boxShadow = '0 15px 35px rgba(212, 175, 55, 0.6)';
-    },
-    onMouseLeave: (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.currentTarget.style.transform = 'translateY(0) scale(1)';
-      e.currentTarget.style.boxShadow = '0 8px 25px rgba(212, 175, 55, 0.4)';
-    },
-  };
-
-  const secondaryHoverProps = {
-    onMouseEnter: (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.currentTarget.style.transform = 'translateY(-2px)';
-      e.currentTarget.style.background = 'rgba(184, 149, 106, 0.22)';
-    },
-    onMouseLeave: (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.currentTarget.style.transform = 'translateY(0)';
-      e.currentTarget.style.background = 'transparent';
-    },
   };
 
   return (
-    <article
-      style={{
-        background: '#E5D4C1',
-        borderRadius: 'var(--radius-xl)',
-        overflow: 'hidden',
-        border: '1px solid #D4C4B0',
-        transition: 'all var(--transition-normal)',
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        position: 'relative',
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-8px) scale(1.02)';
-        e.currentTarget.style.boxShadow = '0 8px 25px rgba(184, 149, 106, 0.3)';
-        e.currentTarget.style.borderColor = '#B8956A';
-        e.currentTarget.style.background = '#DCC9B3';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'translateY(0) scale(1)';
-        e.currentTarget.style.boxShadow = 'none';
-        e.currentTarget.style.borderColor = '#D4C4B0';
-        e.currentTarget.style.background = '#E5D4C1';
-      }}
-    >
-      <div style={{ position: 'relative', width: '100%', height: '200px' }}>
+    <article className="pdf-card">
+      <div className="pdf-card-image-wrap">
         <Image
-          src={imageUrl || defaultImage}
+          src={imageUrl || DEFAULT_IMAGE}
           alt={title}
           fill
-          style={{
-            objectFit: 'cover',
-            filter: 'grayscale(30%)',
-            transition: 'filter var(--transition-normal)',
-          }}
-          sizes="(max-width: 768px) 100vw, 400px"
           className="pdf-card-image"
-          onMouseEnter={(e) => {
-            e.currentTarget.style.filter = 'grayscale(0%)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.filter = 'grayscale(30%)';
-          }}
+          sizes="(max-width: 960px) 100vw, 380px"
         />
-        
-        {/* File size badge */}
-        <div
-          style={{
-            position: 'absolute',
-            top: 'var(--space-3)',
-            right: 'var(--space-3)',
-            background: 'rgba(0, 0, 0, 0.8)',
-            color: 'white',
-            padding: 'var(--space-1) var(--space-2)',
-            borderRadius: 'var(--radius-md)',
-            fontSize: 'var(--text-xs)',
-            fontWeight: 'var(--font-weight-medium)',
-            backdropFilter: 'blur(10px)',
-          }}
-        >
-          {fileSize} MB
-        </div>
+        <span className="pdf-card-format-badge">{formatLabel}</span>
       </div>
-      
-      <div style={{ padding: 'var(--space-6)', flex: 1, display: 'flex', flexDirection: 'column' }}>
-        <h3
-          style={{
-            fontSize: 'var(--text-xl)',
-            fontWeight: 'var(--font-weight-bold)',
-            color: '#B8956A',
-            marginBottom: 'var(--space-3)',
-            lineHeight: '1.3',
-            flex: 1,
-            fontFamily: 'var(--font-family-heading)',
-          }}
-        >
-          {title}
-        </h3>
-        
-        <p
-          style={{
-            color: '#4A4A4A',
-            lineHeight: '1.5',
-            marginBottom: 'var(--space-4)',
-            fontSize: 'var(--text-sm)',
-            flex: 1,
-          }}
-        >
-          {excerpt}
-        </p>
-        
-        {/* View / Download actions */}
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 'var(--space-3)',
-            marginTop: 'auto',
-          }}
-        >
+
+      <div className="pdf-card-body">
+        <h3 className="pdf-card-title">{title}</h3>
+        <p className="pdf-card-excerpt">{excerpt}</p>
+
+        <div className="pdf-card-actions">
           {showView && (
-            <button onClick={handleViewClick} style={primaryButtonStyle} {...primaryHoverProps}>
-              <ExternalLink size={16} />
+            <button
+              type="button"
+              onClick={handleViewClick}
+              className="pdf-card-btn pdf-card-btn--primary"
+            >
+              <ExternalLink size={16} aria-hidden />
               View Report
             </button>
           )}
 
           {showDownload && (
             <button
+              type="button"
               onClick={handleDownloadClick}
-              style={showView ? secondaryButtonStyle : primaryButtonStyle}
-              {...(showView ? secondaryHoverProps : primaryHoverProps)}
+              className={`pdf-card-btn ${showView ? 'pdf-card-btn--secondary' : 'pdf-card-btn--primary'}`}
             >
-              <Download size={16} />
-              {showView ? 'Download HTML' : 'Download Report'}
+              <Download size={16} aria-hidden />
+              {showView ? 'Download' : 'Download Report'}
             </button>
           )}
         </div>
       </div>
 
-      {showDownload && (
+      {(showView || showDownload) && (
         <DownloadEmailModal
           isOpen={showEmailModal}
           onClose={() => setShowEmailModal(false)}
           reportTitle={title}
           onSubmit={handleEmailSubmit}
+          actionType={modalAction}
         />
       )}
     </article>
   );
 }
-

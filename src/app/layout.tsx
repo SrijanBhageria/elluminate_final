@@ -53,6 +53,7 @@ import {
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import SmoothScrollProvider from '@/components/SmoothScrollProvider';
 import Navbar from '@/components/Navbar';
+import MicrosoftClarity from '@/components/MicrosoftClarity';
 import './globals.css';
 
 // Sans-serif fonts
@@ -485,6 +486,9 @@ export default function RootLayout({
             </div>
           </SmoothScrollProvider>
         </ThemeProvider>
+
+        {/* Analytics */}
+        <MicrosoftClarity />
       </body>
     </html>
   );

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Footer from '../../components/Footer';
 import { insightsContent } from '../../data/pageContent';
 import PDFCard from '../../components/PDFCard';
+import '../../styles/market-analysis.css';
 
 export default function InsightsPage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -23,7 +24,7 @@ export default function InsightsPage() {
   }> = [
     {
       title: 'India Electronics: The Market Memo',
-      excerpt: 'In-depth market memo on India’s electronics (ESDM) opportunity - mapping where value accrues across the ecosystem, the shift from assembly to design-led manufacturing, and the investment case for India’s next phase of electronics growth.',
+      excerpt: 'In-depth market memo on India’s electronics (ESDM) opportunity — mapping where value accrues across the ecosystem, the shift from assembly to design-led manufacturing, and the investment case for India’s next phase of electronics growth.',
       pdfPath: '/blogs/elecbits-market-memo.html',
       mode: 'view-and-download',
     },
@@ -148,64 +149,36 @@ export default function InsightsPage() {
         </section>
 
         {/* Market Analysis Section */}
-        <section
-          style={{
-            padding: 'var(--space-20) var(--space-6)',
-            background: 'transparent',
-          }}
-        >
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <h2
+        <section className="market-analysis-section">
+          <div className="market-analysis-inner">
+            <div
+              className="market-analysis-panel"
               style={{
-                fontSize: 'var(--text-4xl)',
-                fontWeight: 'var(--font-weight-bold)',
-                color: '#ffffff',
-                marginBottom: 'var(--space-4)',
-                fontFamily: 'var(--font-family-heading)',
-                textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                transition: 'all 0.8s ease 0.2s',
-              }}
-            >
-              Market Analysis
-            </h2>
-            
-            <p
-              style={{
-                fontSize: 'var(--text-lg)',
-                color: 'rgba(255, 255, 255, 0.8)',
-                marginBottom: 'var(--space-8)',
-                maxWidth: '600px',
-                textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)',
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
                 transition: 'all 0.8s ease 0.3s',
               }}
             >
-              Comprehensive market analysis reports and insights to help you make informed decisions.
-            </p>
-          
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-                gap: 'var(--space-8)',
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                transition: 'all 0.8s ease 0.4s',
-              }}
-            >
-              {marketAnalysisPDFs.map((pdf, index) => (
-                <PDFCard
-                  key={index}
-                  title={pdf.title}
-                  excerpt={pdf.excerpt}
-                  pdfPath={pdf.pdfPath}
-                  imageUrl={pdf.imageUrl}
-                  mode={pdf.mode}
-                />
-              ))}
+              <header className="market-analysis-header">
+                <h2>Market Analysis</h2>
+                <p>
+                  Comprehensive market analysis reports and insights to help you make informed decisions.
+                </p>
+                <div className="market-analysis-divider" aria-hidden />
+              </header>
+
+              <div className="market-analysis-grid">
+                {marketAnalysisPDFs.map((pdf) => (
+                  <PDFCard
+                    key={pdf.title}
+                    title={pdf.title}
+                    excerpt={pdf.excerpt}
+                    pdfPath={pdf.pdfPath}
+                    imageUrl={pdf.imageUrl}
+                    mode={pdf.mode}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </section>
