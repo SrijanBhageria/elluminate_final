@@ -371,7 +371,7 @@ export default function DownloadEmailModal({
             lineHeight: 1.4,
           }}
         >
-          🔒 Your email is safe. We'll only use it for this report.
+          🔒 Your email is safe. We&apos;ll only use it for this report.
         </p>
       </div>
 
