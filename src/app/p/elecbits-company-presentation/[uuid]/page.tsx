@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
       type: 'website',
       images: [
         {
-          url: '/elecbits-logo.png',
+          url: 'https://www.elluminate.in/elecbits-logo.png',
           width: 1200,
           height: 630,
           alt: 'Elecbits Logo',
@@ -32,7 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: 'summary_large_image',
       title: 'Elecbits - Company Presentation',
       description: 'A full stack ESDM, Powered by XOR',
-      images: ['/elecbits-logo.png'],
+      images: ['https://www.elluminate.in/elecbits-logo.png'],
     },
     robots: {
       index: false,
