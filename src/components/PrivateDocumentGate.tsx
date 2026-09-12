@@ -49,25 +49,28 @@ export default function PrivateDocumentGate({
       return;
     }
 
-    setIsSubmitting(true);
+    // Store access in localStorage immediately
+    const storageKey = `doc_access_${documentId}`;
+    localStorage.setItem(storageKey, 'true');
 
+    // Hide the gate immediately - don't block the user
+    setShowGate(false);
+
+    // Save email to Google Sheets in the background (fire and forget)
+    fetch('/api/save-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: email.trim(),
+        source: documentTitle,
+        action: 'document_access',
+      }),
+    }).catch((err) => {
+      console.error('Background email save failed:', err);
+    });
+
+    // Track in Clarity in the background
     try {
-      // Save email to Google Sheets
-      const response = await fetch('/api/save-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: email.trim(),
-          source: documentTitle,
-          action: 'document_access',
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to save email');
-      }
-
-      // Track in Clarity
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (typeof window !== 'undefined' && (window as any).clarity) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -78,19 +81,8 @@ export default function PrivateDocumentGate({
           documentTitle,
         });
       }
-
-      // Store access in localStorage
-      const storageKey = `doc_access_${documentId}`;
-      localStorage.setItem(storageKey, 'true');
-
-      // Hide the gate after a brief moment
-      setTimeout(() => {
-        setShowGate(false);
-      }, 500);
     } catch (err) {
-      console.error('Error:', err);
-      setError('Something went wrong. Please try again.');
-      setIsSubmitting(false);
+      console.error('Clarity tracking failed:', err);
     }
   };
 
