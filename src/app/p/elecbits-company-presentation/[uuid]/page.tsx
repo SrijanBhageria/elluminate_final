@@ -19,11 +19,20 @@ export async function generateMetadata(): Promise<Metadata> {
       title: 'Elecbits - Company Presentation',
       description: 'A full stack ESDM, Powered by XOR',
       type: 'website',
+      images: [
+        {
+          url: '/elecbits-logo.png',
+          width: 1200,
+          height: 630,
+          alt: 'Elecbits Logo',
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: 'Elecbits - Company Presentation',
       description: 'A full stack ESDM, Powered by XOR',
+      images: ['/elecbits-logo.png'],
     },
     robots: {
       index: false,
