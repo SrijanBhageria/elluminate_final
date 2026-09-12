@@ -4,6 +4,17 @@ import PrivateDocumentGate from '@/components/PrivateDocumentGate';
 
 export const metadata: Metadata = {
   title: 'Elecbits - Company Presentation',
+  description: 'A full stack ESDM, Powered by XOR',
+  openGraph: {
+    title: 'Elecbits - Company Presentation',
+    description: 'A full stack ESDM, Powered by XOR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Elecbits - Company Presentation',
+    description: 'A full stack ESDM, Powered by XOR',
+  },
   robots: {
     index: false,
     follow: false,
