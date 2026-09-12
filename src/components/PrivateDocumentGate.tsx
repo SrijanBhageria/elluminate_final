@@ -139,29 +139,29 @@ export default function PrivateDocumentGate({
           <div
             style={{
               position: 'relative',
-              background: 'linear-gradient(145deg, #1f1f1f 0%, #2a2a2a 100%)',
+              background: 'rgba(0, 0, 0, 0.2)',
               borderRadius: '16px',
-              border: '1px solid rgba(255, 255, 255, 0.12)',
-              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.6)',
+              border: '1px solid rgba(255, 255, 255, 0.15)',
+              backdropFilter: 'blur(20px)',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
               maxWidth: '420px',
               width: '90%',
-              padding: '32px',
+              padding: '28px',
               animation: 'slideUp 0.3s ease',
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Simple heading */}
-            <h2
+            {/* Label */}
+            <div
               style={{
-                fontSize: '18px',
-                fontWeight: '600',
-                color: '#fff',
-                marginBottom: '20px',
-                textAlign: 'center',
+                fontSize: '15px',
+                fontWeight: '500',
+                color: 'rgba(255, 255, 255, 0.9)',
+                marginBottom: '12px',
               }}
             >
-              Enter your email to continue
-            </h2>
+              Enter your email
+            </div>
 
             {/* Form */}
             <form onSubmit={handleSubmit}>
