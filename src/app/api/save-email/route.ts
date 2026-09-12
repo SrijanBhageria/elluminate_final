@@ -8,17 +8,20 @@ import { NextResponse } from 'next/server';
  * request to view or download market reports.
  * 
  * POST /api/save-email
- * Body: { email, reportTitle, action } 
+ * Body: { email, reportTitle | source, action } 
  */
 export async function POST(request: Request) {
   try {
     // Parse request body
-    const { email, reportTitle, action } = await request.json();
+    const { email, reportTitle, source, action } = await request.json();
+    
+    // Use reportTitle or source (for backward compatibility)
+    const title = reportTitle || source;
 
     // Validate required fields
-    if (!email || !reportTitle || !action) {
+    if (!email || !title || !action) {
       return NextResponse.json(
-        { error: 'Missing required fields: email, reportTitle, or action' },
+        { error: 'Missing required fields: email, title/source, or action' },
         { status: 400 }
       );
     }
@@ -62,13 +65,13 @@ export async function POST(request: Request) {
     // Append row to Google Sheet
     await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: 'Sheet1!A:F', // Columns: Timestamp, Email, Report, Action, Referer, User Agent
+      range: 'Sheet1!A:F', // Columns: Timestamp, Email, Report/Source, Action, Referer, User Agent
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [[
           timestamp,
           email,
-          reportTitle,
+          title,
           action,
           referer,
           userAgent.substring(0, 100), // Truncate long user agents
@@ -76,7 +79,7 @@ export async function POST(request: Request) {
       },
     });
 
-    console.log('✓ Email saved to Google Sheets:', email, reportTitle, action);
+    console.log('✓ Email saved to Google Sheets:', email, title, action);
 
     return NextResponse.json({ 
       success: true,

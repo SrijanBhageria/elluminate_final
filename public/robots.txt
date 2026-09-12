@@ -1,0 +1,9 @@
+# Allow all crawlers by default
+User-agent: *
+Allow: /
+
+# Disallow private pages
+Disallow: /p/
+
+# Sitemap
+Sitemap: https://elluminate.io/sitemap.xml
