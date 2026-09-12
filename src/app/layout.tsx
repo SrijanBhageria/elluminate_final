@@ -52,7 +52,7 @@ import {
 } from 'next/font/google';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import SmoothScrollProvider from '@/components/SmoothScrollProvider';
-import Navbar from '@/components/Navbar';
+import ConditionalNavbar from '@/components/ConditionalNavbar';
 import MicrosoftClarity from '@/components/MicrosoftClarity';
 import './globals.css';
 
@@ -478,7 +478,7 @@ export default function RootLayout({
               }}
             >
               {/* Navigation */}
-              <Navbar />
+              <ConditionalNavbar />
               
               {/* Main Content */}
               <main>{children}</main>
