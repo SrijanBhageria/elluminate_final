@@ -139,17 +139,29 @@ export default function PrivateDocumentGate({
           <div
             style={{
               position: 'relative',
-              background: '#1a1a1a',
-              borderRadius: '12px',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              boxShadow: '0 4px 24px rgba(0, 0, 0, 0.5)',
-              maxWidth: '400px',
+              background: 'linear-gradient(145deg, #1f1f1f 0%, #2a2a2a 100%)',
+              borderRadius: '16px',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.6)',
+              maxWidth: '420px',
               width: '90%',
-              padding: '24px',
+              padding: '32px',
               animation: 'slideUp 0.3s ease',
             }}
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Simple heading */}
+            <h2
+              style={{
+                fontSize: '18px',
+                fontWeight: '600',
+                color: '#fff',
+                marginBottom: '20px',
+                textAlign: 'center',
+              }}
+            >
+              Enter your email to continue
+            </h2>
 
             {/* Form */}
             <form onSubmit={handleSubmit}>
@@ -164,26 +176,28 @@ export default function PrivateDocumentGate({
                 disabled={isSubmitting}
                 style={{
                   width: '100%',
-                  padding: '12px 14px',
-                  fontSize: '14px',
+                  padding: '14px 16px',
+                  fontSize: '15px',
                   border: error
-                    ? '1px solid rgba(239, 68, 68, 0.5)'
-                    : '1px solid rgba(255, 255, 255, 0.15)',
-                  borderRadius: '6px',
-                  background: 'rgba(255, 255, 255, 0.05)',
+                    ? '1.5px solid rgba(239, 68, 68, 0.6)'
+                    : '1.5px solid rgba(255, 255, 255, 0.15)',
+                  borderRadius: '10px',
+                  background: 'rgba(0, 0, 0, 0.3)',
                   color: '#fff',
                   outline: 'none',
                   transition: 'all 0.2s ease',
-                  marginBottom: error ? '8px' : '12px',
+                  marginBottom: error ? '10px' : '16px',
                 }}
                 onFocus={(e) => {
                   if (!error) {
-                    e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                    e.target.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+                    e.target.style.background = 'rgba(0, 0, 0, 0.4)';
                   }
                 }}
                 onBlur={(e) => {
                   if (!error) {
                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                    e.target.style.background = 'rgba(0, 0, 0, 0.3)';
                   }
                 }}
               />
@@ -192,13 +206,13 @@ export default function PrivateDocumentGate({
               {error && (
                 <div
                   style={{
-                    padding: '8px 12px',
-                    background: 'rgba(239, 68, 68, 0.1)',
-                    border: '1px solid rgba(239, 68, 68, 0.3)',
-                    borderRadius: '4px',
-                    marginBottom: '12px',
-                    fontSize: '12px',
-                    color: '#ef4444',
+                    padding: '10px 14px',
+                    background: 'rgba(239, 68, 68, 0.15)',
+                    border: '1px solid rgba(239, 68, 68, 0.4)',
+                    borderRadius: '8px',
+                    marginBottom: '16px',
+                    fontSize: '13px',
+                    color: '#ff6b6b',
                   }}
                 >
                   {error}
@@ -211,26 +225,30 @@ export default function PrivateDocumentGate({
                 disabled={isSubmitting}
                 style={{
                   width: '100%',
-                  padding: '12px',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  color: '#fff',
+                  padding: '14px',
+                  fontSize: '15px',
+                  fontWeight: '600',
+                  color: isSubmitting ? 'rgba(255, 255, 255, 0.5)' : '#fff',
                   background: isSubmitting
                     ? 'rgba(255, 255, 255, 0.1)'
-                    : 'rgba(255, 255, 255, 0.08)',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  borderRadius: '6px',
+                    : 'linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.1) 100%)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '10px',
                   cursor: isSubmitting ? 'not-allowed' : 'pointer',
                   transition: 'all 0.2s ease',
                 }}
                 onMouseEnter={(e) => {
                   if (!isSubmitting) {
-                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.12)';
+                    e.currentTarget.style.background = 'linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%)';
+                    e.currentTarget.style.transform = 'translateY(-1px)';
+                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 255, 255, 0.1)';
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (!isSubmitting) {
-                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                    e.currentTarget.style.background = 'linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.1) 100%)';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
                   }
                 }}
               >
