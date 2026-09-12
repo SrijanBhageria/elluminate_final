@@ -68,8 +68,11 @@ export default function PrivateDocumentGate({
       }
 
       // Track in Clarity
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (typeof window !== 'undefined' && (window as any).clarity) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (window as any).clarity('identify', email.trim());
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (window as any).clarity('event', 'private_document_access', {
           documentId,
           documentTitle,
