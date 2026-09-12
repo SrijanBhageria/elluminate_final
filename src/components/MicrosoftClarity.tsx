@@ -26,15 +26,12 @@ export default function MicrosoftClarity() {
     }
 
     // Inject Clarity script
-    (function (c: Window, l: Document, a: string, r: string, i: string, t?: HTMLScriptElement, y?: Element) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (c as any)[a] =
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (c as any)[a] ||
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        function (...args: any[]) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          ((c as any)[a].q = (c as any)[a].q || []).push(args);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (function (c: any, l: Document, a: string, r: string, i: string, t?: HTMLScriptElement, y?: Element) {
+      c[a] =
+        c[a] ||
+        function (...args: unknown[]) {
+          (c[a].q = c[a].q || []).push(args);
         };
       t = l.createElement(r) as HTMLScriptElement;
       t.async = true;
@@ -52,7 +49,6 @@ export default function MicrosoftClarity() {
 // Type declaration for TypeScript
 declare global {
   interface Window {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    clarity?: (command: string, ...args: any[]) => void;
+    clarity?: (command: string, ...args: unknown[]) => void;
   }
 }
