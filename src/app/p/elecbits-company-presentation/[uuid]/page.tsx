@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
+import PresentationViewer from '@/components/PresentationViewer';
 
 // Valid access token for this document
 const VALID_TOKEN = 'b75d3200-7979-4e85-8b08-154bd34ae22a';
@@ -53,6 +54,10 @@ export default async function ElecbitsPresentation({ params }: PageProps) {
     notFound();
   }
 
-  // Redirect to the HTML file directly - this allows the HTML's own responsive design to work
-  redirect('/elecbits-presentation.html');
+  return (
+    <PresentationViewer
+      src="/elecbits-presentation.html"
+      title="Elecbits - Company Presentation"
+    />
+  );
 }
