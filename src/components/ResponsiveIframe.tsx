@@ -9,22 +9,10 @@ interface ResponsiveIframeProps {
 
 export default function ResponsiveIframe({ src, title }: ResponsiveIframeProps) {
   const [isMobile, setIsMobile] = useState(false);
-  const [scale, setScale] = useState(1);
 
   useEffect(() => {
     const checkMobile = () => {
-      const mobile = window.innerWidth <= 768;
-      setIsMobile(mobile);
-      
-      if (mobile) {
-        // Scale based on viewport width
-        // Presentation seems to be designed for larger screens (1920px)
-        const desktopWidth = 1920;
-        const mobileScale = window.innerWidth / desktopWidth;
-        setScale(mobileScale);
-      } else {
-        setScale(1);
-      }
+      setIsMobile(window.innerWidth <= 768);
     };
 
     checkMobile();
@@ -41,7 +29,8 @@ export default function ResponsiveIframe({ src, title }: ResponsiveIframeProps) 
         left: 0,
         width: '100%',
         height: '100vh',
-        overflow: 'hidden',
+        overflow: isMobile ? 'auto' : 'hidden',
+        WebkitOverflowScrolling: 'touch',
         background: '#fff',
       }}
     >
@@ -49,12 +38,12 @@ export default function ResponsiveIframe({ src, title }: ResponsiveIframeProps) 
         src={src}
         title={title}
         style={{
-          width: isMobile ? '1920px' : '100%',
-          height: isMobile ? `${100 / scale}vh` : '100vh',
+          width: '100%',
+          minWidth: '100%',
+          height: '100%',
+          minHeight: '100vh',
           border: 'none',
           display: 'block',
-          transform: isMobile ? `scale(${scale})` : 'none',
-          transformOrigin: 'top left',
         }}
       />
     </div>
