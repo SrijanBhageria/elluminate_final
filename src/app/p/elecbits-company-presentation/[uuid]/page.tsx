@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 
 // Valid access token for this document
 const VALID_TOKEN = 'b75d3200-7979-4e85-8b08-154bd34ae22a';
@@ -53,19 +53,6 @@ export default async function ElecbitsPresentation({ params }: PageProps) {
     notFound();
   }
 
-  return (
-    <iframe
-      src="/elecbits-presentation.html"
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100vh',
-        border: 'none',
-      }}
-      title="Elecbits - Company Presentation"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    />
-  );
+  // Redirect to the HTML file directly - this allows the HTML's own responsive design to work
+  redirect('/elecbits-presentation.html');
 }
