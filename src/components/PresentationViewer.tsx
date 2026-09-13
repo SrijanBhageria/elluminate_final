@@ -113,7 +113,21 @@ export default function PresentationViewer({ src, title }: PresentationViewerPro
       <iframe
         src={src}
         title={title}
-        onLoad={() => setLoaded(true)}
+        onLoad={() => {
+          setLoaded(true);
+          // Trigger resize event in iframe to fix viewport scaling
+          setTimeout(() => {
+            const iframe = document.querySelector('iframe');
+            if (iframe && iframe.contentWindow) {
+              try {
+                iframe.contentWindow.dispatchEvent(new Event('resize'));
+              } catch (e) {
+                // Silently fail if we can't access iframe content
+                console.log('Could not trigger resize in iframe');
+              }
+            }
+          }, 100);
+        }}
         onError={() => setError(true)}
         style={{
           position: 'absolute',
