@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import PresentationViewer from '@/components/PresentationViewer';
+import { readFile } from 'fs/promises';
+import path from 'path';
 
 // Valid access token for this document
 const VALID_TOKEN = 'b75d3200-7979-4e85-8b08-154bd34ae22a';
@@ -54,10 +55,11 @@ export default async function ElecbitsPresentation({ params }: PageProps) {
     notFound();
   }
 
+  // Read the HTML file content
+  const htmlPath = path.join(process.cwd(), 'public', 'elecbits-presentation.html');
+  const htmlContent = await readFile(htmlPath, 'utf-8');
+
   return (
-    <PresentationViewer
-      src="/elecbits-presentation.html"
-      title="Elecbits - Company Presentation"
-    />
+    <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
   );
 }
