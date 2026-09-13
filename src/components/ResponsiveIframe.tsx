@@ -18,8 +18,8 @@ export default function ResponsiveIframe({ src, title }: ResponsiveIframeProps) 
       
       if (mobile) {
         // Scale based on viewport width
-        // Assuming the presentation is designed for ~1200px width
-        const desktopWidth = 1200;
+        // Presentation seems to be designed for larger screens (1920px)
+        const desktopWidth = 1920;
         const mobileScale = window.innerWidth / desktopWidth;
         setScale(mobileScale);
       } else {
@@ -49,7 +49,7 @@ export default function ResponsiveIframe({ src, title }: ResponsiveIframeProps) 
         src={src}
         title={title}
         style={{
-          width: isMobile ? '1200px' : '100%',
+          width: isMobile ? '1920px' : '100%',
           height: isMobile ? `${100 / scale}vh` : '100vh',
           border: 'none',
           display: 'block',
