@@ -101,16 +101,6 @@ svg.ic{vertical-align:-3px}
 .ptab.active{color:#08131b;background:var(--sky)}
 .ptab small{display:block;font-size:12px;font-weight:700;letter-spacing:.14em;opacity:.75;text-transform:uppercase}
 @media(max-width:760px){.ptab small{display:none}.topbar{gap:10px}}
-/* The memo is one self-contained file, so the bar hands it over directly.
-   Sits after the tabs; drops to the glyph alone where the tabs also shrink. */
-.dlbtn{display:inline-flex;align-items:center;gap:7px;flex-shrink:0;text-decoration:none;white-space:nowrap;
-  border:1px solid rgba(127,168,190,.5);background:rgba(127,168,190,.12);color:#DCE7EF;
-  font-size:13px;font-weight:750;letter-spacing:.1em;text-transform:uppercase;
-  padding:6px 12px;border-radius:4px;transition:color .18s,background .18s,border-color .18s}
-.dlbtn:hover{color:#08131b;background:var(--sky);border-color:var(--sky)}
-.dlbtn svg{width:14px;height:14px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.9;
-  stroke-linecap:round;stroke-linejoin:round}
-@media(max-width:1100px){.dlbtn span{display:none}.dlbtn{padding:6px 9px}}
 
 /* ============ COVERS ============ */
 .cover{min-height:92vh;display:flex;align-items:center;color:#E6EDF3;position:relative;overflow:hidden;
@@ -1648,11 +1638,6 @@ section[id],.cover{scroll-margin-top:52px}
     <a class="ptab" href="#p5">V <small>Why it is hard</small></a>
     <a class="ptab" href="#p6">VI <small>What is missing</small></a>
   </nav>
-  <a class="dlbtn" href="elecbits-market-memo.html" download="India Electronics - The Market Memo.html"
-     title="Download this memo as a single self-contained HTML file">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5v11.2"/><path d="M7.8 10.6 12 14.8l4.2-4.2"/><path d="M4.5 19.8h15"/></svg>
-    <span>Download</span>
-  </a>
 </header>
 
 <!-- ================= MASTER COVER ================= -->
@@ -6940,7 +6925,6 @@ html:not(.bm-open) #top .fl{display:none}}
     <span class="bm-lbl" id="bmLbl"></span>
     <button class="bm-btn vo" id="bmVo" aria-pressed="false" aria-label="Narration paused. Press N to play."><span class="volbl">N &middot; Play</span><span class="vodot"></span></button>
     <button class="bm-btn" id="bmFs" aria-pressed="false" title="Full screen (F). Press again, or Escape, to leave it."><span class="fsico" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11"><path class="fsin" d="M1 4.2V1h3.2M7.8 1H11v3.2M11 7.8V11H7.8M4.2 11H1V7.8" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/><path class="fsout" d="M4.2 1v3.2H1M7.8 1v3.2H11M11 7.8H7.8V11M1 7.8h3.2V11" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="fslbl">F &middot; Full screen</span></button>
-    <a class="bm-btn bm-dl" id="bmDl" href="elecbits-market-memo.html" download="India Electronics - The Market Memo.html" title="Download this memo as a single self-contained HTML file"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5v11.2"/><path d="M7.8 10.6 12 14.8l4.2-4.2"/><path d="M4.5 19.8h15"/></svg><span>Download</span></a>
     <button class="bm-btn bm-x" id="bmExit">Esc &middot; Exit</button>
   </div>
 </div>
@@ -7907,6 +7891,524 @@ html.inr #bmFxRate{display:inline-block}
     if((e.key||'').toLowerCase()==='c'){ e.preventDefault(); toggle(); }
   });
   window.__fxFace={run:run,toggle:toggle,wrapped:function(){return done;}};
+})();
+</script>
+
+<style id="b259-phone-css">
+/* B-259 · the phone edition, as boards.
+   The deck opened on the boards at 900px and wider and fell through to the long
+   read below that, because a 1600x900 board does not reflow. The instruction here
+   is to put the phone on the boards too, and accept what that costs: 1600px of
+   board on a 390px screen is a quarter-size picture, so the phone gets the whole
+   board as its opening view and a pinch, a drag and a double tap to read into it.
+   The long read is still underneath, one tap away on the bar, for a reader who
+   would rather have reflowed text than a picture to move around in.
+
+   Everything below is gated on html.bm-phone, which is only ever set under 900px,
+   so the laptop view is exactly what it was. Nothing here touches the cover. */
+
+@media (max-width:899px){
+
+  /* ---- 1 · the stage, pannable ----------------------------------------
+     The stage is a fixed 1600x900 sheet that the desktop centres and scales by
+     --bscale. The phone drives the same sheet with its own scale (--mz) and its
+     own offset (--px,--py), so a pinch is one number and never fights the
+     desktop fit engine. Translate before scale, so the offset stays in screen
+     pixels and a drag moves the board by exactly the distance of the finger. */
+  html.bm-phone .bm-stage{
+    transform:translate(-50%,-50%)
+              translate(var(--px,0px),var(--py,0px))
+              scale(var(--mz,.24));
+    box-shadow:0 10px 30px rgba(0,0,0,.5);
+    border-radius:2px;
+    will-change:transform;
+  }
+  html.bm-phone #boardMode{
+    touch-action:none;              /* the gestures below are ours */
+    overscroll-behavior:none;
+    background:#080F14;
+  }
+  html.bm-phone .bm-stage.bm-fade{transition:opacity 160ms linear}
+  html.bm-phone.bm-panning .bm-stage{transition:none!important}
+
+  /* ---- 2 · the bar, for a thumb --------------------------------------
+     The desktop bar carries eleven controls in one 46px row. A phone gets the
+     five that a phone can use: back, forward, where you are, the currency
+     switch, and the way out to the text. The rail moves to its own line above
+     them, where it is wide enough to be worth reading and wide enough to tap. */
+  html.bm-phone .bm-bar{
+    height:auto;flex-wrap:wrap;gap:8px;align-items:center;
+    padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));
+    background:rgba(4,16,26,.92);
+    backdrop-filter:blur(12px) saturate(150%);
+    letter-spacing:.1em;
+  }
+  html.bm-phone .bm-rail{order:-1;flex:0 0 100%;min-width:0;height:14px;gap:2px}
+  html.bm-phone .bm-tk{height:4px}
+  html.bm-phone #bmPart,
+  html.bm-phone .bm-lbl,
+  html.bm-phone #bmVo,
+  html.bm-phone #bmRe,
+  html.bm-phone #bmFs{display:none!important}
+  html.bm-phone #bmPos{font-size:11px;color:#DAE4ED;white-space:nowrap}
+  html.bm-phone .bm-btn{
+    min-height:42px;min-width:46px;padding:0 13px;font-size:12.5px;
+    display:inline-flex;align-items:center;justify-content:center;
+    -webkit-tap-highlight-color:transparent;
+  }
+  html.bm-phone #bmCx{margin-left:auto}
+  html.bm-phone #bmExit{margin-left:8px;font-size:11px;padding:0 11px;min-width:0}
+  /* a phone held sideways has 390px of height to spend and cannot afford a bar on
+     two lines, so the rail goes back in the row with everything else */
+  @media (orientation:landscape){
+    html.bm-phone .bm-bar{flex-wrap:nowrap;padding-top:6px;padding-bottom:calc(6px + env(safe-area-inset-bottom,0px))}
+    html.bm-phone .bm-rail{order:0;flex:1 1 auto;min-width:90px;height:12px}
+    html.bm-phone .bm-btn{min-height:38px}
+  }
+  /* the narration coach points at the two narration controls, and a phone has
+     neither, so the strip that explains them would be pointing at nothing. It also
+     docks at bottom:46px, which is inside a bar that is 81px tall here. */
+  html.bm-phone .vocoach{display:none!important}
+  /* the rate belongs on the face whenever the rupee view is on, but not at the cost
+     of a third line in the bar: portrait carries it on the header, landscape has the
+     width to carry it in the bar itself */
+  html.bm-phone #bmFxRate{
+    margin-left:8px;font-size:9.5px;padding:4px 8px;letter-spacing:.05em;
+  }
+  @media (orientation:portrait){ html.bm-phone #bmFxRate{display:none!important} }
+  /* the switch is the one control on this bar a reader is told to look for, so it
+     is the one control on this bar that is filled in rather than outlined */
+  html.bm-phone #bmCx{
+    background:rgba(184,137,43,.16);border-color:rgba(184,137,43,.5);color:#E8C98A;
+  }
+  html.bm-phone #bmCx[aria-pressed="true"]{background:#B8892B;border-color:#B8892B;color:#12100B}
+
+  /* the all-boards grid is the fastest way around a deck on a phone, so it gets
+     a tap target of its own and rows that fit a thumb */
+  html.bm-phone .bm-grid{padding:14px 12px calc(80px + env(safe-area-inset-bottom,0px))}
+  html.bm-phone .bm-gt{grid-template-columns:1fr!important}
+  html.bm-phone .bm-gi{min-height:46px;text-align:left}
+
+  /* ---- 3 · the opening hint ------------------------------------------
+     Shown once, on the first board, and gone on the first gesture. A reader who
+     is handed a quarter-size board with no word about pinching will read the
+     first board and put the phone down. */
+  #bmHint{
+    position:fixed;left:50%;transform:translateX(-50%);
+    bottom:calc(92px + env(safe-area-inset-bottom,0px));z-index:9100;
+    display:block;max-width:min(360px,calc(100vw - 32px));
+    padding:10px 16px;border-radius:16px;
+    background:rgba(8,20,28,.94);border:1px solid rgba(255,255,255,.14);
+    color:#DCE6EE;font:600 12px/1.35 Inter,-apple-system,BlinkMacSystemFont,sans-serif;
+    letter-spacing:.01em;text-align:center;
+    box-shadow:0 8px 26px rgba(0,0,0,.45);
+    opacity:0;transition:opacity 260ms ease-out;pointer-events:none;
+  }
+  #bmHint.on{opacity:1}
+  #bmHint b{color:#E8C98A;font-weight:800}
+
+  /* ---- 3b · the portrait header ---------------------------------------
+     A 16:9 board fitted to a 390px width is 214px tall, which leaves two thirds
+     of a portrait screen black. The dead space is given to the two things a
+     reader of a small board most needs and can least read off it: which chapter
+     they are in and what this board is called, set in type a phone can read
+     without pinching. Landscape has no spare height and does not get it. */
+  #bmHead{display:none}
+  @media (orientation:portrait){
+    html.bm-phone #bmHead{
+      display:block;position:fixed;z-index:9050;
+      left:18px;right:18px;top:calc(16px + env(safe-area-inset-top,0px));
+      pointer-events:none;transition:opacity 200ms ease-out;
+    }
+    #bmHead .hp{
+      font:800 10.5px/1.3 Inter,-apple-system,BlinkMacSystemFont,sans-serif;
+      letter-spacing:.2em;text-transform:uppercase;color:var(--ptc,#7FA8BE);
+      margin:0 0 7px;
+    }
+    #bmHead .ht{
+      font:800 21px/1.28 Inter,-apple-system,BlinkMacSystemFont,sans-serif;
+      letter-spacing:-.01em;color:#EAF2F8;margin:0;
+    }
+    /* the cover carries its own title, set the way the cover sets it, and the
+       standing instruction on this deck is that the cover is not touched. So the
+       header stands down on board 1 and gives it the whole screen. */
+    html.bm-phone #bmHead.hush{display:none}
+    #bmHead .hn{
+      display:block;margin-top:9px;
+      font:800 10.5px/1 Inter,-apple-system,sans-serif;
+      letter-spacing:.18em;text-transform:uppercase;color:#6F8698;
+    }
+    /* the header names a board the reader is looking at whole. Once they have
+       pinched into it, it is in the way, so it steps back without moving: fading
+       it rather than removing it keeps the board where they left it. */
+    html.bm-phone.bm-zoomed #bmHead{right:96px;opacity:0}
+  }
+
+  /* the zoom readout, so a reader who has pinched a long way knows where they
+     are and has one tap back to the whole board */
+  #bmZoom{
+    position:fixed;right:12px;z-index:9100;
+    top:calc(12px + env(safe-area-inset-top,0px));
+    min-height:38px;padding:0 13px;display:none;align-items:center;gap:7px;
+    border-radius:999px;border:1px solid rgba(255,255,255,.18);
+    background:rgba(8,20,28,.9);color:#DCE6EE;
+    font:800 11.5px/1 Inter,-apple-system,sans-serif;letter-spacing:.06em;
+    -webkit-tap-highlight-color:transparent;cursor:pointer;
+  }
+  html.bm-zoomed #bmZoom{display:inline-flex}
+
+  /* ---- 4 · the long read, if a reader takes the way out ---------------
+     It is the fallback now rather than the phone path, but a fallback that lays
+     five columns of sentences across 390px is not a fallback. A grid whose
+     children carry sentences stacks; a grid whose children ARE the picture (a
+     twelve step rail, a bar chart, a chain of process stages) keeps its columns,
+     because stacking it would destroy the thing it draws. */
+  html:not(.bm-open) #exec .xg2,   html:not(.bm-open) #exec .xg2b,
+  html:not(.bm-open) #smile .pools,
+  html:not(.bm-open) #tail .flow,
+  html:not(.bm-open) #parallel .parx-tilt,
+  html:not(.bm-open) #endowment .edcards, html:not(.bm-open) #endowment .eqg,
+  html:not(.bm-open) #latecost .lcout,    html:not(.bm-open) #latecost .lcthree,
+  html:not(.bm-open) #latecost .lcog,
+  html:not(.bm-open) #sizing .fkdiff,     html:not(.bm-open) #sizing .fktabs,
+  html:not(.bm-open) #walk .jrp,
+  html:not(.bm-open) #jlc2 .jl2cg,
+  html:not(.bm-open) #apx .apxlist,
+  html:not(.bm-open) #players .ex2,
+  html:not(.bm-open) #ceilboth .cbstats,
+  html:not(.bm-open) #margins .vs{
+    display:grid!important;grid-template-columns:1fr!important;
+  }
+  html:not(.bm-open) #margins .vs{justify-items:stretch;text-align:left}
+
+  html:not(.bm-open) #arrangement .arrow6,
+  html:not(.bm-open) #dossiers .dsg,  html:not(.bm-open) #dossiers .ftabs,
+  html:not(.bm-open) #jlc .jloutg,
+  html:not(.bm-open) #players .arch-seg, html:not(.bm-open) #players .wgrid{
+    display:grid!important;grid-template-columns:1fr 1fr!important;
+  }
+  html:not(.bm-open) #ceilboth .cbchain,
+  html:not(.bm-open) #demand .dfxg,
+  html:not(.bm-open) #p1 .cprail, html:not(.bm-open) #p2 .cprail,
+  html:not(.bm-open) #p3 .cprail, html:not(.bm-open) #p4 .cprail,
+  html:not(.bm-open) #p5 .cprail, html:not(.bm-open) #p6 .cprail{
+    display:grid!important;grid-template-columns:1fr 1fr 1fr!important;
+  }
+  /* an arrow rail drawn between six cards points sideways; stacked two up it
+     would point the wrong way, so it goes rather than lie */
+  html:not(.bm-open) #arrangement .arrow6>*::after,
+  html:not(.bm-open) #arrangement .arrow6>*::before{content:none!important}
+  html:not(.bm-open) #fix .ex-src,
+  html:not(.bm-open) #fix small,
+  html:not(.bm-open) #fix .fn{font-size:11px!important;line-height:1.45!important}
+}
+@media print{#bmHint,#bmZoom{display:none!important}}
+</style>
+<script id="b259-phone-js">
+/* B-259 · boards on a phone.
+   Three jobs. Open board mode under 900px, where the deck used to refuse. Give
+   the sheet a pinch, a drag, a double tap and a swipe, because a quarter-size
+   board is a picture to move around in and not a page to read. And leave the
+   currency switch where the bar puts it, which is the point of running board
+   mode here at all: the switch lives on the bar, the phone never built the bar,
+   and now it does. */
+(function phoneBoards(){
+  if(location.search.indexOf('pdf')>=0) return;
+  if(location.search.indexOf('read')>=0) return;   /* ?read is a deliberate ask */
+
+  var PHONE=899;
+  var de=document.documentElement;
+
+  function isPhone(){ return window.innerWidth<=PHONE; }
+  function mark(){ de.classList.toggle('bm-phone',isPhone()); }
+  mark();
+  window.addEventListener('resize',mark);
+  window.addEventListener('orientationchange',mark);
+
+  var host=null,stage=null;
+  var fitZ=0.24, pz=1, px=0, py=0;
+  var MAXZ=4.6;          /* 4.6 x fit is roughly 1:1 type on a 390px screen */
+
+  function paintT(){
+    if(!stage)return;
+    stage.style.setProperty('--mz',(fitZ*pz).toFixed(4));
+    stage.style.setProperty('--px',px.toFixed(1)+'px');
+    stage.style.setProperty('--py',py.toFixed(1)+'px');
+    de.classList.toggle('bm-zoomed',pz>1.02);
+    var z=document.getElementById('bmZoom');
+    if(z)z.textContent=Math.round(fitZ*pz*100)+'%  ·  Fit';
+  }
+
+  /* the board is centred in the space ABOVE the bar, not in the window, so the
+     bar never sits on top of the bottom of the board */
+  /* The header and the board are laid out as one block and that block is centred
+     in the space above the bar, rather than the header being pinned to the top of
+     the screen and the board floating somewhere below it. A 16:9 board fitted to a
+     390px width is 214px tall, so on a tall phone the difference between those two
+     arrangements is the difference between a composed page and a postage stamp
+     adrift in black. */
+  function measure(){
+    var bh=barH(), hb=headBlock();
+    var vw=window.innerWidth, vh=window.innerHeight;
+    var availW=vw-10, availH=vh-bh-hb-20;
+    fitZ=Math.min(availW/1600, availH/900);
+    if(!isFinite(fitZ)||fitZ<=0)fitZ=0.22;
+    var boardH=900*fitZ;
+    var groupH=hb+boardH;
+    var top=Math.max(8,(vh-bh-groupH)/2);
+    var d=document.getElementById('bmHead');
+    if(d&&hb) d.style.top=Math.round(top)+'px';
+    /* the stage transform is measured from the centre of the window, so the offset
+       is the distance from that centre to where the board's own centre belongs */
+    baseY=(top+hb+boardH/2)-vh/2;
+  }
+  var baseY=0;
+
+  function fit(){ measure(); pz=1; px=0; py=baseY; paintT(); }
+  /* re-measure without throwing away the reader's zoom. The bar can change height
+     under them (the rate chip appears with the rupee view), and a reader who is
+     three taps deep into a chart should not be thrown back out to the whole board
+     because the furniture moved. */
+  function refit(){ var oy=py-baseY; measure(); py=baseY+oy; clamp(); paintT(); }
+
+  /* zoom about a point on the screen, so the thing under two fingers stays under
+     two fingers */
+  function zoomAt(nz,cx,cy){
+    nz=Math.max(1,Math.min(MAXZ,nz));
+    var vw=window.innerWidth/2, vh=window.innerHeight/2;
+    /* screen point -> board-space offset from the stage centre, at the old zoom */
+    var ox=(cx-(vw+px))/pz, oy=(cy-(vh+py))/pz;
+    px=cx-vw-ox*nz; py=cy-vh-oy*nz;
+    pz=nz; clamp(); paintT();
+  }
+
+  /* never let the reader drag the board off the screen entirely: the board's
+     drawn size at the current zoom bounds how far it may travel */
+  function clamp(){
+    var w=1600*fitZ*pz, h=900*fitZ*pz;
+    var mx=Math.max(0,(w-window.innerWidth)/2)+18;
+    var my=Math.max(0,(h-bandH())/2)+18;
+    px=Math.max(-mx,Math.min(mx,px));
+    py=Math.max(baseY-my,Math.min(baseY+my,py));
+  }
+
+  /* ---- gestures ---- */
+  var t0=null,t1=null,startD=0,startZ=1,startPX=0,startPY=0,moved=false,swiped=false;
+  var lastTap=0,lastX=0,lastY=0;
+
+  function dist(a,b){var dx=a.clientX-b.clientX,dy=a.clientY-b.clientY;return Math.sqrt(dx*dx+dy*dy);}
+  function mid(a,b){return {x:(a.clientX+b.clientX)/2,y:(a.clientY+b.clientY)/2};}
+
+  /* a tap on a control inside the board is a tap on a control, not a gesture */
+  function onChrome(el){ return !!(el&&el.closest&&el.closest('.bm-bar,.bm-grid,#bmZoom,#bmHint')); }
+
+  function down(e){
+    if(!isPhone()||!host)return;
+    if(onChrome(e.target))return;
+    hideHint();
+    var t=e.touches;
+    if(t.length===1){
+      t0=t[0]; moved=false; swiped=false;
+      startPX=px; startPY=py; lastX=t0.clientX; lastY=t0.clientY;
+    } else if(t.length===2){
+      t0=t[0]; t1=t[1];
+      startD=dist(t0,t1)||1; startZ=pz; moved=true;
+      de.classList.add('bm-panning');
+      e.preventDefault();
+    }
+  }
+
+  function move(e){
+    if(!isPhone()||!host||!t0)return;
+    if(onChrome(e.target))return;
+    var t=e.touches;
+    if(t.length===2&&t1){
+      var d=dist(t[0],t[1]), m=mid(t[0],t[1]);
+      zoomAt(startZ*(d/startD),m.x,m.y);
+      e.preventDefault(); return;
+    }
+    if(t.length!==1)return;
+    var dx=t[0].clientX-lastX, dy=t[0].clientY-lastY;
+    if(!moved&&Math.abs(dx)<8&&Math.abs(dy)<8)return;
+    moved=true;
+    de.classList.add('bm-panning');
+    if(pz>1.02){
+      px=startPX+(t[0].clientX-t0.clientX);
+      py=startPY+(t[0].clientY-t0.clientY);
+      clamp(); paintT(); e.preventDefault();
+    } else {
+      /* at the fit zoom there is nothing to pan, so a sideways drag turns the
+         board instead. One board per gesture. */
+      var tot=t[0].clientX-t0.clientX;
+      if(!swiped&&Math.abs(tot)>56&&Math.abs(t[0].clientY-t0.clientY)<70){
+        swiped=true; step(tot<0?1:-1); e.preventDefault();
+      }
+    }
+  }
+
+  function up(e){
+    de.classList.remove('bm-panning');
+    if(!isPhone()||!host){t0=t1=null;return;}
+    if(!moved&&t0&&!onChrome(e.target)){
+      var now=Date.now();
+      if(now-lastTap<300){
+        /* double tap: into the board at the point tapped, or back out */
+        if(pz>1.02){ fit(); }
+        else { zoomAt(Math.min(MAXZ,1/fitZ), t0.clientX, t0.clientY); }
+        lastTap=0; e.preventDefault();
+      } else { lastTap=now; }
+    }
+    if(e.touches&&e.touches.length===0){ t0=t1=null; }
+    else if(e.touches&&e.touches.length===1){ /* a finger lifted out of a pinch */
+      t0=e.touches[0]; t1=null; startPX=px; startPY=py; moved=true;
+    }
+  }
+
+  function step(d){
+    var b=window.__bm; if(!b||!b.ids)return;
+    var el=stage&&stage.querySelector('section[id]');
+    var i=el?b.ids.indexOf(el.id):-1;
+    if(i<0)return;
+    var n=i+d; if(n<0||n>=b.ids.length)return;
+    b.show(n);
+  }
+
+  /* ---- the hint and the zoom chip ---- */
+  var hintEl=null,hintT=null;
+  function seen(){ try{ return sessionStorage.getItem('bmhint')==='1'; }catch(_){ return false; } }
+  function setSeen(){ try{ sessionStorage.setItem('bmhint','1'); }catch(_){} }
+  function hideHint(){
+    if(!hintEl)return;
+    hintEl.classList.remove('on'); setSeen();
+    clearTimeout(hintT);
+    setTimeout(function(){ if(hintEl&&hintEl.parentNode)hintEl.parentNode.removeChild(hintEl); hintEl=null; },320);
+  }
+  function showHint(){
+    if(seen()||hintEl||!isPhone())return;
+    hintEl=document.createElement('div');
+    hintEl.id='bmHint';
+    hintEl.innerHTML='<b>Pinch</b> to zoom &nbsp;·&nbsp; <b>swipe</b> to turn the board '+
+                     '&nbsp;·&nbsp; <b>double tap</b> to read in';
+    document.body.appendChild(hintEl);
+    /* the bar is 81px tall in portrait and 51px in landscape, so a fixed offset
+       puts this in the middle of a sideways screen. Measure instead. */
+    hintEl.style.bottom='calc('+Math.round(barH()+14)+'px + env(safe-area-inset-bottom,0px))';
+    requestAnimationFrame(function(){ hintEl.classList.add('on'); });
+    hintT=setTimeout(hideHint,7000);
+  }
+
+  /* "Esc . Exit" is a keyboard instruction on a device with no keyboard, and what
+     the control actually does here is hand the reader the reflowed text version */
+  function relabelExit(){
+    var x=document.getElementById('bmExit');
+    if(!x||x.__b259lbl)return;
+    x.__b259lbl=1;
+    x.textContent='Text';
+    x.title='Leave the boards and read the memo as a scrolling document.';
+    x.setAttribute('aria-label','Leave the boards and read the memo as a scrolling document');
+  }
+
+  /* the header is a copy, not a move: .bm-lbl and #bmPart live inside a bar that
+     carries a backdrop-filter, which makes that bar the containing block for any
+     fixed-position descendant, so a child of the bar cannot be pinned to the top
+     of the screen. Copying the two strings out costs one observer and nothing else. */
+  function addHead(){
+    if(document.getElementById('bmHead'))return;
+    var d=document.createElement('div');
+    d.id='bmHead'; d.setAttribute('aria-hidden','true');
+    d.innerHTML='<p class="hp"></p><p class="ht"></p><span class="hn"></span>';
+    document.body.appendChild(d);
+  }
+  function paintHead(){
+    var d=document.getElementById('bmHead'); if(!d)return;
+    var on=stage&&stage.querySelector('section[id]');
+    d.classList.toggle('hush', !!(on&&on.id==='top'));
+    var part=document.getElementById('bmPart');
+    var lbl=document.querySelector('.bm-lbl');
+    var pos=document.getElementById('bmPos');
+    d.querySelector('.hp').textContent=part?part.textContent:'';
+    d.querySelector('.ht').textContent=lbl?lbl.textContent:'';
+    var n=pos?pos.textContent:'';
+    if(document.documentElement.classList.contains('inr')) n+=(n?'  \u00b7  ':'')+'\u20B9 90 = $1';
+    d.querySelector('.hn').textContent=n;
+    var c=part?getComputedStyle(part).getPropertyValue('color'):'';
+    if(c)d.querySelector('.hp').style.color=c;
+  }
+
+  /* the header's own height, or 0 when it is not on screen (landscape) */
+  var HGAP=18;
+  function headBlock(){
+    var d=document.getElementById('bmHead');
+    if(!d||!d.getClientRects().length)return 0;
+    return d.getBoundingClientRect().height+HGAP;
+  }
+  function barH(){
+    var b=document.querySelector('.bm-bar');
+    return b?b.getBoundingClientRect().height:46;
+  }
+  /* the height of the band the board actually gets: window, less the bar, less the
+     header block */
+  function bandH(){ return window.innerHeight-barH()-headBlock(); }
+
+  function addZoomChip(){
+    if(document.getElementById('bmZoom'))return;
+    var z=document.createElement('button');
+    z.id='bmZoom'; z.type='button';
+    z.setAttribute('aria-label','Back to the whole board');
+    z.addEventListener('click',function(e){ e.preventDefault(); fit(); });
+    document.body.appendChild(z);
+  }
+
+  /* ---- open the boards ---- */
+  function open(){
+    if(!isPhone())return;
+    if(de.classList.contains('bm-open'))return;
+    if(!window.__bm||!window.__bm.enter)return;
+    window.__bm.enter();
+    setTimeout(wire,80);
+  }
+
+  function wire(){
+    host=document.getElementById('boardMode');
+    stage=document.getElementById('bmStage');
+    if(!host||!stage)return;
+    addHead();
+    paintHead();
+    addZoomChip();
+    relabelExit();
+    fit();
+    showHint();
+    if(!host.__b259){
+      host.__b259=1;
+      host.addEventListener('touchstart',down,{passive:false});
+      host.addEventListener('touchmove',move,{passive:false});
+      host.addEventListener('touchend',up,{passive:false});
+      host.addEventListener('touchcancel',up,{passive:false});
+      /* every board change starts at the whole board again: a reader who was
+         zoomed into the bottom right of board 7 should not land in the bottom
+         right of board 8 */
+      if(window.MutationObserver){
+        new MutationObserver(function(){ setTimeout(function(){ paintHead(); fit(); },30); })
+          .observe(stage,{childList:true});
+        var lbl=document.querySelector('.bm-lbl');
+        if(lbl)new MutationObserver(function(){ paintHead(); })
+          .observe(lbl,{childList:true,characterData:true,subtree:true});
+      }
+    }
+    var cx=document.getElementById('bmCx');
+    if(cx&&!cx.__b259){ cx.__b259=1;
+      cx.addEventListener('click',function(){ setTimeout(function(){ paintHead(); refit(); },40); }); }
+    window.addEventListener('resize',function(){ if(isPhone())setTimeout(fit,60); });
+    window.addEventListener('orientationchange',function(){ setTimeout(fit,220); });
+  }
+
+  /* the deck's own auto-open runs on load and refuses under 900px, so this waits
+     for it to have refused and then opens the boards itself */
+  function boot(){ setTimeout(open,140); setTimeout(function(){ if(isPhone())wire(); },420); }
+  if(document.readyState==='complete')boot();
+  else window.addEventListener('load',boot);
+
+  window.__b259={fit:fit,refit:refit,open:open,z:function(){return fitZ*pz;}};
 })();
 </script>
 
@@ -14803,12 +15305,6 @@ var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 .bm-bar #bmFs.fson .fsin{display:none}
 .bm-bar #bmFs.fson .fsout{display:inline}
 .bm-bar #bmFs.fson{color:#DAE4ED;border-color:rgba(255,255,255,.28)}
-/* Download: the deck is one self-contained file, so the bar hands it over. Ordered
-   last so the JS-appended narration and currency controls keep their places. */
-.bm-bar .bm-dl{display:inline-flex;align-items:center;gap:7px;flex:none;text-decoration:none;order:9}
-.bm-bar .bm-x{order:10}
-.bm-bar .bm-dl svg{display:block;width:12px;height:12px;flex:none;fill:none;stroke:currentColor;
-  stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
 </style>
 <style id="b246-cumulative-css">
 /* B-246 · the walk's instrument panel, all four tiles cumulative.
