@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 
 interface PresentationViewerProps {
   src: string;
@@ -10,8 +10,6 @@ interface PresentationViewerProps {
 export default function PresentationViewer({ src, title }: PresentationViewerProps) {
   const [error, setError] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-  const hasReloaded = useRef(false);
 
   useEffect(() => {
     // Check if the HTML file exists
@@ -23,21 +21,6 @@ export default function PresentationViewer({ src, title }: PresentationViewerPro
       })
       .catch(() => setError(true));
   }, [src]);
-
-  const handleLoad = () => {
-    setLoaded(true);
-    
-    // Force a single reload after initial load to fix viewport scaling on mobile
-    if (!hasReloaded.current && iframeRef.current) {
-      hasReloaded.current = true;
-      // Small delay to ensure proper reload
-      setTimeout(() => {
-        if (iframeRef.current && iframeRef.current.contentWindow) {
-          iframeRef.current.contentWindow.location.reload();
-        }
-      }, 100);
-    }
-  };
 
   if (error) {
     return (
@@ -91,22 +74,22 @@ export default function PresentationViewer({ src, title }: PresentationViewerPro
         </div>
       )}
       <iframe
-        ref={iframeRef}
         src={src}
         title={title}
-        onLoad={handleLoad}
+        onLoad={() => setLoaded(true)}
         onError={() => setError(true)}
         style={{
-          position: 'fixed',
+          position: 'absolute',
           top: 0,
           left: 0,
           width: '100%',
-          height: '100vh',
+          height: '100%',
           border: 'none',
           display: 'block',
         }}
-        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+        sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        scrolling="no"
       />
     </>
   );
