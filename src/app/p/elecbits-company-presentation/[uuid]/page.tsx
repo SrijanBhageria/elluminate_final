@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import ResponsiveIframe from '@/components/ResponsiveIframe';
 
 // Valid access token for this document
 const VALID_TOKEN = 'b75d3200-7979-4e85-8b08-154bd34ae22a';
@@ -54,14 +55,8 @@ export default async function ElecbitsPresentation({ params }: PageProps) {
   }
 
   return (
-    <iframe
+    <ResponsiveIframe
       src="/elecbits-presentation.html"
-      style={{
-        width: '100%',
-        height: '100vh',
-        border: 'none',
-        display: 'block',
-      }}
       title="Elecbits - Company Presentation"
     />
   );
