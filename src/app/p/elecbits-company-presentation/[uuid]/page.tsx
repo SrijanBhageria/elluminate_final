@@ -1,9 +1,8 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { readFile } from 'fs/promises';
-import path from 'path';
 
-// Valid access token for this document
+// The actual HTML is served directly via Next.js rewrite in next.config.ts
+// for the valid UUID. This page only catches invalid UUIDs -> 404.
 const VALID_TOKEN = 'b75d3200-7979-4e85-8b08-154bd34ae22a';
 
 interface PageProps {
@@ -49,17 +48,14 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function ElecbitsPresentation({ params }: PageProps) {
   const { uuid } = await params;
-  
-  // Verify the UUID token
+
+  // Any UUID that isn't the valid token -> 404
+  // (The valid token is handled by the rewrite and never reaches here.)
   if (uuid !== VALID_TOKEN) {
     notFound();
   }
 
-  // Read the HTML file content
-  const htmlPath = path.join(process.cwd(), 'public', 'elecbits-presentation.html');
-  const htmlContent = await readFile(htmlPath, 'utf-8');
-
-  return (
-    <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
-  );
+  // Fallback: should not normally be reached because the rewrite
+  // intercepts the valid-token URL before Next.js routing.
+  notFound();
 }
