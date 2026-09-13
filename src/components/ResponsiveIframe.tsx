@@ -41,30 +41,22 @@ export default function ResponsiveIframe({ src, title }: ResponsiveIframeProps) 
         left: 0,
         width: '100%',
         height: '100vh',
-        overflow: isMobile ? 'auto' : 'hidden',
-        WebkitOverflowScrolling: 'touch',
+        overflow: 'hidden',
         background: '#fff',
       }}
     >
-      <div
+      <iframe
+        src={src}
+        title={title}
         style={{
           width: isMobile ? '1200px' : '100%',
           height: isMobile ? `${100 / scale}vh` : '100vh',
+          border: 'none',
+          display: 'block',
           transform: isMobile ? `scale(${scale})` : 'none',
           transformOrigin: 'top left',
         }}
-      >
-        <iframe
-          src={src}
-          title={title}
-          style={{
-            width: '100%',
-            height: '100%',
-            border: 'none',
-            display: 'block',
-          }}
-        />
-      </div>
+      />
     </div>
   );
 }
