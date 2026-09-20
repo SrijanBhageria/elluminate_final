@@ -7947,17 +7947,45 @@ html.inr #bmFxRate{display:inline-block}
   html.bm-phone .bm-tk{height:4px}
   html.bm-phone #bmPart,
   html.bm-phone .bm-lbl,
-  html.bm-phone #bmVo,
   html.bm-phone #bmRe,
   html.bm-phone #bmFs{display:none!important}
   html.bm-phone #bmPos{font-size:11px;color:#DAE4ED;white-space:nowrap}
+  /* portrait already says which board this is, in the header, in type twice this
+     size. Saying it again in the bar costs 46px that the narration control needs.
+     Landscape has no header, so there it stays. */
+  @media (orientation:portrait){ html.bm-phone #bmPos{display:none} }
   html.bm-phone .bm-btn{
-    min-height:42px;min-width:46px;padding:0 13px;font-size:12.5px;
+    min-height:42px;min-width:44px;padding:0 11px;font-size:12.5px;gap:6px;
     display:inline-flex;align-items:center;justify-content:center;
     -webkit-tap-highlight-color:transparent;
   }
+  /* six controls on a 390px bar is 350px of buttons inside 370px of room, so the
+     keyboard prefixes go: "N . Play" and "C . INR" are instructions for a device
+     with no keys. The labels are rewritten in script, because both are written by
+     their own controllers and cannot be reached with a selector. */
+  html.bm-phone #bmPrev,html.bm-phone #bmNext{padding:0 9px;letter-spacing:0}
   html.bm-phone #bmCx{margin-left:auto}
-  html.bm-phone #bmExit{margin-left:8px;font-size:11px;padding:0 11px;min-width:0}
+  html.bm-phone #bmExit{margin-left:6px;font-size:11px;padding:0 10px;min-width:0}
+
+  /* ---- the narration control ----
+     Second only to the currency switch in why board mode is worth running on a
+     phone: the deck is narrated and the phone never had the button. It reads as
+     an audio control rather than a letter of the alphabet, and it says which way
+     it will go when pressed, not which state it is in. */
+  html.bm-phone #bmVo{display:inline-flex!important;position:relative}
+  html.bm-phone #bmVo .vodot{display:none}
+  html.bm-phone #bmVo .voico{display:inline-flex;width:13px;height:13px;flex:none}
+  html.bm-phone #bmVo .voico svg{display:block;width:13px;height:13px}
+  html.bm-phone #bmVo .voico .vpause{display:none}
+  html.bm-phone #bmVo[data-play="1"] .voico .vplay{display:none}
+  html.bm-phone #bmVo[data-play="1"] .voico .vpause{display:inline}
+  /* playing: lit, so a reader who put the phone down knows it is still talking */
+  html.bm-phone #bmVo[data-play="1"]{
+    background:rgba(127,168,190,.18);border-color:rgba(127,168,190,.55);color:#DCEAF4;
+  }
+  /* the browser refused to sound it (a silent switch, or a policy the tap did not
+     satisfy). Dimming it and saying nothing reads as a broken button. */
+  html.bm-phone #bmVo[data-mute="1"]{opacity:1;border-color:rgba(200,120,90,.5);color:#E6B49B}
   /* a phone held sideways has 390px of height to spend and cannot afford a bar on
      two lines, so the rail goes back in the row with everything else */
   @media (orientation:landscape){
@@ -7965,9 +7993,9 @@ html.inr #bmFxRate{display:inline-block}
     html.bm-phone .bm-rail{order:0;flex:1 1 auto;min-width:90px;height:12px}
     html.bm-phone .bm-btn{min-height:38px}
   }
-  /* the narration coach points at the two narration controls, and a phone has
-     neither, so the strip that explains them would be pointing at nothing. It also
-     docks at bottom:46px, which is inside a bar that is 81px tall here. */
+  /* the coach strip points at two controls, and Replay is not on this bar. It also
+     docks at bottom:46px, which is inside a bar that is 81px tall here. The opening
+     hint says the same thing in the place a phone reader is already looking. */
   html.bm-phone .vocoach{display:none!important}
   /* the rate belongs on the face whenever the rupee view is on, but not at the cost
      of a third line in the bar: portrait carries it on the header, landscape has the
@@ -8006,6 +8034,11 @@ html.inr #bmFxRate{display:inline-block}
   }
   #bmHint.on{opacity:1}
   #bmHint b{color:#E8C98A;font-weight:800}
+  #bmHint .hl2{
+    display:block;margin-top:7px;padding-top:7px;
+    border-top:1px solid rgba(255,255,255,.12);
+    color:#A9BBC9;font-weight:600;
+  }
 
   /* ---- 3b · the portrait header ---------------------------------------
      A 16:9 board fitted to a 390px width is 214px tall, which leaves two thirds
@@ -8120,7 +8153,14 @@ html.inr #bmFxRate{display:inline-block}
   var de=document.documentElement;
 
   function isPhone(){ return window.innerWidth<=PHONE; }
-  function mark(){ de.classList.toggle('bm-phone',isPhone()); }
+  function mark(){
+    de.classList.toggle('bm-phone',isPhone());
+    /* a laptop window dragged down to phone width should get the phone treatment,
+       not a half-built one. wire() guards every piece it adds, so calling it again
+       costs nothing. Dragged back out, the bar's own controllers restore their
+       labels on the next press. */
+    if(isPhone()&&de.classList.contains('bm-open')) wire();
+  }
   mark();
   window.addEventListener('resize',mark);
   window.addEventListener('orientationchange',mark);
@@ -8288,13 +8328,51 @@ html.inr #bmFxRate{display:inline-block}
     hintEl=document.createElement('div');
     hintEl.id='bmHint';
     hintEl.innerHTML='<b>Pinch</b> to zoom &nbsp;·&nbsp; <b>swipe</b> to turn the board '+
-                     '&nbsp;·&nbsp; <b>double tap</b> to read in';
+                     '&nbsp;·&nbsp; <b>double tap</b> to read in'+
+                     '<span class="hl2">The deck is narrated. Tap <b>Listen</b>.</span>';
     document.body.appendChild(hintEl);
     /* the bar is 81px tall in portrait and 51px in landscape, so a fixed offset
        puts this in the middle of a sideways screen. Measure instead. */
     hintEl.style.bottom='calc('+Math.round(barH()+14)+'px + env(safe-area-inset-bottom,0px))';
     requestAnimationFrame(function(){ hintEl.classList.add('on'); });
     hintT=setTimeout(hideHint,7000);
+  }
+
+  /* ---- the two bar labels this deck writes from its own controllers ----
+     #bmVo's label is written by the narration closure and #bmCx's by the currency
+     block, both on every state change, so neither can be styled or selected into
+     shape. They are rewritten instead, and the rewrite is idempotent: it fires only
+     while the keyboard prefix is still there, so watching the element it edits does
+     not put the observer into a loop. */
+  var VOICO='<span class="voico" aria-hidden="true">'+
+    '<svg class="vplay" viewBox="0 0 16 16" fill="none" stroke="currentColor" '+
+      'stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">'+
+      '<path d="M2.6 6.1h2.6L8.6 3.2v9.6L5.2 9.9H2.6z"/>'+
+      '<path d="M11 5.9a3.1 3.1 0 0 1 0 4.2"/><path d="M13.1 4.1a5.9 5.9 0 0 1 0 7.8"/>'+
+    '</svg>'+
+    '<svg class="vpause" viewBox="0 0 16 16" fill="currentColor">'+
+      '<rect x="4.1" y="3.2" width="2.7" height="9.6" rx="1"/>'+
+      '<rect x="9.2" y="3.2" width="2.7" height="9.6" rx="1"/>'+
+    '</svg></span>';
+  var MIDDOT=/C\s*[\u00b7\u2219]\s*/;
+
+  function phoneLabels(){
+    if(!isPhone())return;
+    var vo=document.getElementById('bmVo');
+    if(vo){
+      if(!vo.querySelector('.voico')) vo.insertAdjacentHTML('afterbegin',VOICO);
+      var l=vo.querySelector('.volbl');
+      if(l){
+        var t=(l.textContent||'');
+        if(vo.getAttribute('data-mute')==='1'){ if(t!=='Tap again') l.textContent='Tap again'; }
+        else if(/[\u00b7\u2219]/.test(t)) l.textContent=/pause/i.test(t)?'Pause':'Listen';
+      }
+    }
+    var cx=document.getElementById('bmCx');
+    if(cx){
+      var hh=cx.innerHTML;
+      if(MIDDOT.test(hh)) cx.innerHTML=hh.replace(MIDDOT,'');
+    }
   }
 
   /* "Esc . Exit" is a keyboard instruction on a device with no keyboard, and what
@@ -8350,6 +8428,20 @@ html.inr #bmFxRate{display:inline-block}
      header block */
   function bandH(){ return window.innerHeight-barH()-headBlock(); }
 
+  /* both controllers rewrite their label on every state change, so the rewrite has
+     to be reapplied rather than done once */
+  function watchLabels(){
+    if(!window.MutationObserver)return;
+    ['bmVo','bmCx'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(!el||el.__b259lab)return;
+      el.__b259lab=1;
+      new MutationObserver(function(){ phoneLabels(); })
+        .observe(el,{childList:true,subtree:true,characterData:true,attributes:true,
+                     attributeFilter:['data-play','data-mute','aria-pressed']});
+    });
+  }
+
   function addZoomChip(){
     if(document.getElementById('bmZoom'))return;
     var z=document.createElement('button');
@@ -8376,6 +8468,8 @@ html.inr #bmFxRate{display:inline-block}
     paintHead();
     addZoomChip();
     relabelExit();
+    phoneLabels();
+    watchLabels();
     fit();
     showHint();
     if(!host.__b259){
