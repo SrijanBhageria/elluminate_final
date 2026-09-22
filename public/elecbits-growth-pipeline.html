@@ -165,8 +165,8 @@ table.cust{min-width:1100px}
 table.cust th.yr{text-align:center;border-left:1px solid var(--line);font-size:12px;color:var(--ink)}
 table.cust th[data-cs^="b"],table.cust td:nth-child(3n+2){border-left:1px solid var(--line)}
 table.cust td.tot,table.cust th.tot{background:color-mix(in srgb,var(--ink) 3%,var(--surface));font-weight:600}
-table.cust tr.other td{background:color-mix(in srgb,var(--ink) 2%,var(--surface));color:var(--ink2)}
-table.cust tr.other .acct b{color:var(--ink2)}
+table tr.other td{background:color-mix(in srgb,var(--ink) 2%,var(--surface));color:var(--ink2)}
+table tr.other .acct b{color:var(--ink2)}
 table.cust tr.other:first-of-type td,table.cust tr:not(.other)+tr.other td{border-top:2px solid var(--line)}
 table.cust tr.sum td{border-top:2px solid var(--ink);background:color-mix(in srgb,var(--accent) 8%,var(--surface));font-weight:700}
 table.cust td.num{white-space:nowrap;font-size:12.5px}
@@ -418,6 +418,55 @@ sup.i:hover{opacity:1;background:color-mix(in srgb,currentColor 10%,transparent)
 .msel-p input{accent-color:var(--x);margin:0}
 .bar .grp[hidden]{display:none!important}
 @media (max-width:860px){.lw-row{grid-template-columns:minmax(0,1fr)}.lw-k::after{display:none}}
+
+/* ---- mobile pass ---- */
+@media (max-width:860px){
+  header.top{grid-template-columns:minmax(0,1fr)}
+  .intro{padding:22px 20px 20px;border-right:0;border-bottom:1px solid var(--line)}
+  .intro::before{display:none}
+  .intro h1{max-width:none;font-size:clamp(26px,7vw,34px)}
+  .intro .brand .logo{width:56px!important;height:56px!important;font-size:22px!important}
+  .intro .brand .wm{font-size:28px}
+  .heroes{grid-template-rows:auto auto}
+  .heroes .hero-num{padding:18px 20px}
+  .hero-num .big{font-size:clamp(30px,9vw,40px);white-space:nowrap}
+  .tabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:0;margin-inline:-16px;padding-inline:16px;scroll-snap-type:x proximity}
+  .tabs::-webkit-scrollbar{display:none}
+  .tabs button{white-space:nowrap;flex:none;font-size:15px;padding:10px 12px;scroll-snap-align:start}
+  .bar{gap:8px 10px}
+  .bar .spacer{margin-left:auto}
+  .wrap{gap:18px}
+  .pipehead{gap:10px}
+  .pipehead .seg{flex-wrap:wrap}
+  .engines{grid-template-columns:minmax(0,1fr)}
+  .eng .n{font-size:26px}
+  .grow{grid-template-columns:minmax(0,1fr)}
+  #sumTbl{min-width:560px}
+  table.mini{min-width:520px}
+  .track .mk{font-size:9.5px}
+  .track .mk:nth-of-type(3),.track .mk:nth-of-type(4){display:none}
+  .xh{flex-wrap:wrap}
+  .xh .eyebrow{font-size:11px}
+  .chain{font-size:15px;padding:14px 16px}
+  .wall{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:12px}
+  .fam{grid-template-columns:88px minmax(0,1fr);padding:14px}
+  .fam .ph,.fam .ph:has(img){width:88px;height:88px}
+  .line{grid-template-columns:minmax(0,1fr) 110px}
+  .exhibit{padding:16px}
+  .journey{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .lw2{grid-template-columns:minmax(0,1fr)}
+  .lw2-k{padding:12px 16px}
+  .ov-hero{padding:22px 20px}
+  .ov-h{font-size:clamp(24px,6.5vw,32px)}
+  .step.next b{font-size:30px}
+  .tier .th{padding:14px 16px}
+  .kv{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #drawer{width:100%}
+}
+@media (max-width:480px){
+  .msel-p{min-width:200px}
+  .intro .stats .stat{padding:6px 10px;font-size:12.5px}
+}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 .ph:has(img),.hero-ph:has(img){border-style:solid}
@@ -766,7 +815,7 @@ function drawOdm(){ const o=PIPE.odm; const tot=[0,1,2].map(i=>OENG.reduce((s,e)
     return `<div class="fam${img?"":" nophoto"}">${img?`<div class="ph" data-img="${key}"><img src="${esc(img)}" alt=""></div>`:""}
       <div class="fh"><h3>${esc(c.f)}</h3><div class="sku">${esc(c.pre?"Partner-ODM catalogue SKUs and a new rugged-computing family; sized on live funnel value":[...new Set(c.L.map(l=>l.sku))].join(" · "))}</div>
       <div class="tot"><b>${cr(c.tot[0])}</b> FY28 &rarr; <b>${cr(c.tot[2])}</b> FY30${c.wallet?` · ${cr(c.wallet)} ${c.pre?"funnel value":"estimated annual demand"}${share!=null&&!c.pre?` · ${share}% modeled share by FY30`:""}`:""}</div></div>
-      <div class="lines">`+L.sort((p,q)=>q.rev[2]-p.rev[2]).map(l=>`<div class="line"><div class="c">${plogo(l.cust,l.dom,26)}<span class="nm" title="${esc(l.cust)}">${esc(l.cust)}</span><span class="pill ${l.t}">${PT[l.t]}</span></div>
+      <div class="lines">`+L.sort((p,q)=>((/^Other /.test(p.cust)?1:0)-(/^Other /.test(q.cust)?1:0))||(q.rev[2]-p.rev[2])).map(l=>`<div class="line"><div class="c">${plogo(l.cust,l.dom,26)}<span class="nm" title="${esc(l.cust)}">${esc(l.cust)}</span><span class="pill ${l.t}">${PT[l.t]}</span></div>
         <div class="sh" title="Modeled Elecbits share of annual demand for this product, FY28 → FY30"><i>${l.sh[2]?`<b class="y2" style="width:${Math.min(100,l.sh[2])}%"></b><b class="y1" style="width:${Math.min(100,l.sh[1])}%"></b><b style="width:${Math.min(100,l.sh[0])}%"></b>`:""}</i><span>${l.sh[0]}% &rarr; ${l.sh[2]}%</span></div>
         <div class="rv"><span>${cr(l.rev[0])} &rarr; </span><b>${cr(l.rev[2])}</b></div></div>`).join("")+`</div></div>`; }).join("");
   const ex=o.summary["Existing product"], w=o.fam.reduce((s,l)=>s+(l.wallet||0),0);
@@ -777,10 +826,10 @@ function drawBb(){ const b=PIPE.bb; const y=S.bbY; const C=[...b.C.large,...b.C.
   $("#bbEng").innerHTML=TIERS.map(t=>engine(t[1],tot[t[0]],t[3],"",t[0]==="A"?`${b.A.length} customer lines`:t[0]==="B"?`${b.B.length} named accounts · ${cr(b.B.reduce((s,x)=>s+x.wallet,0))} combined wallet`:`${C.length} accounts · ${cr(C.reduce((s,x)=>s+x.wallet,0))} combined wallet`)).join("")+engine("Total box-build opportunity",all,"var(--accent)","total",`${Math.round(all[2]/all[0]*10)/10}x growth FY28 to FY30`);
   const mx=Math.max(...Object.values(tot).flat());
   $("#tiers").innerHTML=TIERS.map(t=>{ const k=t[0], L=rows[k], wal=L.reduce((s,x)=>s+(x.wallet||0),0); const open=S.open[k];
-    const act=L.filter(x=>x.rev[0]>0).sort((p,q)=>q.rev[y]-p.rev[y]); const rest=L.filter(x=>!(x.rev[0]>0));
+    const isGrp=x=>/^Other /.test(x.n)?1:0; const act=L.filter(x=>x.rev[0]>0).sort((p,q)=>(isGrp(p)-isGrp(q))||(q.rev[y]-p.rev[y])); const rest=L.filter(x=>!(x.rev[0]>0));
     let body="";
     if(open){ body=`<div class="tbl-wrap" style="border:0;border-radius:0"><table><thead><tr><th>Customer</th><th>End-market</th><th class="r">FY28</th><th class="r">FY29</th><th class="r">FY30</th>${wal?`<th class="r">Box-build wallet</th><th class="r">Share ${YRS[y]}</th>`:""}</tr></thead><tbody>`+
-        act.map(x=>`<tr><td><div class="acct">${plogo(x.n,x.dom,26)}<b>${esc(x.n)}</b></div></td><td class="muted">${esc(x.mkt)}</td>${x.rev.map((v,i)=>`<td class="r num" ${i===y?'style="font-weight:600"':""}>${cr(v)}</td>`).join("")}${wal?`<td class="r num">${x.wallet?cr(x.wallet):"–"}</td><td class="r num">${x.wallet?Math.round(x.rev[y]/x.wallet*100)+"%":"–"}</td>`:""}</tr>`).join("")+`</tbody></table></div>`;
+        act.map(x=>`<tr class="${isGrp(x)?"other":""}"><td><div class="acct">${plogo(x.n,x.dom,26)}<b>${esc(x.n)}</b></div></td><td class="muted">${esc(x.mkt)}</td>${x.rev.map((v,i)=>`<td class="r num" ${i===y?'style="font-weight:600"':""}>${cr(v)}</td>`).join("")}${wal?`<td class="r num">${x.wallet?cr(x.wallet):"–"}</td><td class="r num">${x.wallet?Math.round(x.rev[y]/x.wallet*100)+"%":"–"}</td>`:""}</tr>`).join("")+`</tbody></table></div>`;
       if(rest.length) body+=`<div class="cloud"><span class="hd">${rest.length} additional named accounts modeled from FY29 at an early share of wallet</span>`+rest.map(x=>`<span>${esc(x.n)}</span>`).join("")+`</div>`; }
     return `<div class="tier" style="--c:${t[3]}"><div class="th" data-tier="${k}" role="button" aria-expanded="${open}"><div class="ttl"><h3><i></i>${t[1]}</h3><div class="m">${t[2]}</div><div class="m"><b>${act.length}</b> sized from FY28${rest.length?` · <b>${rest.length}</b> more in conversation`:""} · <u>${open?"Hide names":"Show names"}</u></div></div>
       <div class="bars3">${tot[k].map((v,i)=>`<span>${YRS[i]}</span><i><b style="width:${v/mx*100}%;opacity:${i===y?1:.45}"></b></i><span class="v">${cr(v)}</span>`).join("")}</div>
