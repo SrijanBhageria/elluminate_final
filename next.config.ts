@@ -20,6 +20,11 @@ const nextConfig: NextConfig = {
         source: '/p/elecbits-company-presentation/b75d3200-7979-4e85-8b08-154bd34ae22a/',
         destination: '/elecbits-presentation.html',
       },
+      {
+        // Serve growth pipeline HTML directly so phone/responsive CSS owns the viewport
+        source: '/p/elecbits-growth-pipeline/ee4f865b-044f-432d-8149-e947169f6a03/',
+        destination: '/elecbits-growth-pipeline.html',
+      },
     ];
   },
 };
