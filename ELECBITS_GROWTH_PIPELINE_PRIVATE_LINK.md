@@ -9,8 +9,10 @@ http://localhost:3000/p/elecbits-growth-pipeline/ee4f865b-044f-432d-8149-e947169
 
 ### Production (Share with recipients)
 ```
-https://www.elluminate.in/p/elecbits-growth-pipeline/ee4f865b-044f-432d-8149-e947169f6a03
+https://www.elluminate.in/p/elecbits-growth-pipeline/ee4f865b-044f-432d-8149-e947169f6a03/?v=2
 ```
+
+Use the `?v=2` URL when re-sharing so WhatsApp fetches a fresh preview (it caches old cards aggressively).
 
 ---
 
