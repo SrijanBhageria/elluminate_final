@@ -584,7 +584,7 @@ sup.i:hover{opacity:1;background:color-mix(in srgb,currentColor 10%,transparent)
         <div class="row"><span>Estimated annual electronics wallet <sup class="i" data-info aria-label="Sizing approach">i</sup></span><b class="num" id="wElec"></b></div>
         <div class="row out"><span>Implied Elecbits revenue at selected share</span><b class="num" id="wOut"></b></div>
       </div>
-      <div class="eyebrow" style="margin-top:18px">Elecbits revenue plan &middot; for context</div>
+      <div class="eyebrow" style="margin-top:18px">Order book projections &middot; for context</div>
       <div class="track" id="track"></div>
     </div>
   </div>
@@ -661,7 +661,7 @@ sup.i:hover{opacity:1;background:color-mix(in srgb,currentColor 10%,transparent)
 <section class="view" id="v-grow" hidden>
   <div class="pipehead">
     <div><div class="eyebrow">Putting the two growth engines together</div><h2>Two growth engines. One expanding customer base.</h2><p style="margin:6px 0 0;color:var(--ink2);max-width:80ch">Design / ODM and box build reinforce the same motion: deepen existing accounts, convert qualified new programs and broaden the customer base over time. Every modeled line below traces back to a named customer or product opportunity.</p></div>
-    <label class="chk"><input type="checkbox" id="showPlan" checked> Show revenue plan for context</label>
+    <label class="chk"><input type="checkbox" id="showPlan" checked> Show order book projections for context</label>
   </div>
   <div class="tbl-wrap"><table id="sumTbl"></table></div>
   <div class="grow"><div id="growChart"></div><div><div class="eyebrow" style="margin-bottom:8px">Identified opportunity by engine</div><div class="glegend" id="growLegend"></div></div></div>
@@ -677,7 +677,7 @@ sup.i:hover{opacity:1;background:color-mix(in srgb,currentColor 10%,transparent)
   <p><b>Revenue:</b> Latest reported full-year revenue available for each company. For global groups, the India view includes operating entities and excludes R&amp;D and shared-service centres; international accounts use consolidated group revenue.</p>
   <p><b>Confirmed orders:</b> Where the page says &ldquo;PO received&rdquo; or &ldquo;orders received&rdquo;, this refers to customer purchase orders already received by Elecbits. These are not derived from the wallet-share assumptions below.</p>
   <p><b>Opportunity build-up:</b> Design / ODM and box-build figures for FY28 to FY30 are Elecbits&rsquo; bottom-up customer-by-customer opportunity estimates. Modeled penetration is Elecbits revenue as a share of annual demand for the relevant product or estimated box-build wallet. Confirmed POs are separately identified and are not treated as modeled wallet share.</p>
-  <p><b>Sources:</b> Company filings and annual reports. FX conversion uses USD 1 = INR 90. Elecbits FY26 actuals, FY27 to FY30 plan, pipeline and account relationship status are based on company inputs.</p>
+  <p><b>Sources:</b> Company filings and annual reports. FX conversion uses USD 1 = INR 90. Elecbits FY26 actuals, FY27 to FY30 order book projections, pipeline and account relationship status are based on company inputs.</p>
 </div>
 <div id="tip" hidden></div>
 
@@ -845,15 +845,15 @@ function drawGrow(){ const ser=growSeries(); const tot=[0,1,2].map(i=>ser.reduce
     ser.forEach((sv,k)=>{ const v=sv[i]; s+=`<rect x="${x}" y="${sy(y0+v)}" width="${cw}" height="${Math.max(0,sy(y0)-sy(y0+v))}" fill="${col(ENG[k][1])}" stroke="${col("var(--surface)")}" stroke-width="1"><title>${ENG[k][0]} · ${YRS[i]} · ${cr(v)}</title></rect>`; y0+=v; });
     s+=`<text x="${x+cw/2}" y="${sy(t)-8}" text-anchor="middle" font-size="14" font-weight="700" font-family="Archivo,Arial,sans-serif" fill="${col("var(--ink)")}">${fmt(money(t),true)}</text><text x="${x+cw/2}" y="${H-pb+20}" text-anchor="middle" font-size="12" font-family="IBM Plex Mono,Consolas,monospace" fill="${col("var(--ink2)")}">${YRS[i]}</text>`;
   });
-  if(S.plan) tot.forEach((t,i)=>{ const x=pl+gap+i*(cw+gap), p=plan[i]; s+=`<line x1="${x-14}" x2="${x+cw+14}" y1="${sy(p)}" y2="${sy(p)}" stroke="${col("var(--ink)")}" stroke-width="2" stroke-dasharray="6 4"/><text x="${x+cw+12}" y="${sy(p)-6}" text-anchor="end" font-size="10.5" font-family="IBM Plex Mono,Consolas,monospace" fill="${col("var(--ink)")}" stroke="${col("var(--surface)")}" stroke-width="3" paint-order="stroke">Plan ${fmt(money(p),true)}</text>`; });
+  if(S.plan) tot.forEach((t,i)=>{ const x=pl+gap+i*(cw+gap), p=plan[i]; s+=`<line x1="${x-14}" x2="${x+cw+14}" y1="${sy(p)}" y2="${sy(p)}" stroke="${col("var(--ink)")}" stroke-width="2" stroke-dasharray="6 4"/><text x="${x+cw+12}" y="${sy(p)-6}" text-anchor="end" font-size="10.5" font-family="IBM Plex Mono,Consolas,monospace" fill="${col("var(--ink)")}" stroke="${col("var(--surface)")}" stroke-width="3" paint-order="stroke">Projection ${fmt(money(p),true)}</text>`; });
   s+=`</svg>`; $("#growChart").innerHTML=s;
-  $("#growLegend").innerHTML=ENG.map((e,k)=>`<div><i style="background:${e[1]}"></i><span>${e[0]}</span><span class="v">${cr(ser[k][0])} &rarr; ${cr(ser[k][2])}</span></div>`).join("")+`<div class="tot"><i style="background:var(--accent)"></i><span>Identified opportunity set</span><span class="v">${cr(tot[0])} &rarr; ${cr(tot[2])}</span></div>`+(S.plan?`<div><i style="border:2px dashed var(--ink);width:10px;height:10px"></i><span>Elecbits revenue plan · context</span><span class="v">${cr(plan[0])} &rarr; ${cr(plan[2])}</span></div>`:"");
+  $("#growLegend").innerHTML=ENG.map((e,k)=>`<div><i style="background:${e[1]}"></i><span>${e[0]}</span><span class="v">${cr(ser[k][0])} &rarr; ${cr(ser[k][2])}</span></div>`).join("")+`<div class="tot"><i style="background:var(--accent)"></i><span>Identified opportunity set</span><span class="v">${cr(tot[0])} &rarr; ${cr(tot[2])}</span></div>`+(S.plan?`<div><i style="border:2px dashed var(--ink);width:10px;height:10px"></i><span>Order book projections · context</span><span class="v">${cr(plan[0])} &rarr; ${cr(plan[2])}</span></div>`:"");
     const bbN=ENG.filter(e=>e[2]==="bb").length; const sub=(from,to)=>[0,1,2].map(i=>ser.slice(from,to).reduce((s,x)=>s+x[i],0));
   const row=(lab,v,cls,pre)=>`<tr class="${cls||""}"><td>${pre?`<i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${pre};margin-right:8px;vertical-align:-1px"></i>`:""}${lab}</td>${v.map(x=>`<td class="r num">${cr(x)}</td>`).join("")}<td class="r num">${v[0]?(v[2]/v[0]).toFixed(1)+"x":"–"}</td></tr>`;
   let h=`<thead><tr><th>Opportunity segment · ${S.ccy==="INR"?"₹ Cr":"USD mn"}</th>${YRS.map(y=>`<th class="r">${y}</th>`).join("")}<th class="r">FY28 → FY30</th></tr></thead><tbody>`;
   ENG.forEach((e,k)=>{ h+=row(e[0],ser[k],"",e[1]); if(k===bbN-1) h+=row("<b>Box build</b>",sub(0,bbN),"sub"); });
   h+=row("<b>Design / ODM</b>",sub(bbN,ENG.length),"sub")+row("<b>Total identified opportunity</b>",tot,"tot");
-  if(S.plan) h+=row("Elecbits revenue plan · context",plan,"");
+  if(S.plan) h+=row("Order book projections · context",plan,"");
   $("#sumTbl").innerHTML=h+"</tbody>";
   $("#growNote").innerHTML=`<b>The important point is breadth, not a single forecast.</b> The identified opportunity is spread across design / ODM and box-build, existing programs and new accounts, giving Elecbits multiple independent paths to compound growth without relying on one customer or one program. Additional target accounts in the opportunity map are not yet modeled line by line.`; }
 // Proof-point inputs (editable): Schneider HMI forecast units by calendar year and price per unit; Jio tender quantity and price per unit. INR.
