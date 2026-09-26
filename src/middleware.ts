@@ -18,6 +18,10 @@ const PRIVATE_OG_SHELLS: Record<string, string> = {
     '/og/elecbits-business-plan.html',
   '/p/elecbits-business-plan/2e85dc86-8372-4275-9af8-9f0deb2046a1/':
     '/og/elecbits-business-plan.html',
+  '/p/sumosave-databook-discussion/9ba33c10-e35c-40b3-82fb-93049ecc22f0':
+    '/og/sumosave-databook-discussion.html',
+  '/p/sumosave-databook-discussion/9ba33c10-e35c-40b3-82fb-93049ecc22f0/':
+    '/og/sumosave-databook-discussion.html',
 };
 
 export function middleware(request: NextRequest) {
@@ -41,5 +45,6 @@ export const config = {
   matcher: [
     '/p/elecbits-growth-pipeline/:uuid*',
     '/p/elecbits-business-plan/:uuid*',
+    '/p/sumosave-databook-discussion/:uuid*',
   ],
 };

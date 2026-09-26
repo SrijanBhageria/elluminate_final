@@ -30,6 +30,10 @@ const nextConfig: NextConfig = {
         source: '/p/elecbits-business-plan/2e85dc86-8372-4275-9af8-9f0deb2046a1/',
         destination: '/elecbits-business-plan.html',
       },
+      {
+        source: '/p/sumosave-databook-discussion/9ba33c10-e35c-40b3-82fb-93049ecc22f0/',
+        destination: '/sumosave-databook-discussion.html',
+      },
     ];
   },
 };
