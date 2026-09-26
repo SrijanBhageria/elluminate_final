@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Elecbits Business Plan</title>
+<meta name="description" content="FY27–FY30 interactive business plan.">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta property="og:site_name" content="Elecbits">
+<meta property="og:title" content="Elecbits Business Plan">
+<meta property="og:description" content="FY27–FY30 interactive business plan.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.elluminate.in/elecbits-logo.png">
+<meta property="og:image:secure_url" content="https://www.elluminate.in/elecbits-logo.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="518">
+<meta property="og:image:alt" content="Elecbits Logo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Elecbits Business Plan">
+<meta name="twitter:description" content="FY27–FY30 interactive business plan.">
+<meta name="twitter:image" content="https://www.elluminate.in/elecbits-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,500..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F2F4F8; --surface:#FFFFFF; --surface2:#F5F7FB; --ink:#122443; --ink2:#44536E; --muted:#72809A; --line:#DDE3EC; --line2:#C3CCDA;
+  --bb:#2D62B0; --odm:#C8741F; --s3:#12937F; --band:rgba(18,36,67,.05);
+  --crit:#B3261E; --critbg:#FBE9E7; --good:#1E7A3C; --goodbg:#E6F4EA; --warn:#8A5A00; --warnbg:#FFF4DC;
+  --hdr:#122443; --hdrInk:#F2F5FA; --hdrMuted:#A9B6CC; --focus:#C8741F; --accent:200,116,31;
+  --f-disp:"Archivo","Helvetica Neue",Arial,sans-serif; --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif; --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark; --bg:#0A1222; --surface:#101C33; --surface2:#14223C; --ink:#E8EDF5; --ink2:#AAB6CA; --muted:#7D8AA2; --line:#1F2D48; --line2:#2F3F5E;
+  --bb:#5B8FE0; --odm:#C87A28; --s3:#1FA08A; --band:rgba(232,237,245,.05);
+  --crit:#F2877E; --critbg:#3A1C1A; --good:#7CCB93; --goodbg:#14301F; --warn:#E8B85A; --warnbg:#35290F; --hdr:#16294B; --hdrInk:#F2F5FA; --hdrMuted:#A3B1C8; --focus:#C87A28; --accent:200,122,40;}}
+:root[data-theme="dark"]{
+  color-scheme:dark; --bg:#0A1222; --surface:#101C33; --surface2:#14223C; --ink:#E8EDF5; --ink2:#AAB6CA; --muted:#7D8AA2; --line:#1F2D48; --line2:#2F3F5E;
+  --bb:#5B8FE0; --odm:#C87A28; --s3:#1FA08A; --band:rgba(232,237,245,.05);
+  --crit:#F2877E; --critbg:#3A1C1A; --good:#7CCB93; --goodbg:#14301F; --warn:#E8B85A; --warnbg:#35290F; --hdr:#16294B; --hdrInk:#F2F5FA; --hdrMuted:#A3B1C8; --focus:#C87A28; --accent:200,122,40;}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.45;margin:0}
+.wrap{max-width:1360px;margin:0 auto;padding-inline:20px;padding-block:18px 48px}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+header.top{background:var(--hdr);color:var(--hdrInk);border-radius:12px;padding:20px 24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 28px;margin-bottom:18px;position:relative;overflow:hidden}
+header.top::after{content:"";position:absolute;right:-40px;top:-30px;width:320px;height:180px;background:
+ radial-gradient(circle at 60px 60px,transparent 9px,rgba(var(--accent),.45) 10px,rgba(var(--accent),.45) 12px,transparent 13px),
+ linear-gradient(90deg,transparent 72px,rgba(var(--accent),.35) 72px,rgba(var(--accent),.35) 240px,transparent 240px) 0 59px/100% 2px no-repeat;pointer-events:none;opacity:.8}
+.brand{display:flex;flex-direction:column;gap:10px;position:relative;z-index:1}
+.brand img{height:36px;width:auto;max-width:100%;display:block;align-self:flex-start;object-fit:contain}
+h1{font-family:var(--f-disp);font-stretch:110%;font-weight:750;font-size:clamp(24px,3vw,34px);letter-spacing:-.01em;margin:0;line-height:1.05;color:var(--hdrInk)}
+.sub{color:var(--hdrMuted);max-width:70ch;margin:0;font-size:13.5px}
+.sub b{color:var(--hdrInk);font-weight:500}
+.presets{display:flex;gap:6px;flex-wrap:wrap;align-items:center;position:relative;z-index:1}
+.presets span{font-size:12px;color:var(--hdrMuted);margin-right:4px}
+.presets .chip{background:transparent;color:var(--hdrInk);border-color:rgba(230,238,235,.3)}
+.presets .chip[aria-pressed="true"]{background:var(--hdrInk);color:var(--hdr);border-color:var(--hdrInk)}
+.chip{border:1px solid var(--line2);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 13px;font-size:13px;font-weight:500}
+.layout{display:grid;grid-template-columns:326px minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:980px){.layout{grid-template-columns:minmax(0,1fr)}}
+aside.panel{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);max-height:calc(100vh - 24px);overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:4px 16px 14px}
+@media (max-width:980px){aside.panel{position:static;max-height:none;order:2}main{order:1}}
+.grp{border-bottom:1px solid var(--line);padding:12px 0 8px}
+.grp:last-of-type{border-bottom:0}
+.grp h3{font-family:var(--f-disp);font-stretch:108%;font-size:12.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin:0 0 6px;color:var(--ink2);display:flex;justify-content:space-between;align-items:center}
+.ctl{padding:7px 0}
+.ctl .lab{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;font-size:13px}
+.ctl .lab label{color:var(--ink)}
+.ctl .val{font-family:var(--f-mono);font-size:12.5px;font-weight:500;white-space:nowrap}
+.ctl.changed .val{color:var(--odm)}
+.ctl .basev{font-size:11px;color:var(--muted);font-family:var(--f-mono);min-height:14px}
+.info{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;border:1px solid var(--line2);background:var(--surface2);color:var(--ink2);font-family:Georgia,serif;font-style:italic;font-weight:700;font-size:11px;line-height:1;padding:0;margin-left:5px;vertical-align:1px;flex:none}
+.info[aria-expanded="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.explain{font-size:12.3px;color:var(--ink2);background:var(--surface2);border:1px solid var(--line);border-radius:6px;padding:8px 10px;margin:6px 0 4px;line-height:1.5}
+.rng{position:relative;height:22px}
+.rng .tick{position:absolute;top:3px;width:2px;height:16px;background:var(--line2);border-radius:1px;pointer-events:none}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:22px;background:transparent;margin:0;position:relative}
+input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:var(--line)}
+input[type=range]::-moz-range-track{height:4px;border-radius:2px;background:var(--line)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--surface);border:2px solid var(--ink);margin-top:-6px}
+input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:50%;background:var(--surface);border:2px solid var(--ink)}
+.ctl.changed input[type=range]::-webkit-slider-thumb{border-color:var(--odm);background:var(--odm)}
+.ctl.changed input[type=range]::-moz-range-thumb{border-color:var(--odm);background:var(--odm)}
+.billbar{display:flex;height:10px;border-radius:3px;overflow:hidden;gap:2px;margin:6px 0 2px}
+.billbar i{display:block;height:100%}
+.note{font-size:12px;color:var(--muted);margin:4px 0 0}
+.reset{border:0;background:none;color:var(--ink2);font-size:12px;text-decoration:underline;padding:0;font-family:var(--f-body);letter-spacing:0;text-transform:none;font-weight:400}
+main{display:grid;gap:18px;min-width:0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(172px,1fr));gap:10px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px 11px;display:grid;gap:2px;align-content:start}
+.kpi .k{font-size:12px;color:var(--ink2)}
+.kpi .v{font-family:var(--f-disp);font-weight:700;font-size:25px;letter-spacing:-.01em;font-variant-numeric:tabular-nums;line-height:1.15}
+.kpi .v small{font-family:var(--f-body);font-size:12px;font-weight:500;color:var(--muted);margin-left:3px}
+.kpi .d{font-family:var(--f-mono);font-size:11.5px;color:var(--muted);min-height:16px}
+.d.up{color:var(--good)} .d.dn{color:var(--crit)}
+.alerts{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;padding:5px 10px;border-radius:6px;font-weight:500}
+.pill.crit{background:var(--critbg);color:var(--crit)} .pill.warn{background:var(--warnbg);color:var(--warn)} .pill.good{background:var(--goodbg);color:var(--good)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+@media (max-width:820px){.grid2{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px 10px;min-width:0}
+.card h2{font-family:var(--f-disp);font-stretch:104%;font-size:16px;font-weight:700;margin:0;letter-spacing:-.005em}
+.card .hd{display:flex;justify-content:space-between;align-items:flex-start;gap:8px 10px;flex-wrap:wrap;margin-bottom:4px}
+.card .cap{font-size:12.5px;color:var(--ink2);margin:2px 0 0;max-width:62ch}
+.tools{display:flex;gap:6px;flex-wrap:wrap}
+.seg{display:inline-flex;border:1px solid var(--line2);border-radius:7px;overflow:hidden}
+.seg button{border:0;background:none;padding:4px 10px;font-size:12px;color:var(--ink2)}
+.seg button+button{border-left:1px solid var(--line2)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 4px}
+.lg{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line2);background:var(--surface);color:var(--ink2);border-radius:999px;padding:3px 10px 3px 8px;font-size:12px}
+.lg i{display:inline-block;width:10px;height:10px;border-radius:2px}
+.lg i.ln{height:3px;width:14px;border-radius:2px}
+.lg i.dash{background:none!important;border-top:2px dashed var(--ink2);height:0;width:14px}
+.lg[aria-pressed="false"]{color:var(--muted);border-style:dashed;background:transparent}
+.lg[aria-pressed="false"] i{opacity:.25}
+.lg:hover{border-color:var(--ink2)}
+.chart{position:relative;width:100%}
+.chart svg{display:block;width:100%;overflow:visible}
+.chart text{font-family:var(--f-mono);font-size:10.5px;fill:var(--muted)}
+.chart .lbl{fill:var(--ink2);font-weight:500}
+.chart .in{fill:#fff;font-weight:500}
+.tip{position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--line2);border-radius:8px;padding:8px 10px;font-size:12px;box-shadow:0 6px 20px rgba(0,0,0,.12);min-width:160px;z-index:5;opacity:0;transition:opacity .08s}
+.tip b{display:block;font-family:var(--f-disp);font-size:12.5px;margin-bottom:4px}
+.tip .r{display:flex;justify-content:space-between;gap:14px;color:var(--ink2)}
+.tip .r span:last-child{font-family:var(--f-mono);color:var(--ink)}
+.tip i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px}
+.empty{padding:40px 0;text-align:center;color:var(--muted);font-size:13px}
+.tblwrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:620px}
+th,td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left;padding-left:0}
+thead th{font-family:var(--f-disp);font-stretch:104%;font-weight:700;font-size:12px;letter-spacing:.04em;color:var(--ink2);border-bottom:1px solid var(--line2)}
+thead th.act{color:var(--muted)}
+td{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+td:first-child{font-family:var(--f-body)}
+tr.sec td{font-family:var(--f-disp);font-weight:700;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:14px;border-bottom:0}
+tr.b td{font-weight:600}
+tr.pc td{color:var(--ink2);font-size:12px}
+td .dl{display:block;font-size:10.5px;color:var(--muted)}
+td .dl.up{color:var(--good)} td .dl.dn{color:var(--crit)}
+.proofgrid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:18px 28px;align-items:start}
+@media (max-width:820px){.proofgrid{grid-template-columns:minmax(0,1fr)}}
+.proof{display:grid;gap:8px}
+.proof .row{display:grid;grid-template-columns:128px 1fr;gap:10px;align-items:center;font-size:12.5px}
+.proof .bar{display:flex;height:22px;gap:2px}
+.proof .bar i{display:flex;align-items:center;justify-content:center;font-style:normal;font-family:var(--f-mono);font-size:11px;color:#fff;border-radius:3px;min-width:0;overflow:hidden}
+.why{margin:0;padding:0;list-style:none;display:grid;gap:10px;font-size:13px;color:var(--ink2)}
+.why li{display:grid;grid-template-columns:52px 1fr;gap:10px}
+.why b{font-family:var(--f-mono);font-weight:500;color:var(--ink);font-size:13px}
+footer{font-size:12px;color:var(--muted);margin-top:22px;display:grid;gap:4px;max-width:110ch}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="top">
+  <div class="brand">
+    <img src="data:image/png;base64,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" alt="Elecbits">
+    <h1>Elecbits Business Plan</h1>
+    <p class="sub"><b>FY27–FY30 · <span id="uHdr">INR Cr</span>.</b> Q1 FY26 to Q2 FY27 are actuals; the plan starts in Q3 FY27. Change any assumption in the panel and every figure updates. Tap <b>i</b> next to an assumption to see how the plan sets it.</p>
+  </div>
+  <div class="presets" role="group" aria-label="Scenario">
+    <span>Scenario</span>
+    <button class="chip" data-preset="base" aria-pressed="true">Base plan</button>
+    <button class="chip" data-preset="cons" aria-pressed="false">Conservative</button>
+    <button class="chip" data-preset="stretch" aria-pressed="false">Stretch</button>
+    <span style="margin-left:10px">Units</span>
+    <button class="chip" data-unit="usd" aria-pressed="false">USD Mn</button>
+    <button class="chip" data-unit="mn" aria-pressed="false">INR Mn</button>
+    <button class="chip" data-unit="cr" aria-pressed="true">INR Cr</button>
+  </div>
+</header>
+
+<div class="layout">
+<aside class="panel" id="panel" aria-label="Assumptions"></aside>
+<main>
+  <section class="kpis" id="kpis" aria-label="Headline numbers"></section>
+  <div class="alerts" id="alerts"></div>
+  <div id="cards" style="display:grid;gap:18px"></div>
+
+  <section class="card">
+    <div class="hd"><div><h2>Summary financials</h2><p class="cap" id="capTbl"></p></div></div>
+    <div class="tblwrap"><table id="tbl"></table></div>
+  </section>
+
+
+  <footer>
+    <div>USD 1 = Rs 95. Tax at 25.17% once brought-forward losses are used. Borrowings are bank working-capital lines set as a share of receivables, plus existing term loans of Rs 3.2 Cr.</div>
+    <div>Conservative and Stretch are illustrative settings to show sensitivity. They are not management guidance.</div>
+  </footer>
+</main>
+</div>
+</div>
+
+<script>
+const D={"labels":["Q1 FY26","Q2 FY26","Q3 FY26","Q4 FY26","Q1 FY27","Q2 FY27","Q3 FY27","Q4 FY27","Q1 FY28","Q2 FY28","Q3 FY28","Q4 FY28","Q1 FY29","Q2 FY29","Q3 FY29","Q4 FY29","Q1 FY30","Q2 FY30","Q3 FY30","Q4 FY30"],"fx":95,"odm":{"v":{"7":[0,900000,0,5838715,0,0],"8":[2083177.12,7500000,24592141.95,18519461.11,39702887.59,30450647.11],"12":[6148.5,1160000,5639767.02,1578700,3386243.75,754827.46],"13":[11421864.75,25893700.25,1470000,17953892.72,41502109.23,36968784.12],"17":[409462.95,227244.64,1653335.75,113797.72,2879069.04,641773.17],"18":[0,0,1512000,31339033.05,22970040,42768013.56]},"n":{"29":[0,1,0,1,0,0],"30":[3,1,2,1,4,5],"31":[3,2,2,2,4,5],"34":[1,2,6,4,2,1],"35":[1,2,1,2,4,11],"36":[2,4,7,6,6,12],"39":[1,1,2,1,3,1],"40":[0,0,0,2,2,2],"41":[1,1,2,3,5,3]},"po68":[2831803.83636245,2789601.13547442],"g53base":[0.91,0.11,0.25,0.25,0.25,0.25,0.15,0.15,0.15,0.15,0.1,0.1,0.1,0.1],"p":{"29":9,"30":0.95,"34":0.19,"35":0.7,"39":0.23,"40":0.65,"51":0.03,"53":0.061,"55":0.8,"56":0.03,"58":0,"60":0.8,"61":0.03,"63":0,"68":0.181},"adj68":-0.1,"stFloor":0},"bb":{"v":{"7":[102783.46,9000000,0,8367.75,187223.73,2982124.4],"8":[5728880.78,15267743.52,52846.75,12910102.59,9727131.76,35646887.32],"12":[18580627.4,9845.2,4819644.62,1683199.8,7656185.52,37693619.27],"13":[8800596.54,63927817.78,51975929.63,55790192.08,79007071.23,181526174.24],"17":[79114.8,2073.2,6708050.12,15293229.52,12900800.36,1743034.73],"18":[710843.06,280943.55,8993287.89,71759495.45,102132189.84,297280774.57]},"n":{"29":[2,1,0,1,2,4],"30":[3,3,3,4,4,3],"31":[5,4,3,5,6,7],"34":[7,1,4,3,7,10],"35":[6,11,7,10,11,9],"36":[13,12,11,13,18,19],"39":[3,1,8,4,7,9],"40":[1,2,1,3,5,5],"41":[4,3,9,7,12,14]},"po68":[2137480.83272352,4419623.92487713],"g53base":[1.01,0.17,0.35,0.35,0.35,0.35,0.25,0.25,0.25,0.25,0.2,0.2,0.2,0.2],"p":{"29":6,"30":0.95,"34":0.5,"35":0.6,"39":3.04,"40":0.2,"51":0.05,"53":-0.032,"55":0.8,"56":0.03,"58":0.08,"60":0.8,"61":0.03,"63":0,"68":0.184},"adj68":0,"stFloor":1},"exp":{"cm12":[0.238202888979713,0.229164153167473],"cm13":[0.137039643979946,0.137039643979946],"oh":{"30":[5995004,4947191],"31":[7734833,7342422],"32":[7333406,9040476],"33":[2276253,7307410]},"rev":[57566500.78,42126168.66,90032586.11,197706241.45,311309557.09,402646949],"actual":{"17":[7929224.78,3791075.66,12675148.11,32357109.45,48880928.09,64042693.66],"23":[0,0,0,0,1934813.87,3220468.46],"24":[0,0,0,0,4556426.8,5602335.08],"29":[5702693,6878178,9017734,11093535.71,10123555.94,12752609.18],"30":[1309846,1752564,685367,5564644.91,5995004,4947191],"31":[1570385,3320440,15312985,7102113.08,7734833,7342422],"32":[932470,818521,2132527,8829576.7,7333406,9040476],"33":[0,0,0,0,2276253,7307410],"38":[3649411,3469996,5353673,10022664,8369504.39,9815757.28],"43":[1134344.88,1147325.81,1162211.04,1184860.28,1200000,1200000],"44":[94944.22,711263,1666686,1456644.6,1614731,4037504.56],"45":[0,0,21102,5754587.0,719062.2,749767.5],"53":[-6464869.32,-14307212.15,-22634932.93,-11332403.36,-1538537.71,-473712.4],"57":[0,0,0,0,0,0],"58":[-6464869.32,-14307212.15,-22634932.93,-11332403.36,-1538537.71,-473712.4],"49":[-1586169.22,-8978627.34,-14473464.89,-232760.95,8926635.48,13829781.94],"51":[-5235580.22,-12448623.34,-19827137.89,-10255424.95,557131.09,4014024.66]},"p":{"12":0.02,"13":0,"18":0.2,"30":-0.0688,"31":-0.0888,"32":-0.0488,"33":-0.0488,"57":0.2517},"tl0":110100000},"emp":{"75":[5251266.75,7585163.09,11873697.6,16366448.05,20859198.49,25351948.93,34241176.6,42007216.65,49773256.7,57539296.76,71835870.49,80378514.55,88921158.61,97075500.67],"76":[6659438.49,8324298.12,11598522.04,14650764.68,17703007.32,20755249.97,27363355.29,33071049.03,38778742.77,44486436.51,55398203.96,62045988.43,68693772.91,74972236.02],"77":[17556887.53,24253045.39,34138136.83,45560699.6,57639025.07,70435077.93,90948473.55,114074210.51,138749817.01,165120233.64,200116951.71,223762861.76,247408771.8,270075828.33],"78":[12146875.58,16204870.39,22068667.47,30076532.45,39145773.43,49389406.43,63188062.33,81176977.25,101476092.97,124328359.63,151125000,169875000,188625000,206250000]},"empHead":[36,42,49,67,82,92,121,150,200,250,300,350,430,510,590,670,755,840,925,1000],"wc":{"days0":[84.418784795041,32.6465730959469,2.39322570551948],"daysAct":[[68.1899450862617,101.875355801124,68.3604867218886,66.122081555127,72.2509053006556,84.418784795041],[59.2668620319727,90.5455560564945,51.116099940914,34.5520501622496,36.032164091033,32.6465730959469],[3.73784375890567,5.92825136933786,9.69628501364082,4.81714029886791,3.18655666454042,2.39322570551948]],"capex":[10000000,110000000,0,0,50000000,50000000,0,0,300000000,500000000,500000000,0,0,0],"debtPct0":0.5,"p":{"6":0.5,"7":0,"8":0.6,"23":0.025,"29":0.04,"32":0,"34":0.095,"36":0.06},"eq":[25,0,0,0,0,0,0,50,0,0,0,0,0,0],"bankGrowQ":9},"bs":{"6":[749950,749950,1181550,1181550,1181550,1181550],"7":[46811329.92,37123995.51,489422226.38,484461665.27,473416399.24,472942686.84],"8":[47561279.92,37873945.51,490603776.38,485643215.27,474597949.24,474124236.84],"11":[7236135.58,20104246.28,28827157.18,41404711.96,32090652.54,32090652.54],"12":[0,0,0,49559460.2,0,187291299.46],"13":[7236135.58,20104246.28,28827157.18,90964172.16,32090652.54,219381952],"16":[46141038,50010201,60338837,89564045,136930350,156357131],"17":[10976193.35,15293897.56,5677421.13,7777299.72,0,0],"24":[43111013.71,43146739.37,43936776.67,44770270.33,104022564.63,102822564.63],"25":[2910024,3274297,11445759,12486743,12109634,11462088.35],"26":[53087927.04,56267885.94,80694580.97,171398254.52,274569735.13,404314381],"27":[9745216.3,20005270.47,12232387.39,63430149.93,92731063.1,159518650.86],"28":[3060466.58,588098.35,437137687.66,381863315.15,160185955.7,171745635],"31":[111914647.63,123282291.13,585447191.69,673948732.93,643618952.56,849863319.84],"33":[1,1,0,1,1,0]},"cfAct":{"17":[null,null,null,null,null,null],"24":[null,null,null,null,null,null],"31":[null,null,null,null,null,null],"33":[null,null,null,null,null,null]},"check":{"odmPO":[13920653.3186441,35680944.89,34867244.72,75343599.5954237,110440349.618136,111584045.418977,220019856.809546,319809542.743328,499190931.010041,690770764.249062,976035304.818416,1380428872.7884,1829742850.46288,2369460709.65622,3107658084.83381,4060512720.24316,5050583506.96129,6065005780.05687,7497346111.9248,9127105875.82837],"bbPO":[34002846.0438983,88488423.25,72549759.010127,157444587.191905,211610602.439629,556872614.534518,528945564.680589,656679673.650429,892500992.449673,1211826081.33797,1559531000.01385,2170946344.16528,2679965906.47812,3468881419.71033,4184277045.04634,5316929747.45931,6229221078.51749,7633513865.4998,8810310753.23886,10756187182.0556],"rev":[57566500.78,42126168.66,90032586.11,197706241.45,311309557.09,402646949,644673870.30696,816522435.475907,1087681594.6313,1508228240.14438,2047500418.00377,2796154005.18797,3734420619.13103,4830980406.29184,6147804673.68248,7803823748.04092,9730443108.25083,11841000538.8396,14248910413.4074,17167758949.6747],"pat":[-6464869.31808219,-14307212.1463927,-22634932.9261387,-11332403.3583865,-1538537.71,-473712.397633783,12061307.4781816,54311442.001071,58804932.6999155,69359547.247029,103093799.778257,158684045.658937,224550049.704033,311253173.690506,482768094.791036,641473823.61767,821303036.441222,1057077523.3656,1365034569.99487,1765984146.50406],"ebitda":[-5235580.22,-12448623.34,-19827137.89,-10255424.95,557131.090000005,4014024.66308201,17266008.4289316,27683044.5757418,43503800.9778713,75642993.1435637,126449301.99488,210226405.094488,310775924.688012,440027536.737631,613711285.203182,855958951.405315,1139294115.53597,1498426324.03886,1934352111.12716,2496588168.89039],"cash":[3060466.58,588098.35,437137687.66,381863315.15,160185955.7,171745635,2525305707.36868,2454533480.96447,2492493560.27816,2530780681.25115,2552832683.96369,2630396649.06726,2837340975.68935,7907910811.40978,8137437595.69103,8386674481.99885,8613266801.18618,9546759710.86845,10736579488.5204,12256396772.4451],"debt":[7236135.58,20104246.28,28827157.18,90964172.16,32090652.54,219381952,357679501.993459,463491043.859613,633239845.710086,904059412.39056,1270307436.62081,1800807178.35693,2502851036.12557,3375109902.54267,4481537042.03206,5939022413.8431,7438518305.05345,9095107868.11313,10998413226.3456,13317495369.0984],"nfa":[43111013.71,43146739.37,43936776.67,44770270.33,104022564.63,102822564.63,110252000.51425,217495700.501394,212058307.988859,206756850.289137,251587929.031909,295298230.806111,287915775.035958,280717880.66006,573699933.643558,1059357435.30247,1532873499.41991,1494551661.93441,1457187870.38605,1420758173.6264],"odmN":[7,12,23,33,39,40,72,89,118,138,165,198,222,243,270,299,315,320,335,345],"bbN":[78,46,79,101,99,126,136,143,164,188,204,240,251,274,279,300,296,307,299,308]},"revAct":{"odm":[11722321.4,5054010.89,20935703.35,52952351.4,61496382,123418606],"bb":[45844179.38,37072157.77,69096882.76,144753890.05,249813175.09,279228343]}};
+// Elecbits plan engine: replicates the Excel plan quarters (Q3 FY27 - Q4 FY30)
+function xround(x){return x<0?-Math.round(-x):Math.round(x);}
+function sum(a,i,j){let s=0;for(let k=i;k<=j;k++)s+=a[k];return s;}
+function defaults(D){
+  return {
+    odmLogos:D.odm.p['29'], bbLogos:D.bb.p['29'],
+    retEnt:D.odm.p['30'],
+    repDeltaOdm:0, repDeltaBb:0,
+    s1:D.exp && 0.35, s2:0.50, s3:0.15,
+    cmOdm:D.exp.p['12'], cmBb:D.exp.p['13'],
+    ohDelta:0, peopleScale:1,
+    recEnd:null, payEnd:null, invEnd:null,
+    debtRate:D.wc.p['34'], cashYield:D.wc.p['36'], bankPct:D.wc.debtPct0, bankGrowth:D.wc.p['29'],
+    raise1:25, raise2:50, capexScale:1
+  };
+}
+function segment(S,p,logos,ret,repDelta){
+  const P=S.p, T=20, N={}, V={};
+  const keys=['29','30','31','34','35','36','39','40','41'];
+  keys.forEach(k=>{N[k]=S.n[k].slice();});
+  ['7','8','12','13','17','18'].forEach(k=>{V[k]=S.v[k].slice();});
+  const ov={51:[],52:[],56:[],57:[],61:[],62:[]};
+  const midAvg=sum(S.n['34'],2,5)/4, stAvg=sum(S.n['39'],2,5)/4;
+  const po=[], nPO=[], apo=[];
+  for(let t=0;t<6;t++){po[t]=V['7'][t]+V['8'][t]+V['12'][t]+V['13'][t]+V['17'][t]+V['18'][t];}
+  for(let i=0;i<14;i++){
+    const t=6+i,k=i+1;
+    N['29'][t]=xround(logos*k/4)-xround(logos*(k-1)/4);
+    N['30'][t]=xround(N['31'][t-1]*ret); N['31'][t]=N['29'][t]+N['30'][t];
+    N['34'][t]=xround(midAvg+P['34']*k); N['35'][t]=xround(N['36'][t-1]*P['35']); N['36'][t]=N['34'][t]+N['35'][t];
+    N['39'][t]=xround(stAvg+P['39']*k); N['40'][t]=S.stFloor?Math.max(N['40'][t-1],xround(N['41'][t-1]*P['40'])):xround(N['41'][t-1]*P['40']); N['41'][t]=N['39'][t]+N['40'][t];
+    const g53=S.g53base[i]+P['53']+repDelta, g58=g53-P['58'], g63=g58-P['63'];
+    if(i===0){
+      const a=t-4,b=t-1;
+      ov[51][t]=sum(V['7'],a,b)/Math.max(1,sum(N['29'],a,b))*(1+P['51']);
+      const r1=sum(V['8'],a,b)/Math.max(1,sum(N['30'],a,b));
+      const r2=(sum(V['8'],a,b)+sum(V['13'],a,b)+sum(V['18'],a,b))/Math.max(1,sum(N['30'],a,b)+P['55']*sum(N['35'],a,b)+P['55']*P['60']*sum(N['40'],a,b));
+      ov[52][t]=Math.max(r1,r2)*(1+g53);
+      ov[56][t]=Math.min(sum(V['12'],a,b)/Math.max(1,sum(N['34'],a,b))*(1+P['56']),ov[51][t]*P['55']);
+      ov[57][t]=Math.min(sum(V['13'],a,b)/Math.max(1,sum(N['35'],a,b))*(1+g58),ov[52][t]*P['55']);
+      ov[61][t]=Math.min(sum(V['17'],a,b)/Math.max(1,sum(N['39'],a,b))*(1+P['61']),ov[56][t]*P['60']);
+      ov[62][t]=Math.min(sum(V['18'],a,b)/Math.max(1,sum(N['40'],a,b))*(1+g63),ov[57][t]*P['60']);
+    } else {
+      ov[51][t]=ov[51][t-1]*(1+P['51']);
+      ov[52][t]=ov[52][t-1]*(1+g53);
+      ov[56][t]=Math.min(ov[56][t-1]*(1+P['56']),ov[51][t]*P['55']);
+      ov[57][t]=Math.min(ov[57][t-1]*(1+g58),ov[52][t]*P['55']);
+      ov[61][t]=Math.min(ov[61][t-1]*(1+P['61']),ov[56][t]*P['60']);
+      ov[62][t]=Math.min(ov[62][t-1]*(1+g63),ov[57][t]*P['60']);
+    }
+    V['7'][t]=N['29'][t]*ov[51][t]; V['8'][t]=N['30'][t]*ov[52][t];
+    V['12'][t]=N['34'][t]*ov[56][t]; V['13'][t]=N['35'][t]*ov[57][t];
+    V['17'][t]=N['39'][t]*ov[61][t]; V['18'][t]=N['40'][t]*ov[62][t];
+    po[t]=V['7'][t]+V['8'][t]+V['12'][t]+V['13'][t]+V['17'][t]+V['18'][t];
+    apo[t]= i===0 ? (S.po68[0]+S.po68[1])/2*(1+S.p['68']+S.adj68) : apo[t-1]*(1+S.p['68']);
+    nPO[t]=xround(po[t]/apo[t]);
+  }
+  const cust=[];for(let t=0;t<T;t++)cust[t]=N['31'][t]+N['36'][t]+N['41'][t];
+  const newPO=[],entPO=[];for(let t=0;t<T;t++){newPO[t]=V['7'][t]+V['12'][t]+V['17'][t];entPO[t]=V['7'][t]+V['8'][t];}
+  return {po,nPO,cust,newPO,entPO,N,ov,V};
+}
+function run(D,p){
+  const T=20, act=6;
+  const od=segment(D.odm,p,p.odmLogos,p.retEnt,p.repDeltaOdm);
+  const bb=segment(D.bb,p,p.bbLogos,p.retEnt,p.repDeltaBb);
+  const rO=[],rB=[],rev=[],obO=[],obB=[];
+  for(let t=0;t<T;t++){
+    if(t<act){rO[t]=D.odm.v?null:null;}
+  }
+  // actual revenue by segment
+  const aO=D.revAct.odm, aB=D.revAct.bb;
+  for(let t=0;t<T;t++){
+    if(t<act){rO[t]=aO[t];rB[t]=aB[t];obO[t]=null;obB[t]=null;}
+    else{
+      rO[t]=p.s1*od.po[t]+p.s2*od.po[t-1]+p.s3*od.po[t-2];
+      rB[t]=p.s1*bb.po[t]+p.s2*bb.po[t-1]+p.s3*bb.po[t-2];
+      obO[t]=(1-p.s1)*od.po[t]+p.s3*od.po[t-1]; obB[t]=(1-p.s1)*bb.po[t]+p.s3*bb.po[t-1];
+    }
+    rev[t]=rO[t]+rB[t];
+  }
+  const E=D.exp, A=E.actual, W=D.wc, B=D.bs;
+  const cmO=[],cmB=[],contrib=[],bus=[],corp=[],rd=[],ebitda=[],ebitdaR=[],da=[],ic=[],ii=[],pbt=[],tax=[],pat=[],tl=[];
+  const recD=[],payD=[],invD=[],rec=[],pay=[],inv=[],nfa=[],debt=[],cash=[],ocf=[],capex=[],eqR=[],equity=[],oca=[];
+  const ohR={};['30','31','32','33'].forEach(k=>{ohR[k]=[];});
+  const ohE={'30':E.p['30'],'31':E.p['31'],'32':E.p['32'],'33':E.p['33']};
+  const dd=[p.recEnd,p.payEnd,p.invEnd].map((x,j)=>x==null?[W.p['6'],W.p['7'],W.p['8']][j]:(x-W.days0[j])/14);
+  let bankPct=p.bankPct;
+  for(let t=0;t<T;t++){
+    if(t<act){
+      contrib[t]=A['17'][t]; bus[t]=A['23'][t]+A['24'][t]; corp[t]=rev[t]-contrib[t]-bus[t]-A['49'][t];
+      rd[t]=A['38'][t]; ebitda[t]=A['49'][t]; ebitdaR[t]=A['51'][t]; da[t]=A['43'][t]; ic[t]=A['44'][t]; ii[t]=A['45'][t];
+      pbt[t]=A['53'][t]; tax[t]=A['57'][t]; pat[t]=A['58'][t];
+      cmO[t]=null;cmB[t]=null;
+      rec[t]=B['26'][t];pay[t]=B['16'][t];inv[t]=B['25'][t];nfa[t]=B['24'][t];debt[t]=B['13'][t];cash[t]=B['28'][t];equity[t]=B['8'][t];oca[t]=B['27'][t];
+      recD[t]=W.daysAct[0][t];payD[t]=W.daysAct[1][t];invD[t]=W.daysAct[2][t];
+      ocf[t]=D.cfAct['17'][t]; capex[t]=null; eqR[t]=0;
+      continue;
+    }
+    const i=t-act;
+    cmO[t]= i===0 ? (E.cm12[0]+E.cm12[1])/2 : cmO[t-1]*(1+p.cmOdm);
+    cmB[t]= i===0 ? (E.cm13[0]+E.cm13[1])/2 : cmB[t-1]*(1+p.cmBb);
+    contrib[t]=rO[t]*cmO[t]+rB[t]*cmB[t];
+    const ps=p.peopleScale;
+    bus[t]=(D.emp['75'][i]+D.emp['76'][i])*ps;
+    let oh=0;
+    ['30','31','32','33'].forEach(k=>{
+      const e=ohE[k]-p.ohDelta;
+      ohR[k][t]= i===0 ? (E.oh[k][0]+E.oh[k][1])/(E.rev[4]+E.rev[5])*(1+e) : ohR[k][t-1]*(1+e);
+      oh+=ohR[k][t]*rev[t];
+    });
+    corp[t]=D.emp['77'][i]*ps+oh;
+    rd[t]=D.emp['78'][i]*ps;
+    ebitda[t]=contrib[t]-bus[t]-corp[t]; ebitdaR[t]=ebitda[t]-rd[t];
+    capex[t]=W.capex[i]*p.capexScale;
+    da[t]=nfa[t-1]*W.p['23']; nfa[t]=nfa[t-1]+capex[t]-da[t];
+    ic[t]=debt[t-1]*p.debtRate/4; ii[t]=Math.max(0,cash[t-1])*p.cashYield/4;
+    pbt[t]=ebitdaR[t]-da[t]-ic[t]+ii[t];
+    const tlPrev= t===act ? E.tl0 : tl[t-1];
+    tl[t]=Math.max(0,tlPrev-pbt[t]); tax[t]=Math.max(0,pbt[t]-tlPrev)*E.p['57']; pat[t]=pbt[t]-tax[t];
+    recD[t]=recD[t-1]+dd[0]; payD[t]=payD[t-1]+dd[1]; invD[t]=invD[t-1]+dd[2];
+    const K=5, Krev=rev[K];
+    rec[t]=recD[t]*rev[t]*B['26'][K]/(W.daysAct[0][K]*Krev);
+    pay[t]=payD[t]*rev[t]*B['16'][K]/(W.daysAct[1][K]*Krev);
+    inv[t]=invD[t]*rev[t]*B['25'][K]/(W.daysAct[2][K]*Krev);
+    if(i>0&&i<=(D.wc.bankGrowQ==null?13:D.wc.bankGrowQ)) bankPct=bankPct*(1+p.bankGrowth);
+    const tlo=B['11'][K];
+    debt[t]=rec[t]*bankPct+tlo;
+    eqR[t]=(i===0?p.raise1:(i===7?p.raise2:0))*D.fx*1e6;
+    equity[t]=equity[t-1]+pat[t]+eqR[t]; oca[t]=oca[t-1];
+    ocf[t]=pbt[t]+da[t]+ic[t]-ii[t]-(rec[t]-rec[t-1])-(inv[t]-inv[t-1])+(pay[t]-pay[t-1])-tax[t];
+    cash[t]=cash[t-1]+ocf[t]-capex[t]+ii[t]+(debt[t]-debt[t-1])+eqR[t]-ic[t];
+  }
+  const tier=(seg)=>({ent:seg.V['7'].map((v,t)=>v+seg.V['8'][t]),mid:seg.V['12'].map((v,t)=>v+seg.V['13'][t]),st:seg.V['17'].map((v,t)=>v+seg.V['18'][t]),nEnt:seg.N['31'],nEntNew:seg.N['29'],nMid:seg.N['36'],nSt:seg.N['41']});
+  return {tO:tier(od),tB:tier(bb),rO,rB,rev,obO,obB,poO:od.po,poB:bb.po,nO:od.nPO,nB:bb.nPO,custO:od.cust,custB:bb.cust,newPO:od.newPO.map((x,t)=>x+bb.newPO[t]),
+    cmO,cmB,contrib,bus,corp,rd,ebitda,ebitdaR,da,ic,ii,pbt,tax,pat,rec,pay,inv,nfa,debt,cash,ocf,capex,eqR,equity,oca,recD,payD,invD};
+}
+
+
+</script>
+<script>
+(function(){
+const BASE=defaults(D);BASE.retEntA=Math.pow(BASE.retEnt,4);
+const baseRun=run(D,BASE);
+BASE.recEnd=baseRun.recD[19]; BASE.payEnd=baseRun.payD[19]; BASE.invEnd=baseRun.invD[19];
+let P=Object.assign({},BASE);
+const FY=['FY26','FY27','FY28','FY29','FY30'];
+const QL=D.labels;
+const UNITS={cr:{d:1e7,l:'INR Cr'},mn:{d:1e6,l:'INR Mn'},usd:{d:D.fx*1e6,l:'USD Mn'}};let UNIT='cr';const UL=()=>UNITS[UNIT].l;
+const cr=x=>x==null?null:x/UNITS[UNIT].d;
+
+// ---------- controls ----------
+const pp=v=>(v>0?'+':'')+(v*100).toFixed(1)+' pp/qtr';
+const GROUPS=[
+ {t:'Customers and orders',c:[
+  {k:'odmLogos',l:'New enterprise customers a year, Design & ODM',min:0,max:24,step:1,f:v=>v.toFixed(0),
+   i:'The plan adds 9 new enterprise customers a year in Design & ODM, spread evenly across quarters. New mid-sized and startup customers start from the average of the last four actual quarters and grow slowly (by about one extra customer every 4–5 quarters). A new customer\'s first order is priced at its segment\'s recent first-order average, rising 3% a quarter.'},
+  {k:'bbLogos',l:'New enterprise customers a year, Box Build',min:0,max:24,step:1,f:v=>v.toFixed(0),
+   i:'The plan adds 6 new enterprise customers a year in Box Build. New startup customers in Box Build grow by about 3 a quarter, reflecting inbound demand from hardware startups; new mid-sized customers grow by one every two quarters.'},
+  {k:'retEntA',l:'Enterprise customers still ordering after a year',min:.4,max:1,step:.01,f:v=>(v*100).toFixed(0)+'%',
+   i:'Of the enterprise customers ordering at the start of a year, the share still placing orders by the end of it. The plan uses 81% a year for both segments (95% of customers ordering again each quarter). Enterprise customers are treated as ongoing accounts that order every quarter, so what matters is their total orders over the year: see the chart "Yearly orders per enterprise customer". Mid-sized customers keep 70% (Design & ODM) and 60% (Box Build) each quarter; startups 65% and 20%. Those rates stay fixed here.'},
+  {k:'repDeltaOdm',l:'Repeat order growth vs plan, Design & ODM',min:-.06,max:.06,step:.005,f:pp,
+   i:'The plan grows the quarterly order value per repeat enterprise customer by 97% in Q3 FY27 (the step-up from H1 FY27 actuals, in line with the order pipeline), then 17% in Q4 FY27, 31% a quarter in FY28, 21% in FY29 and 16% in FY30. Mid-sized customers order at most 80% of an enterprise customer, and startups at most 80% of a mid-sized one. This setting moves every plan quarter\'s growth up or down by the same number of points.'},
+  {k:'repDeltaBb',l:'Repeat order growth vs plan, Box Build',min:-.06,max:.06,step:.005,f:pp,
+   i:'Box Build repeat order value per enterprise customer grows 98% in Q3 FY27, then 14% in Q4 FY27, 32% a quarter in FY28, 22% in FY29 and 17% in FY30. Mid-sized repeat customers grow 8 points a quarter slower. This setting moves every plan quarter\'s growth by the same number of points.'},
+ ]},
+ {t:'Billing of orders',bill:true,c:[
+  {k:'s1',l:'Billed in the quarter of booking',min:.1,max:.8,step:.01,f:v=>(v*100).toFixed(0)+'%',
+   i:'Share of an order\'s value invoiced in the same quarter it is booked. Plan: 35%. The latest three order cohorts averaged 28%, and the most recent one billed 39%.'},
+  {k:'s2',l:'Billed in the next quarter',min:.1,max:.8,step:.01,f:v=>(v*100).toFixed(0)+'%',
+   i:'Share invoiced in the following quarter. Plan: 50% (latest cohorts: 53%). Whatever is left of 100% is billed two quarters after booking (plan: 15%).'},
+ ]},
+ {t:'Margins and costs',c:[
+  {k:'cmOdm',l:'Design & ODM contribution margin gain per quarter',min:0,max:.04,step:.001,f:v=>(v*100).toFixed(1)+'%',
+   i:'Design & ODM contribution margin (revenue less materials and direct costs) starts at the H1 FY27 average of 23.4% and improves by 2% of itself each quarter, reaching 30.2% by Q4 FY30. The gain comes from design fees and higher-margin ODM products as the mix shifts.'},
+  {k:'cmBb',l:'Box Build contribution margin gain per quarter',min:0,max:.04,step:.001,f:v=>(v*100).toFixed(1)+'%',
+   i:'Box Build contribution margin is held at the H1 FY27 average of 13.7% for the whole plan (no gain assumed). Move this to test procurement or scale benefits.'},
+  {k:'ohDelta',l:'Overhead efficiency vs plan',min:-.05,max:.05,step:.005,f:pp,
+   i:'Business development and travel, professional and legal fees, other costs and office rent start at their H1 FY27 share of revenue. Each share then falls by 4.9% to 8.9% a quarter as revenue scales faster than overheads. A positive setting makes overheads fall faster; a negative one slower.'},
+  {k:'peopleScale',l:'People cost vs plan',min:.7,max:1.5,step:.05,f:v=>(v*100).toFixed(0)+'%',
+   i:'The plan grows headcount from 121 at Q3 FY27 to 1,000 by Q4 FY30 (29 to 85 net hires a quarter), split across R&D, box build, sales and support teams, with a 10% pay increase each April. This setting scales the whole people cost; headcount stays on plan.'},
+ ]},
+ {t:'Working capital (days at Q4 FY30)',c:[
+  {k:'recEnd',l:'Receivable days',min:45,max:140,step:.5,f:v=>v.toFixed(0)+' days',
+   i:'Receivable days were 84 at Q2 FY27 (databook basis: receivables over revenue). The plan lets them drift up half a day a quarter to 91 by Q4 FY30, as more revenue comes from large enterprise customers on longer terms. This setting moves in a straight line from 84 to the level you choose.'},
+  {k:'payEnd',l:'Payable days',min:15,max:100,step:.5,f:v=>v.toFixed(0)+' days',
+   i:'Payable days are held at the Q2 FY27 level of 33 days for the whole plan. Better supplier terms at scale would raise this and release cash.'},
+  {k:'invEnd',l:'Inventory days',min:0,max:60,step:.5,f:v=>v.toFixed(0)+' days',
+   i:'Inventory was 2 days of revenue at Q2 FY27 because most material is bought against confirmed orders. The plan builds this to 11 days by Q4 FY30 for buffer stock on repeat products.'},
+ ]},
+ {t:'Funding',c:[
+  {k:'bankPct',l:'Bank lines as % of receivables, Q3 FY27',min:0,max:.8,step:.05,f:v=>(v*100).toFixed(0)+'%',
+   i:'Working-capital loans are set at 50% of receivables in Q3 FY27, and that share rises 4% a quarter to about 71% by Q4 FY29, then stays there through FY30. Existing term loans of Rs 3.2 Cr stay outstanding.'},
+  {k:'debtRate',l:'Interest rate on borrowings',min:.07,max:.14,step:.0025,f:v=>(v*100).toFixed(2)+'%',
+   i:'Annual rate charged on the opening borrowings each quarter. Plan: 9.5%.'},
+  {k:'cashYield',l:'Interest earned on cash',min:0,max:.08,step:.0025,f:v=>(v*100).toFixed(2)+'%',
+   i:'Annual yield on the opening cash balance each quarter, from fixed deposits and liquid funds. Plan: 6%.'},
+  {k:'raise1',l:'Equity raised Q3 FY27 (USD Mn)',min:0,max:60,step:5,f:v=>'$'+v.toFixed(0)+' Mn',
+   i:'Current round: USD 25 Mn (Rs 238 Cr at Rs 95 per USD), received in Q3 FY27. It funds working capital, the capex programme and the hiring plan.'},
+  {k:'raise2',l:'Equity raised Q2 FY29 (USD Mn)',min:0,max:120,step:5,f:v=>'$'+v.toFixed(0)+' Mn',
+   i:'Next round: USD 50 Mn (Rs 475 Cr) in Q2 FY29, ahead of the FY29–FY30 manufacturing capex.'},
+  {k:'capexScale',l:'Capex vs plan',min:.5,max:2,step:.05,f:v=>(v*100).toFixed(0)+'%',
+   i:'Plan capex is Rs 152 Cr: Rs 12 Cr in FY27, Rs 10 Cr in FY28, Rs 80 Cr in FY29 and Rs 50 Cr in Q1 FY30, mainly for SMT lines and box-build capacity. Depreciation is 2.5% of opening net fixed assets each quarter. This setting scales every quarter\'s capex.'},
+ ]},
+];
+const CTL={};
+const panel=document.getElementById('panel');
+GROUPS.forEach((g,gi)=>{
+  const s=document.createElement('section');s.className='grp';
+  s.innerHTML=`<h3>${g.t}<button class="reset" data-g="${gi}" type="button">Reset</button></h3>`;
+  g.c.forEach(c=>{
+    const id='in_'+c.k, pos=(BASE[c.k]-c.min)/(c.max-c.min)*100;
+    const d=document.createElement('div');d.className='ctl';
+    d.innerHTML=`<div class="lab"><span><label for="${id}">${c.l}</label><button class="info" type="button" aria-expanded="false" aria-controls="x_${c.k}" aria-label="About ${c.l}">i</button></span><span class="val"></span></div>
+      <div class="explain" id="x_${c.k}" hidden>${c.i}</div>
+      <div class="rng"><span class="tick" style="left:calc(${pos}% + ${8-pos*.16}px - 1px)"></span><input type="range" id="${id}" min="${c.min}" max="${c.max}" step="${c.step}"></div>
+      <div class="basev"></div>`;
+    s.appendChild(d); CTL[c.k]={c,el:d};
+  });
+  if(g.bill){const b=document.createElement('div');b.innerHTML=`<div class="billbar" id="billbar"></div><p class="note" id="billnote"></p>`;s.appendChild(b);}
+  panel.appendChild(s);
+});
+panel.addEventListener('input',e=>{
+  const k=e.target.id.replace('in_','');if(!(k in CTL))return;
+  let v=+e.target.value;
+  if(k==='s1'&&v+P.s2>1){P.s2=+(1-v).toFixed(2);}
+  if(k==='s2'&&v+P.s1>1){v=+(1-P.s1).toFixed(2);}
+  P[k]=v; P.s3=+(1-P.s1-P.s2).toFixed(4); setPreset(null); update();
+});
+panel.addEventListener('click',e=>{
+  const ib=e.target.closest('.info');
+  if(ib){const x=document.getElementById(ib.getAttribute('aria-controls'));const o=ib.getAttribute('aria-expanded')==='true';ib.setAttribute('aria-expanded',!o);x.hidden=o;return;}
+  const g=e.target.dataset.g;if(g==null)return;GROUPS[g].c.forEach(c=>{P[c.k]=BASE[c.k];});if(+g===1)P.s3=BASE.s3;setPreset(null);update();});
+function syncControls(){
+  Object.values(CTL).forEach(({c,el})=>{
+    el.querySelector('input').value=P[c.k];
+    el.querySelector('.val').textContent=c.f(P[c.k]);
+    const ch=Math.abs(P[c.k]-BASE[c.k])>1e-9;el.classList.toggle('changed',ch);
+    el.querySelector('.basev').textContent=ch?'Plan: '+c.f(BASE[c.k]):'';
+  });
+  document.getElementById('billbar').innerHTML=[[P.s1,'var(--ink)'],[P.s2,'var(--ink2)'],[P.s3,'var(--line2)']].map(([v,c])=>`<i style="width:${v*100}%;background:${c}"></i>`).join('');
+  document.getElementById('billnote').textContent=`Two quarters after booking: ${(P.s3*100).toFixed(0)}%. Total billed: 100%.`;
+}
+const PRESETS={
+ base:{},
+ cons:{odmLogos:7,bbLogos:5,retEntA:.72,repDeltaOdm:-.015,repDeltaBb:-.015,s1:.28,s2:.53,cmOdm:.012,cmBb:0,recEnd:105,invEnd:15},
+ stretch:{odmLogos:12,bbLogos:8,repDeltaOdm:.01,repDeltaBb:.01,cmOdm:.025,cmBb:.003,recEnd:85,ohDelta:.01}
+};
+function setPreset(n){document.querySelectorAll('[data-preset]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.preset===n?'true':'false'));}
+document.querySelectorAll('[data-preset]').forEach(b=>b.addEventListener('click',()=>{
+  P=Object.assign({},BASE,PRESETS[b.dataset.preset]);P.s3=+(1-P.s1-P.s2).toFixed(4);setPreset(b.dataset.preset);update();}));
+
+// ---------- helpers ----------
+const fmt=x=>{if(x==null||!isFinite(x))return'–';const a=Math.abs(x);return a>=100?Math.round(x).toLocaleString('en-IN'):x.toFixed(1);};
+const pc=x=>x!=null&&isFinite(x)?(x*100).toFixed(1)+'%':'–';
+const fyS=a=>[0,1,2,3,4].map(y=>{let s=0;for(let q=0;q<4;q++)s+=a[y*4+q]||0;return s;});
+const fyE=a=>[0,1,2,3,4].map(y=>a[y*4+3]);
+const A=n=>Array.from({length:n});
+function nice(r){const e=Math.pow(10,Math.floor(Math.log10(r||1)));const m=r/e;const st=m<=1?1:m<=2?2:m<=2.5?2.5:m<=5?5:10;return st*e;}
+// flow: sum by year; bal: year-end; ratio(n,d): sum n / sum d
+const agg={flow:(a,q)=>q?a:fyS(a),bal:(a,q)=>q?a:fyE(a),ratio:(n,d,q)=>q?n.map((v,i)=>v==null||!d[i]?null:v/d[i]):fyS(n).map((v,i)=>v/fyS(d)[i])};
+
+// ---------- chart ----------
+function chart(el,o){
+  const W=Math.max(280,el.clientWidth),H=o.h||250,ml=46,mr=o.endLabel?44:10,mt=16,mb=o.q?34:24;
+  const n=o.cats.length,iw=W-ml-mr,ih=H-mt-mb,bw=iw/n;
+  const stacks=o.stacks||[],lines=o.lines||[],bars=o.bars||[],marks=o.marks||[];
+  if(!stacks.length&&!lines.length&&!bars.length){el.innerHTML='<div class="empty">Turn on at least one series to see the chart.</div>';return;}
+  let vmax=o.pct?.05:1,vmin=0;
+  if(stacks.length)o.cats.forEach((_,i)=>{vmax=Math.max(vmax,stacks.reduce((s,x)=>s+(x.v[i]||0),0));});
+  bars.forEach(b=>b.v.forEach(v=>{if(v!=null&&isFinite(v))vmax=Math.max(vmax,v);}));
+  lines.concat(marks).forEach(l=>l.v.forEach(v=>{if(v!=null&&isFinite(v)){vmax=Math.max(vmax,v);vmin=Math.min(vmin,v);}}));
+  if(o.full){vmax=1;vmin=0;}
+  const step=o.full?.25:nice((vmax-vmin)/4);const top=Math.ceil(vmax/step-1e-9)*step,bot=Math.floor(vmin/step+1e-9)*step;
+  const y=v=>mt+ih-(v-bot)/(top-bot)*ih, x=i=>ml+bw*i+bw/2;
+  let s=`<svg viewBox="0 0 ${W} ${H}" height="${H}" role="img" aria-label="${o.aria}">`;
+  if(o.act){s+=`<rect x="${ml}" y="${mt}" width="${bw*o.act}" height="${ih}" fill="var(--band)"/><text x="${ml+4}" y="${mt+11}">Actual</text>`;}
+  for(let k=0,v=bot;v<=top+1e-9;k++,v=bot+k*step){const yy=y(v);s+=`<line x1="${ml}" x2="${W-mr}" y1="${yy}" y2="${yy}" stroke="var(--line)" stroke-width="${Math.abs(v)<1e-9?1.3:1}"/><text x="${ml-6}" y="${yy+3.5}" text-anchor="end">${o.pct?(v*100).toFixed(0)+'%':fmt(v)}</text>`;}
+  if(o.q){for(let y0=0;y0<n;y0+=4){const cx=ml+bw*(y0+2);s+=`<text x="${cx}" y="${H-8}" text-anchor="middle" class="lbl">${FY[y0/4]}</text>`;if(y0)s+=`<line x1="${ml+bw*y0}" x2="${ml+bw*y0}" y1="${mt+ih}" y2="${mt+ih+14}" stroke="var(--line2)"/>`;}}
+  else o.cats.forEach((c,i)=>{s+=`<text x="${x(i)}" y="${H-7}" text-anchor="middle" class="lbl">${c}${o.act&&i===0?'':''}</text>`;});
+  const gw=Math.min(o.q?bw*.64:bw*.5,o.q?40:72);
+  if(stacks.length){o.cats.forEach((_,i)=>{let acc=0,first=true;stacks.forEach(st=>{const v=st.v[i];if(!(v>0))return;const y1=y(acc+v),y0=y(acc);const h=Math.max(0,y0-y1-(first?0:2));
+      s+=`<rect x="${x(i)-gw/2}" y="${y1}" width="${gw}" height="${h}" rx="${o.q?2:3}" fill="${st.c}"/>`;
+      if(o.full&&!o.q&&h>16)s+=`<text x="${x(i)}" y="${y1+h/2+3.5}" text-anchor="middle" class="in">${(v*100).toFixed(0)}%</text>`;
+      acc+=v;first=false;});
+    if(!o.q&&!o.full&&acc>0)s+=`<text x="${x(i)}" y="${y(acc)-6}" text-anchor="middle" class="lbl">${fmt(acc)}</text>`;});}
+  const nb=bars.length||1,bwid=nb>1?(gw-2*(nb-1))/nb:gw;
+  bars.forEach((b,j)=>b.v.forEach((v,i)=>{if(v==null||!isFinite(v))return;const bx=x(i)-gw/2+j*(bwid+2);s+=`<rect x="${bx}" y="${y(Math.max(v,0))}" width="${bwid}" height="${Math.abs(y(v)-y(0))}" rx="2" fill="${b.c}"/>`;
+    if(o.barLabels&&!o.q)s+=`<text x="${bx+bwid/2}" y="${y(Math.max(v,0))-5}" text-anchor="middle" class="lbl">${fmt(v)}</text>`;}));
+  marks.forEach(m=>m.v.forEach((v,i)=>{if(v==null)return;s+=`<line x1="${x(i)-gw/2-5}" x2="${x(i)+gw/2+5}" y1="${y(v)}" y2="${y(v)}" stroke="var(--ink2)" stroke-width="1.5" stroke-dasharray="4 3"/>`;}));
+  lines.forEach(l=>{let d='',pen=false;l.v.forEach((v,i)=>{if(v==null||!isFinite(v)){pen=false;return;}d+=(pen?'L':'M')+x(i).toFixed(1)+' '+y(v).toFixed(1);pen=true;});
+    s+=`<path d="${d}" fill="none" stroke="${l.c}" stroke-width="2" stroke-linejoin="round" ${l.dash?'stroke-dasharray="5 4"':''}/>`;
+    const li=l.v.length-1;
+    if(!o.q)l.v.forEach((v,i)=>{if(v!=null&&isFinite(v))s+=`<circle cx="${x(i)}" cy="${y(v)}" r="${i===li?4:3}" fill="${l.c}" stroke="var(--surface)" stroke-width="${i===li?2:0}"/>`;});
+    if(o.endLabel&&l.v[li]!=null)s+=`<text x="${x(li)+8}" y="${y(l.v[li])+3.5}" class="lbl">${o.pct?(l.v[li]*100).toFixed(0)+'%':fmt(l.v[li])}</text>`;});
+  s+=`<line class="hx" x1="0" x2="0" y1="${mt}" y2="${mt+ih}" stroke="var(--ink2)" stroke-width="1" opacity="0"/></svg><div class="tip"></div>`;
+  el.innerHTML=s;
+  const svg=el.querySelector('svg'),tip=el.querySelector('.tip'),hx=el.querySelector('.hx');
+  const hide=()=>{tip.style.opacity=0;hx.setAttribute('opacity',0);};
+  svg.addEventListener('pointermove',ev=>{const r=svg.getBoundingClientRect();const px=(ev.clientX-r.left)*W/r.width;const i=Math.floor((px-ml)/bw);if(i<0||i>=n){hide();return;}
+    hx.setAttribute('x1',x(i));hx.setAttribute('x2',x(i));hx.setAttribute('opacity',.35);
+    tip.innerHTML=`<b>${o.cats[i]}${o.act&&i<o.act?' · actual':''}</b>`+o.tip(i).map(([nm,c,v])=>`<div class="r"><span>${c?`<i style="background:${c}"></i>`:''}${nm}</span><span>${v}</span></div>`).join('');
+    tip.style.opacity=1;const tx=(x(i)/W)*r.width,tw=tip.offsetWidth;let left=tx+12;if(left+tw>r.width)left=tx-tw-12;tip.style.left=Math.max(0,left)+'px';tip.style.top='8px';});
+  svg.addEventListener('pointerleave',hide);
+}
+
+// ---------- chart cards ----------
+// series: {k,name,c,type:'stack'|'bar'|'line'|'mark',fmt}
+let R,RB;
+const CARDS=[
+ {id:'pov',title:'Purchase order value by segment',cap:'Rs Cr of purchase orders booked.',wide:1,h:270,
+  info:'Value of purchase orders booked in the period, by segment. Q1 FY26 to Q2 FY27 are actual orders. From Q3 FY27, orders come from the customer build: enterprise, mid-sized and startup customers (new and repeat) times their order value per customer. Revenue below follows these orders with the 35/50/15 billing profile. The dashed marker shows the base-plan total when a scenario is changed.',
+  series:[{k:'o',name:'Design & ODM',c:'var(--odm)',type:'stack'},{k:'b',name:'Box Build',c:'var(--bb)',type:'stack'},{k:'base',name:'Base-plan total',c:'var(--ink2)',type:'mark',onlyChanged:1}],
+  data:q=>({o:agg.flow(R.poO,q).map(cr),b:agg.flow(R.poB,q).map(cr),base:agg.flow(RB.poO.map((v,i)=>v+RB.poB[i]),q).map(cr)}),
+  tip:(d,i,on)=>[['Design & ODM','var(--odm)',fmt(d.o[i])],['Box Build','var(--bb)',fmt(d.b[i])],['Total','',fmt(d.o[i]+d.b[i])],['Growth','',i&&d.o[i-1]!=null?pc((d.o[i]+d.b[i])/(d.o[i-1]+d.b[i-1])-1):'–']].concat(on.base?[['Base-plan total','',fmt(d.base[i])]]:[])},
+ {id:'rev',info:'Revenue by segment. Q1 FY26 to Q2 FY27 are actuals from the MIS. From Q3 FY27, each quarter\'s revenue is 35% of that quarter\'s orders, 50% of the previous quarter\'s and 15% of orders from two quarters earlier (set under Billing of orders). Orders come from the customer build: number of enterprise, mid-sized and startup customers times their order value. The dashed marker shows the base-plan total when a scenario is changed.',title:'Revenue by segment',cap:'Rs Cr.',wide:1,h:270,
+  series:[{k:'o',name:'Design & ODM',c:'var(--odm)',type:'stack'},{k:'b',name:'Box Build',c:'var(--bb)',type:'stack'},{k:'base',name:'Base-plan total',c:'var(--ink2)',type:'mark',onlyChanged:1}],
+  data:q=>({o:agg.flow(R.rO,q).map(cr),b:agg.flow(R.rB,q).map(cr),base:agg.flow(RB.rev,q).map(cr)}),
+  tip:(d,i,on)=>[['Design & ODM','var(--odm)',fmt(d.o[i])],['Box Build','var(--bb)',fmt(d.b[i])],['Total','',fmt(d.o[i]+d.b[i])],['Growth','',i&&d.o[i-1]!=null?pc((d.o[i]+d.b[i])/(d.o[i-1]+d.b[i-1])-1):'–']].concat(on.base?[['Base-plan total','',fmt(d.base[i])]]:[])},
+ {id:'po',info:'Orders booked are the purchase orders placed by all customers in the period. Revenue follows orders with the 35/50/15 billing profile, so every order is fully billed within three quarters. Order book is the value of orders booked but not yet billed at period end: 65% of the latest quarter\'s orders plus 15% of the previous quarter\'s. Book-to-bill above 1x means the order book is growing.',title:'Orders, revenue and order book',cap:'Rs Cr. Revenue follows the orders booked in the same and the two previous quarters. Order book is the value of orders not yet billed at period end, from Q3 FY27.',
+  series:[{k:'po',name:'Orders booked',c:'var(--line2)',type:'bar'},{k:'rev',name:'Revenue',c:'var(--ink)',type:'line'},{k:'ob',name:'Order book',c:'var(--s3)',type:'line'}],
+  data:q=>{const ob=R.obO.map((v,i)=>v==null?null:v+R.obB[i]);return {po:agg.flow(R.poO.map((v,i)=>v+R.poB[i]),q).map(cr),rev:agg.flow(R.rev,q).map(cr),ob:agg.bal(ob,q).map(cr)};},
+  tip:(d,i)=>[['Orders booked','var(--line2)',fmt(d.po[i])],['Revenue','var(--ink)',fmt(d.rev[i])],['Order book','var(--s3)',fmt(d.ob[i])],['Book-to-bill','',d.rev[i]?(d.po[i]/d.rev[i]).toFixed(2)+'x':'–']]},
+ {id:'mgn',info:'Contribution margin is revenue less materials and direct costs. Design & ODM starts at its H1 FY27 average of 23.4% and improves 2% of itself each quarter (30.2% by Q4 FY30); Box Build stays at 13.7%. The blended margin rises as Design & ODM grows as a share. EBITDA after R&D deducts the sales and box-build teams, corporate costs (people, travel, fees, rent and other) and the R&D team. PAT is after depreciation, interest and tax at 25.17%, once Rs 11 Cr of past losses are used.',title:'Margins',cap:'% of revenue.',pct:1,
+  series:[{k:'cm',name:'Contribution margin',c:'var(--bb)',type:'line'},{k:'eb',name:'EBITDA after R&D',c:'var(--odm)',type:'line'},{k:'pat',name:'PAT',c:'var(--s3)',type:'line'}],
+  data:q=>({cm:agg.ratio(R.contrib,R.rev,q),eb:agg.ratio(R.ebitdaR,R.rev,q),pat:agg.ratio(R.pat,R.rev,q)}),
+  tip:(d,i)=>[['Contribution margin','var(--bb)',pc(d.cm[i])],['EBITDA after R&D','var(--odm)',pc(d.eb[i])],['PAT','var(--s3)',pc(d.pat[i])]]},
+ {id:'cash',info:'Cash moves with operating cash flow (profit adjusted for working capital), capex, interest, change in borrowings and equity raised. Borrowings are bank working-capital lines at a share of receivables (50% in Q3 FY27, rising 4% a quarter to 71% by Q4 FY29, then held) plus Rs 3.2 Cr of term loans. Net working capital is receivables plus inventory less payables. Cash rises in Q3 FY27 and Q2 FY29 with the two equity rounds.',title:'Cash, borrowings and working capital',cap:'Rs Cr, at period end.',
+  series:[{k:'ca',name:'Cash',c:'var(--bb)',type:'line'},{k:'de',name:'Borrowings',c:'var(--crit)',type:'line'},{k:'nw',name:'Net working capital',c:'var(--s3)',type:'line'}],
+  data:q=>({ca:agg.bal(R.cash,q).map(cr),de:agg.bal(R.debt,q).map(cr),nw:agg.bal(R.rec.map((v,i)=>v+R.inv[i]-R.pay[i]),q).map(cr)}),
+  tip:(d,i)=>[['Cash','var(--bb)',fmt(d.ca[i])],['Borrowings','var(--crit)',fmt(d.de[i])],['Net working capital','var(--s3)',fmt(d.nw[i])]]},
+ {id:'days',info:'Working capital measured in days of revenue, on the same basis as the databook. Receivable days move from 84 at Q2 FY27 to 91 at Q4 FY30, payable days stay at 33, and inventory days rise from 2 to 11. Each moves in a straight line to the Q4 FY30 level set in the panel. Net working capital days = receivable days + inventory days − payable days.',title:'Working capital days',cap:'Days of revenue, at period end (databook basis).',
+  series:[{k:'r',name:'Receivable days',c:'var(--bb)',type:'line'},{k:'p',name:'Payable days',c:'var(--s3)',type:'line'},{k:'i',name:'Inventory days',c:'var(--odm)',type:'line'},{k:'n',name:'Net working capital days',c:'var(--ink)',type:'line',dash:1}],
+  data:q=>{const nw=R.recD.map((v,i)=>v-R.payD[i]+R.invD[i]);return {r:agg.bal(R.recD,q),p:agg.bal(R.payD,q),i:agg.bal(R.invD,q),n:agg.bal(nw,q)};},
+  tip:(d,i)=>[['Receivable days','var(--bb)',d.r[i].toFixed(0)],['Payable days','var(--s3)',d.p[i].toFixed(0)],['Inventory days','var(--odm)',d.i[i].toFixed(0)],['Net working capital days','var(--ink)',d.n[i].toFixed(0)]]},
+ {id:'seg',info:'Order count is order value divided by the average order size. Average order size grows 18% a quarter in the plan (Design & ODM starts Q3 FY27 10% below its H1 FY27 average). Box Build orders are larger, so Design & ODM passes half the order count before it passes half the order value. The revenue share follows the order-value share with the billing lag.',title:'Design & ODM vs Box Build split',cap:'Share of the total. Box Build orders are larger, so Design & ODM reaches half the order count before it reaches half the value.',pct:1,full:1,
+  modes:[['cnt','Order count'],['val','Order value'],['rev','Revenue']],
+  series:[{k:'o',name:'Design & ODM',c:'var(--odm)',type:'stack'},{k:'b',name:'Box Build',c:'var(--bb)',type:'stack'}],
+  data:(q,m)=>{let a,b;
+    if(m==='cnt'){a=A(20).map((_,i)=>i<6?D.check.odmN[i]:R.nO[i]);b=A(20).map((_,i)=>i<6?D.check.bbN[i]:R.nB[i]);}
+    else if(m==='val'){a=R.poO;b=R.poB;}else{a=R.rO;b=R.rB;}
+    const A1=agg.flow(a,q),B1=agg.flow(b,q);return {o:A1.map((v,i)=>v/(v+B1[i])),b:B1.map((v,i)=>v/(A1[i]+v)),ao:A1,ab:B1,m};},
+  tip:(d,i)=>{const f=d.m==='cnt'?(v=>Math.round(v).toLocaleString('en-IN')+' orders'):(v=>fmt(cr(v))+' '+UL());return [['Design & ODM','var(--odm)',pc(d.o[i])+' · '+f(d.ao[i])],['Box Build','var(--bb)',pc(d.b[i])+' · '+f(d.ab[i])]];}},
+ {id:'cust',info:'Enterprise customers are large corporates: 9 new a year in Design & ODM and 6 in Box Build, with 95% ordering again each quarter. Mid-sized customers are added from the recent quarterly average and reorder at 70% (Design & ODM) and 60% (Box Build); their order value is capped at 80% of an enterprise customer\'s. Startups reorder at 65% and 20%, capped at 80% of a mid-sized customer\'s order value. The Customers view shares active customers; the Order value view shares orders booked.',title:'Split by customer type',cap:'Share of the total. Customer count is active customers in the period (annual view: average per quarter).',pct:1,full:1,
+  modes:[['n','Customers'],['v','Order value']],filter:[['all','Both segments'],['o','Design & ODM'],['b','Box Build']],
+  series:[{k:'e',name:'Enterprise',c:'var(--s3)',type:'stack'},{k:'m',name:'Mid-sized',c:'var(--bb)',type:'stack'},{k:'s',name:'Startups',c:'var(--odm)',type:'stack'}],
+  data:(q,m,f)=>{const segs=f==='all'?[R.tO,R.tB]:f==='o'?[R.tO]:[R.tB];
+    const pick=(ka)=>A(20).map((_,t)=>segs.reduce((s,g)=>s+g[ka][t],0));
+    const keys=m==='n'?['nEnt','nMid','nSt']:['ent','mid','st'];
+    const [e,mm,s]=keys.map(k=>agg.flow(pick(k),q));
+    const tot=e.map((v,i)=>v+mm[i]+s[i]);
+    return {e:e.map((v,i)=>v/tot[i]),m:mm.map((v,i)=>v/tot[i]),s:s.map((v,i)=>v/tot[i]),ae:e,am:mm,as:s,mode:m,q};},
+  tip:(d,i)=>{const f=d.mode==='n'?(v=>(d.q?v:v/4).toFixed(d.q?0:1)+' customers'):(v=>fmt(cr(v))+' '+UL());return [['Enterprise','var(--s3)',pc(d.e[i])+' · '+f(d.ae[i])],['Mid-sized','var(--bb)',pc(d.m[i])+' · '+f(d.am[i])],['Startups','var(--odm)',pc(d.s[i])+' · '+f(d.as[i])]];}},
+ {id:'ent',title:'Yearly orders per enterprise customer',cap:'Rs Cr of purchase orders a year per enterprise customer.',wide:1,barLabels:1,h:260,
+  info:'Total purchase orders placed by enterprise customers in the year, divided by the number of enterprise customers who ordered in that year (customers active at the start of the year plus those won during it). A customer buying from both segments counts once in each. Growth comes from existing accounts moving more programmes and volume to Elecbits each year. In the Quarterly view the figure is orders per active enterprise customer in that quarter.',
+  series:[{k:'o',name:'Design & ODM',c:'var(--odm)',type:'bar'},{k:'b',name:'Box Build',c:'var(--bb)',type:'bar'},{k:'a',name:'All enterprise customers',c:'var(--ink)',type:'line'}],
+  data:q=>{const per=(segs)=>{const v=A(20).map((_,t)=>segs.reduce((s,g)=>s+g.ent[t],0)),n=A(20).map((_,t)=>segs.reduce((s,g)=>s+g.nEnt[t],0)),nw=A(20).map((_,t)=>segs.reduce((s,g)=>s+g.nEntNew[t],0));
+      if(q)return {v:v.map((x,t)=>n[t]?cr(x)/n[t]:null),n,tot:v.map(cr)};
+      const u=[0,1,2,3,4].map(y=>n[y*4]+nw[y*4+1]+nw[y*4+2]+nw[y*4+3]),V=fyS(v);return {v:V.map((x,y)=>u[y]?cr(x)/u[y]:null),n:u,tot:V.map(cr)};};
+    const o=per([R.tO]),b=per([R.tB]),a=per([R.tO,R.tB]);return {o:o.v,b:b.v,a:a.v,on:o.n,bn:b.n,ot:o.tot,bt:b.tot,q};},
+  tip:(d,i)=>[['Design & ODM','var(--odm)',fmt(d.o[i])+' · '+d.on[i]+' cust.'],['Box Build','var(--bb)',fmt(d.b[i])+' · '+d.bn[i]+' cust.'],['All enterprise customers','var(--ink)',fmt(d.a[i])],['Enterprise orders, total','',fmt(d.ot[i]+d.bt[i])]]},
+];
+const ST={};
+const host=document.getElementById('cards');
+let grid;
+CARDS.forEach((c,ci)=>{
+  ST[c.id]={q:(c.id==='rev'||c.id==='ent'||c.id==='pov')?false:true,mode:c.modes?c.modes[0][0]:null,filt:c.filter?c.filter[0][0]:null,off:{}};
+  const el=document.createElement('section');el.className='card';
+  const segBtns=(name,opts,cur)=>`<div class="seg" role="group" aria-label="${name}">${opts.map(([k,l])=>`<button type="button" data-${name}="${k}" aria-pressed="${k===cur}">${l}</button>`).join('')}</div>`;
+  el.innerHTML=`<div class="hd"><div><h2>${c.title}<button class="info" type="button" aria-expanded="false" aria-controls="ci_${c.id}" aria-label="About this chart">i</button></h2><p class="cap">${c.cap}</p></div><div class="tools">${c.filter?segBtns('filt',c.filter,ST[c.id].filt):''}${c.modes?segBtns('mode',c.modes,ST[c.id].mode):''}${segBtns('per',[['fy','Yearly'],['q','Quarterly']],ST[c.id].q?'q':'fy')}</div></div>
+    <div class="explain" id="ci_${c.id}" hidden>${c.info}</div>
+    <div class="legend" role="group" aria-label="Series">${c.series.map(s=>`<button type="button" class="lg" data-s="${s.k}" aria-pressed="true" ${s.onlyChanged?'hidden':''}><i class="${s.type==='line'?'ln':s.type==='mark'?'dash':''}" style="background:${s.c}${s.dash?';background:none;border-top:2px dashed '+s.c+';height:0':''}"></i>${s.name}</button>`).join('')}</div>
+    <div class="chart" id="c_${c.id}"></div>`;
+  el.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const st=ST[c.id];
+    if(b.classList.contains('info')){const x=document.getElementById(b.getAttribute('aria-controls'));const o=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',!o);x.hidden=o;return;}
+    if(b.dataset.per){st.q=b.dataset.per==='q';}
+    else if(b.dataset.mode){st.mode=b.dataset.mode;}
+    else if(b.dataset.filt){st.filt=b.dataset.filt;}
+    else if(b.dataset.s){st.off[b.dataset.s]=!st.off[b.dataset.s];b.setAttribute('aria-pressed',!st.off[b.dataset.s]);}
+    else return;
+    b.parentElement.querySelectorAll('button').forEach(x=>{if(!x.dataset.s)x.setAttribute('aria-pressed',x===b);});
+    drawCard(c);});
+  c.el=el;
+  if(c.wide){host.appendChild(el);}
+  else{if(!grid||grid.children.length===2){grid=document.createElement('div');grid.className='grid2';host.appendChild(grid);}grid.appendChild(el);}
+});
+function changedAny(){return Object.keys(BASE).some(k=>Math.abs(P[k]-BASE[k])>1e-9);}
+function drawCard(c){c.el.querySelector('.cap').textContent=c.cap.replace(/Rs Cr/g,UL());
+  const st=ST[c.id],q=st.q,d=c.data(q,st.mode,st.filt),ch=changedAny();
+  const on={};c.series.forEach(s=>{on[s.k]=!st.off[s.k]&&(!s.onlyChanged||ch);});
+  const lgBase=c.el.querySelector('[data-s="base"]');if(lgBase)lgBase.hidden=!ch;
+  const pick=t=>c.series.filter(s=>s.type===t&&on[s.k]).map(s=>({v:d[s.k],c:s.c,dash:s.dash}));
+  chart(document.getElementById('c_'+c.id),{cats:q?QL:FY,q,barLabels:c.barLabels,act:q?6:0,h:c.h,pct:c.pct,full:c.full,endLabel:!q&&!c.full&&c.pct,aria:c.title,
+    stacks:pick('stack'),bars:pick('bar'),lines:pick('line'),marks:pick('mark'),
+    tip:i=>c.tip(d,i,on).filter(r=>{const s=c.series.find(s=>s.name===r[0]);return !s||on[s.k];})});
+}
+function drawAll(){CARDS.forEach(drawCard);}
+
+function entY(X){let v=0,u=0;[X.tO,X.tB].forEach(g=>{for(let q=16;q<20;q++)v+=g.ent[q];u+=g.nEnt[16]+g.nEntNew[17]+g.nEntNew[18]+g.nEntNew[19];});return cr(v)/u;}
+function kpis(){
+  const f=a=>fyS(a).map(cr);
+  const rev=f(R.rev),brev=f(RB.rev),eb=f(R.ebitdaR),beb=f(RB.ebitdaR),pat=f(R.pat),bpat=f(RB.pat);
+  const pl=R.cash.slice(6),minC=cr(Math.min(...pl)),bminC=cr(Math.min(...RB.cash.slice(6))),minQ=QL[6+pl.indexOf(Math.min(...pl))];
+  const ocf=cr(R.ocf.slice(8).reduce((a,b)=>a+b,0)),bocf=cr(RB.ocf.slice(8).reduce((a,b)=>a+b,0));
+  const debt=cr(R.debt[19]),bdebt=cr(RB.debt[19]);
+  const cagr=Math.pow(rev[4]/rev[1],1/3)-1,bcagr=Math.pow(brev[4]/brev[1],1/3)-1;
+  const delta=(v,b,good,isPct)=>{const d=v-b;if(Math.abs(d)<(isPct?5e-4:.05))return['','Same as plan'];const t=isPct?(d>0?'+':'')+(d*100).toFixed(1)+' pp vs plan':(d>0?'+':'−')+fmt(Math.abs(d))+' vs plan'+(Math.abs(b)>1?` (${d>0?'+':'−'}${Math.abs(d/b*100).toFixed(0)}%)`:'');return[(d>0)===good?'up':'dn',t];};
+  const T=[
+   ['FY30 revenue',fmt(rev[4]),UL(),delta(rev[4],brev[4],true)],
+   ['FY27 revenue',fmt(rev[1]),UL(),delta(rev[1],brev[1],true)],
+   ['Revenue CAGR FY27–FY30',(cagr*100).toFixed(0)+'%','',delta(cagr,bcagr,true,true)],
+   ['FY30 EBITDA after R&D',fmt(eb[4]),pc(eb[4]/rev[4]),delta(eb[4],beb[4],true)],
+   ['FY30 PAT',fmt(pat[4]),pc(pat[4]/rev[4]),delta(pat[4],bpat[4],true)],
+   ['Lowest cash, plan period',fmt(minC),minQ,delta(minC,bminC,true)],
+   ['Operating cash flow FY28–FY30',fmt(ocf),UL(),delta(ocf,bocf,true)],
+   ['Borrowings, Q4 FY30',fmt(debt),UL(),delta(debt,bdebt,false)],
+   ['FY30 orders per enterprise customer',fmt(entY(R)),UL()+' / yr',delta(entY(R),entY(RB),true)],
+  ];
+  document.getElementById('kpis').innerHTML=T.map(([k,v,u,[c,d]])=>`<div class="kpi"><span class="k">${k}</span><span class="v">${v}<small>${u}</small></span><span class="d ${c}">${d}</span></div>`).join('');
+  const al=[];const ic=`<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1 11 10H1Z" fill="currentColor"/></svg>`;
+  if(minC<0)al.push(['crit',`Cash turns negative in ${minQ}; the plan needs more funding.`]);
+  const neg=R.pat.findIndex((v,i)=>i>=8&&v<0);if(neg>0)al.push(['warn',`Loss in ${QL[neg]}.`]);
+  document.getElementById('alerts').hidden=!al.length;document.getElementById('alerts').innerHTML=al.map(([c,t])=>`<span class="pill ${c}">${c==='good'?'':ic}${t}</span>`).join('');
+}
+
+function table(){
+  const f=a=>fyS(a).map(cr), fe=a=>fyE(a).map(cr);
+  const rows=[
+   ['sec','Profit and loss'],
+   ['b','Revenue',f(R.rev),f(RB.rev)],
+   ['','Design & ODM',f(R.rO),f(RB.rO)],
+   ['','Box Build',f(R.rB),f(RB.rB)],
+   ['pc','Growth',f(R.rev).map((v,i,a)=>i?v/a[i-1]-1:null),f(RB.rev).map((v,i,a)=>i?v/a[i-1]-1:null),'p'],
+   ['','Contribution',f(R.contrib),f(RB.contrib)],
+   ['pc','Contribution margin',f(R.contrib).map((v,i)=>v/f(R.rev)[i]),f(RB.contrib).map((v,i)=>v/f(RB.rev)[i]),'p'],
+   ['','Business, corporate and R&D costs',f(R.bus).map((v,i)=>v+f(R.corp)[i]+f(R.rd)[i]),f(RB.bus).map((v,i)=>v+f(RB.corp)[i]+f(RB.rd)[i])],
+   ['b','EBITDA after R&D',f(R.ebitdaR),f(RB.ebitdaR)],
+   ['pc','EBITDA margin',f(R.ebitdaR).map((v,i)=>v/f(R.rev)[i]),f(RB.ebitdaR).map((v,i)=>v/f(RB.rev)[i]),'p'],
+   ['','Interest income less interest cost',f(R.ii).map((v,i)=>v-f(R.ic)[i]),f(RB.ii).map((v,i)=>v-f(RB.ic)[i])],
+   ['b','PAT',f(R.pat),f(RB.pat)],
+   ['pc','PAT margin',f(R.pat).map((v,i)=>v/f(R.rev)[i]),f(RB.pat).map((v,i)=>v/f(RB.rev)[i]),'p'],
+   ['sec','Orders'],
+   ['','Purchase orders booked',f(R.poO).map((v,i)=>v+f(R.poB)[i]),f(RB.poO).map((v,i)=>v+f(RB.poB)[i])],
+   ['','Order book, year end',fe(R.obO).map((v,i)=>i?v+fe(R.obB)[i]:null),fe(RB.obO).map((v,i)=>i?v+fe(RB.obB)[i]:null)],
+   ['sec','Balance sheet and cash'],
+   ['','Cash',fe(R.cash),fe(RB.cash)],
+   ['','Borrowings',fe(R.debt),fe(RB.debt)],
+   ['','Net working capital',fe(R.rec).map((v,i)=>v+fe(R.inv)[i]-fe(R.pay)[i]),fe(RB.rec).map((v,i)=>v+fe(RB.inv)[i]-fe(RB.pay)[i])],
+   ['pc','Receivable days',fyE(R.recD),fyE(RB.recD),'d'],
+   ['','Operating cash flow',f(R.ocf),f(RB.ocf)],
+   ['','Equity raised',f(R.eqR),f(RB.eqR)],
+  ];
+  let h=`<thead><tr><th>${UL()}</th>${FY.map((y,i)=>`<th class="${i?'':'act'}">${y}${i===1?' *':''}</th>`).join('')}</tr></thead><tbody>`;
+  rows.forEach(r=>{
+    if(r[0]==='sec'){h+=`<tr class="sec"><td colspan="6">${r[1]}</td></tr>`;return;}
+    const [cls,l,v,b,t]=r;
+    h+=`<tr class="${cls}"><td>${l}</td>`+v.map((x,i)=>{
+      if(x==null||!isFinite(x))return'<td>–</td>';
+      const s=t==='p'?pc(x):t==='d'?x.toFixed(0):fmt(x);
+      const d=x-b[i];let dl='';
+      if(t==='p'?Math.abs(d)>5e-4:t==='d'?Math.abs(d)>.5:Math.abs(d)>.05){const up=d>0;const good=(l==='Borrowings'||l==='Receivable days'||l==='Net working capital')?!up:up;dl=`<span class="dl ${good?'up':'dn'}">${up?'+':'−'}${t==='p'?(Math.abs(d)*100).toFixed(1)+' pp':t==='d'?Math.abs(d).toFixed(0):fmt(Math.abs(d))}</span>`;}
+      return `<td>${s}${dl}</td>`;}).join('')+'</tr>';
+  });
+  document.getElementById('tbl').innerHTML=h+'</tbody>';
+  document.getElementById('capTbl').textContent=UL()+'. FY26 is actual; FY27* is H1 actuals plus the H2 plan. Balances and days are at year end. When the scenario differs from the base plan, the change is shown under each figure.';
+}
+
+function update(){P.retEnt=Math.pow(P.retEntA,1/4);R=run(D,P);syncControls();kpis();drawAll();table();}
+RB=baseRun;
+update();
+document.querySelectorAll('[data-unit]').forEach(b=>b.addEventListener('click',()=>{UNIT=b.dataset.unit;document.querySelectorAll('[data-unit]').forEach(x=>x.setAttribute('aria-pressed',x===b));document.getElementById('uHdr').textContent=UL();kpis();drawAll();table();}));
+let rt;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(drawAll,120);});
+})();
+</script>
+
+</body></html>

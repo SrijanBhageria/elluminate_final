@@ -14,6 +14,10 @@ const PRIVATE_OG_SHELLS: Record<string, string> = {
     '/og/elecbits-growth-pipeline.html',
   '/p/elecbits-growth-pipeline/ee4f865b-044f-432d-8149-e947169f6a03/':
     '/og/elecbits-growth-pipeline.html',
+  '/p/elecbits-business-plan/2e85dc86-8372-4275-9af8-9f0deb2046a1':
+    '/og/elecbits-business-plan.html',
+  '/p/elecbits-business-plan/2e85dc86-8372-4275-9af8-9f0deb2046a1/':
+    '/og/elecbits-business-plan.html',
 };
 
 export function middleware(request: NextRequest) {
@@ -34,5 +38,8 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/p/elecbits-growth-pipeline/:uuid*'],
+  matcher: [
+    '/p/elecbits-growth-pipeline/:uuid*',
+    '/p/elecbits-business-plan/:uuid*',
+  ],
 };

@@ -25,6 +25,11 @@ const nextConfig: NextConfig = {
         source: '/p/elecbits-growth-pipeline/ee4f865b-044f-432d-8149-e947169f6a03/',
         destination: '/elecbits-growth-pipeline.html',
       },
+      {
+        // Serve business plan HTML directly so the model owns the viewport
+        source: '/p/elecbits-business-plan/2e85dc86-8372-4275-9af8-9f0deb2046a1/',
+        destination: '/elecbits-business-plan.html',
+      },
     ];
   },
 };
