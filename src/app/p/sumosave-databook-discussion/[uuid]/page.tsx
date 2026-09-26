@@ -13,11 +13,11 @@ interface PageProps {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'SumoSave Operating Review',
+    title: 'SumoSave Databook Discussion',
     description:
       'SumoSave operating review — network sales, margin, store economics, cohorts, P&L and store-by-store capital payback. Actuals to August 2026.',
     openGraph: {
-      title: 'SumoSave Operating Review',
+      title: 'SumoSave Databook Discussion',
       description:
         'SumoSave operating review — network sales, margin, store economics, cohorts, P&L and store-by-store capital payback. Actuals to August 2026.',
       type: 'website',
@@ -32,7 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'SumoSave Operating Review',
+      title: 'SumoSave Databook Discussion',
       description:
         'SumoSave operating review — network sales, margin, store economics, cohorts, P&L and store-by-store capital payback. Actuals to August 2026.',
       images: ['https://www.elluminate.in/sumosave-logo.png'],
