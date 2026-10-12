@@ -34,6 +34,10 @@ const nextConfig: NextConfig = {
         source: '/p/sumosave-databook-discussion/9ba33c10-e35c-40b3-82fb-93049ecc22f0/',
         destination: '/sumosave-databook-discussion.html',
       },
+      {
+        source: '/p/elecbits-xponentia-meeting-tracker/6980586b-5e77-4c22-9e7a-289a5e088408/',
+        destination: '/elecbits-xponentia-meeting-tracker.html',
+      },
     ];
   },
 };

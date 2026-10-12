@@ -22,6 +22,10 @@ const PRIVATE_OG_SHELLS: Record<string, string> = {
     '/og/sumosave-databook-discussion.html',
   '/p/sumosave-databook-discussion/9ba33c10-e35c-40b3-82fb-93049ecc22f0/':
     '/og/sumosave-databook-discussion.html',
+  '/p/elecbits-xponentia-meeting-tracker/6980586b-5e77-4c22-9e7a-289a5e088408':
+    '/og/elecbits-xponentia-meeting-tracker.html',
+  '/p/elecbits-xponentia-meeting-tracker/6980586b-5e77-4c22-9e7a-289a5e088408/':
+    '/og/elecbits-xponentia-meeting-tracker.html',
 };
 
 export function middleware(request: NextRequest) {
@@ -46,5 +50,6 @@ export const config = {
     '/p/elecbits-growth-pipeline/:uuid*',
     '/p/elecbits-business-plan/:uuid*',
     '/p/sumosave-databook-discussion/:uuid*',
+    '/p/elecbits-xponentia-meeting-tracker/:uuid*',
   ],
 };
