@@ -38,6 +38,10 @@ const nextConfig: NextConfig = {
         source: '/p/elecbits-xponentia-meeting-tracker/6980586b-5e77-4c22-9e7a-289a5e088408/',
         destination: '/elecbits-xponentia-meeting-tracker.html',
       },
+      {
+        source: '/p/jeh-aerospace-meeting-brief/3f52f803-0dab-449a-9b7f-f501b40b1ea6/',
+        destination: '/jeh-aerospace-meeting-brief.html',
+      },
     ];
   },
 };
