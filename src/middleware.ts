@@ -30,6 +30,10 @@ const PRIVATE_OG_SHELLS: Record<string, string> = {
     '/og/jeh-aerospace-meeting-brief.html',
   '/p/jeh-aerospace-meeting-brief/3f52f803-0dab-449a-9b7f-f501b40b1ea6/':
     '/og/jeh-aerospace-meeting-brief.html',
+  '/p/elecbits-enterprise-engagements/b1d938f4-db46-4b6b-8254-51e6f354b0ea':
+    '/og/elecbits-enterprise-engagements.html',
+  '/p/elecbits-enterprise-engagements/b1d938f4-db46-4b6b-8254-51e6f354b0ea/':
+    '/og/elecbits-enterprise-engagements.html',
 };
 
 export function middleware(request: NextRequest) {
@@ -56,5 +60,6 @@ export const config = {
     '/p/sumosave-databook-discussion/:uuid*',
     '/p/elecbits-xponentia-meeting-tracker/:uuid*',
     '/p/jeh-aerospace-meeting-brief/:uuid*',
+    '/p/elecbits-enterprise-engagements/:uuid*',
   ],
 };

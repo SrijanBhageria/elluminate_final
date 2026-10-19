@@ -42,6 +42,10 @@ const nextConfig: NextConfig = {
         source: '/p/jeh-aerospace-meeting-brief/3f52f803-0dab-449a-9b7f-f501b40b1ea6/',
         destination: '/jeh-aerospace-meeting-brief.html',
       },
+      {
+        source: '/p/elecbits-enterprise-engagements/b1d938f4-db46-4b6b-8254-51e6f354b0ea/',
+        destination: '/elecbits-enterprise-engagements.html',
+      },
     ];
   },
 };
