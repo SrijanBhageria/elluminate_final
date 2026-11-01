@@ -35,6 +35,10 @@ const nextConfig: NextConfig = {
         destination: '/sumosave-databook-discussion.html',
       },
       {
+        source: '/p/sumosave-store-playbook/678a69ea-c3bd-426e-ae81-07b361ac7c2f/',
+        destination: '/sumosave-store-playbook.html',
+      },
+      {
         source: '/p/elecbits-xponentia-meeting-tracker/6980586b-5e77-4c22-9e7a-289a5e088408/',
         destination: '/elecbits-xponentia-meeting-tracker.html',
       },

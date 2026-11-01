@@ -22,6 +22,10 @@ const PRIVATE_OG_SHELLS: Record<string, string> = {
     '/og/sumosave-databook-discussion.html',
   '/p/sumosave-databook-discussion/9ba33c10-e35c-40b3-82fb-93049ecc22f0/':
     '/og/sumosave-databook-discussion.html',
+  '/p/sumosave-store-playbook/678a69ea-c3bd-426e-ae81-07b361ac7c2f':
+    '/og/sumosave-store-playbook.html',
+  '/p/sumosave-store-playbook/678a69ea-c3bd-426e-ae81-07b361ac7c2f/':
+    '/og/sumosave-store-playbook.html',
   '/p/elecbits-xponentia-meeting-tracker/6980586b-5e77-4c22-9e7a-289a5e088408':
     '/og/elecbits-xponentia-meeting-tracker.html',
   '/p/elecbits-xponentia-meeting-tracker/6980586b-5e77-4c22-9e7a-289a5e088408/':
@@ -58,6 +62,7 @@ export const config = {
     '/p/elecbits-growth-pipeline/:uuid*',
     '/p/elecbits-business-plan/:uuid*',
     '/p/sumosave-databook-discussion/:uuid*',
+    '/p/sumosave-store-playbook/:uuid*',
     '/p/elecbits-xponentia-meeting-tracker/:uuid*',
     '/p/jeh-aerospace-meeting-brief/:uuid*',
     '/p/elecbits-enterprise-engagements/:uuid*',
