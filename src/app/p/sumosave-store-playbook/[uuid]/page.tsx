@@ -13,13 +13,13 @@ interface PageProps {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'SumoSave Store Playbook',
+    title: 'SumoSave — The Store Growth Playbook',
     description:
-      'Neighbourhood grocery store playbook — standardised formats, repeat purchasing and maturity-led economics across twenty-nine SumoSave stores.',
+      'The store growth playbook — standardised neighbourhood formats, repeat purchasing and maturity-led economics across twenty-nine SumoSave stores.',
     openGraph: {
-      title: 'SumoSave Store Playbook',
+      title: 'SumoSave — The Store Growth Playbook',
       description:
-        'Neighbourhood grocery store playbook — standardised formats, repeat purchasing and maturity-led economics across twenty-nine SumoSave stores.',
+        'The store growth playbook — standardised neighbourhood formats, repeat purchasing and maturity-led economics across twenty-nine SumoSave stores.',
       type: 'website',
       images: [
         {
@@ -32,9 +32,9 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'SumoSave Store Playbook',
+      title: 'SumoSave — The Store Growth Playbook',
       description:
-        'Neighbourhood grocery store playbook — standardised formats, repeat purchasing and maturity-led economics across twenty-nine SumoSave stores.',
+        'The store growth playbook — standardised neighbourhood formats, repeat purchasing and maturity-led economics across twenty-nine SumoSave stores.',
       images: ['https://www.elluminate.in/sumosave-logo.png'],
     },
     robots: {

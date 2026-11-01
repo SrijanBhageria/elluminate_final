@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import PrivateDocumentGate from '../../../components/PrivateDocumentGate';
 
 export const metadata: Metadata = {
-  title: 'SumoSave Store Playbook',
+  title: 'SumoSave — The Store Growth Playbook',
   robots: {
     index: false,
     follow: false,
@@ -18,7 +18,7 @@ export default function SumoSaveStorePlaybook() {
   return (
     <PrivateDocumentGate
       documentId="sumosave-store-playbook"
-      documentTitle="SumoSave Store Playbook"
+      documentTitle="SumoSave — The Store Growth Playbook"
     >
       <iframe
         src="/sumosave-store-playbook.html"
@@ -28,7 +28,7 @@ export default function SumoSaveStorePlaybook() {
           border: 'none',
           display: 'block',
         }}
-        title="SumoSave Store Playbook"
+        title="SumoSave — The Store Growth Playbook"
       />
     </PrivateDocumentGate>
   );
