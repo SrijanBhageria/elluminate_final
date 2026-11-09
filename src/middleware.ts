@@ -1,70 +1,61 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { PRIVATE_LINKS } from './lib/privateLinks';
 
 /**
- * Social scrapers (WhatsApp/iMessage/etc.) often fail on multi‑MB HTML decks and
- * keep a cached domain fallback. Serve them a tiny OG shell instead; humans still
- * get the full document via the next.config rewrite.
+ * Private links (all defined in /private-links.json):
+ *
+ * 1. Social scrapers (WhatsApp/iMessage/etc.) often fail on multi-MB HTML decks and
+ *    keep a cached domain fallback. On a valid /p/<slug>/<secret>/ URL they get a tiny
+ *    preview page (src/app/link-preview) instead; humans still get the full document
+ *    via the rewrite in next.config.ts.
+ * 2. The preview pages themselves are not reachable directly.
+ * 3. Typing the raw file path (www.elluminate.in/<file>.html) into a browser returns 404,
+ *    so the document only opens through its secret link (or the email-gate page, which
+ *    loads it in an iframe).
  */
 const SOCIAL_BOT_UA =
   /facebookexternalhit|Facebot|Twitterbot|WhatsApp|Slackbot|LinkedInBot|Discordbot|TelegramBot|SkypeUriPreview|Googlebot|bingbot|Applebot|Slack-ImgProxy|Viber|Iframely|Embedly|Quora Link Preview|Showyoubot|Outbrain|Pinterest|redditbot|vkShare|W3C_Validator/i;
 
-const PRIVATE_OG_SHELLS: Record<string, string> = {
-  '/p/elecbits-growth-pipeline/ee4f865b-044f-432d-8149-e947169f6a03':
-    '/og/elecbits-growth-pipeline.html',
-  '/p/elecbits-growth-pipeline/ee4f865b-044f-432d-8149-e947169f6a03/':
-    '/og/elecbits-growth-pipeline.html',
-  '/p/elecbits-business-plan/2e85dc86-8372-4275-9af8-9f0deb2046a1':
-    '/og/elecbits-business-plan.html',
-  '/p/elecbits-business-plan/2e85dc86-8372-4275-9af8-9f0deb2046a1/':
-    '/og/elecbits-business-plan.html',
-  '/p/sumosave-databook-discussion/9ba33c10-e35c-40b3-82fb-93049ecc22f0':
-    '/og/sumosave-databook-discussion.html',
-  '/p/sumosave-databook-discussion/9ba33c10-e35c-40b3-82fb-93049ecc22f0/':
-    '/og/sumosave-databook-discussion.html',
-  '/p/sumosave-store-playbook/678a69ea-c3bd-426e-ae81-07b361ac7c2f':
-    '/og/sumosave-store-playbook.html',
-  '/p/sumosave-store-playbook/678a69ea-c3bd-426e-ae81-07b361ac7c2f/':
-    '/og/sumosave-store-playbook.html',
-  '/p/elecbits-xponentia-meeting-tracker/6980586b-5e77-4c22-9e7a-289a5e088408':
-    '/og/elecbits-xponentia-meeting-tracker.html',
-  '/p/elecbits-xponentia-meeting-tracker/6980586b-5e77-4c22-9e7a-289a5e088408/':
-    '/og/elecbits-xponentia-meeting-tracker.html',
-  '/p/jeh-aerospace-meeting-brief/3f52f803-0dab-449a-9b7f-f501b40b1ea6':
-    '/og/jeh-aerospace-meeting-brief.html',
-  '/p/jeh-aerospace-meeting-brief/3f52f803-0dab-449a-9b7f-f501b40b1ea6/':
-    '/og/jeh-aerospace-meeting-brief.html',
-  '/p/elecbits-enterprise-engagements/b1d938f4-db46-4b6b-8254-51e6f354b0ea':
-    '/og/elecbits-enterprise-engagements.html',
-  '/p/elecbits-enterprise-engagements/b1d938f4-db46-4b6b-8254-51e6f354b0ea/':
-    '/og/elecbits-enterprise-engagements.html',
-};
+const SECRET_URL = /^\/p\/([^/]+)\/([^/]+)\/?$/;
+
+function notFound() {
+  return new NextResponse('Not found', { status: 404 });
+}
 
 export function middleware(request: NextRequest) {
-  const ua = request.headers.get('user-agent') ?? '';
-  if (!SOCIAL_BOT_UA.test(ua)) {
+  const path = request.nextUrl.pathname;
+
+  if (path.startsWith('/link-preview')) {
+    return notFound();
+  }
+
+  const secretMatch = path.match(SECRET_URL);
+  if (secretMatch) {
+    const [, slug, secret] = secretMatch;
+    const link = PRIVATE_LINKS.find((l) => l.slug === slug);
+    const ua = request.headers.get('user-agent') ?? '';
+    if (link && link.secret === secret && SOCIAL_BOT_UA.test(ua)) {
+      const url = request.nextUrl.clone();
+      url.pathname = `/link-preview/${link.slug}/`;
+      url.search = '';
+      return NextResponse.rewrite(url);
+    }
     return NextResponse.next();
   }
 
-  const shell = PRIVATE_OG_SHELLS[request.nextUrl.pathname];
-  if (!shell) {
-    return NextResponse.next();
+  // Direct browser visit to a private document's raw file.
+  const file = path.slice(1);
+  if (
+    PRIVATE_LINKS.some((l) => l.file === file) &&
+    request.headers.get('sec-fetch-dest') === 'document'
+  ) {
+    return notFound();
   }
 
-  const url = request.nextUrl.clone();
-  url.pathname = shell;
-  url.search = '';
-  return NextResponse.rewrite(url);
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: [
-    '/p/elecbits-growth-pipeline/:uuid*',
-    '/p/elecbits-business-plan/:uuid*',
-    '/p/sumosave-databook-discussion/:uuid*',
-    '/p/sumosave-store-playbook/:uuid*',
-    '/p/elecbits-xponentia-meeting-tracker/:uuid*',
-    '/p/jeh-aerospace-meeting-brief/:uuid*',
-    '/p/elecbits-enterprise-engagements/:uuid*',
-  ],
+  matcher: ['/p/:path*', '/link-preview/:path*', '/:name([\\w.-]+\\.html)'],
 };

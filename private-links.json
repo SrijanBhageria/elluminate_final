@@ -1,0 +1,109 @@
+{
+  "_help": "One entry per private link. Shareable URL = https://www.elluminate.in/p/<slug>/<secret>/ . 'file' is the HTML in public/, 'logo' is the preview image in public/. Run `npm run links -- check` after editing. See PRIVATE_LINKS.md.",
+  "links": [
+    {
+      "slug": "elecbits-company-presentation",
+      "secret": "b75d3200-7979-4e85-8b08-154bd34ae22a",
+      "file": "elecbits-presentation.html",
+      "title": "Elecbits - Company Presentation",
+      "description": "A full stack ESDM, Powered by XOR",
+      "brand": "Elecbits",
+      "logo": "elecbits-logo.png",
+      "logoAlt": "Elecbits Logo",
+      "logoWidth": 1024,
+      "logoHeight": 518,
+      "logoType": "image/jpeg"
+    },
+    {
+      "slug": "elecbits-growth-pipeline",
+      "secret": "ee4f865b-044f-432d-8149-e947169f6a03",
+      "file": "elecbits-growth-pipeline.html",
+      "title": "Elecbits - Growth Pipeline",
+      "description": "Customer opportunity map — account by account.",
+      "brand": "Elecbits",
+      "logo": "elecbits-logo.png",
+      "logoAlt": "Elecbits Logo",
+      "logoWidth": 1024,
+      "logoHeight": 518,
+      "logoType": "image/jpeg"
+    },
+    {
+      "slug": "elecbits-business-plan",
+      "secret": "2e85dc86-8372-4275-9af8-9f0deb2046a1",
+      "file": "elecbits-business-plan.html",
+      "title": "Elecbits Business Plan",
+      "description": "FY27–FY30 interactive business plan.",
+      "brand": "Elecbits",
+      "logo": "elecbits-logo.png",
+      "logoAlt": "Elecbits Logo",
+      "logoWidth": 1024,
+      "logoHeight": 518,
+      "logoType": "image/jpeg"
+    },
+    {
+      "slug": "elecbits-xponentia-meeting-tracker",
+      "secret": "6980586b-5e77-4c22-9e7a-289a5e088408",
+      "file": "elecbits-xponentia-meeting-tracker.html",
+      "title": "Elecbits <> Xponentia 13.10.26",
+      "description": "Management meeting · Investor agenda tracker · Tuesday, 13 October 2026.",
+      "brand": "Elecbits",
+      "logo": "elecbits-logo.png",
+      "logoAlt": "Elecbits Logo",
+      "logoWidth": 1024,
+      "logoHeight": 518,
+      "logoType": "image/jpeg"
+    },
+    {
+      "slug": "elecbits-enterprise-engagements",
+      "secret": "b1d938f4-db46-4b6b-8254-51e6f354b0ea",
+      "file": "elecbits-enterprise-engagements.html",
+      "title": "Elecbits: Enterprise Engagements",
+      "description": "Three enterprise accounts · position as at 19 October 2026.",
+      "brand": "Elecbits",
+      "logo": "elecbits-logo.png",
+      "logoAlt": "Elecbits Logo",
+      "logoWidth": 1024,
+      "logoHeight": 518,
+      "logoType": "image/jpeg"
+    },
+    {
+      "slug": "sumosave-databook-discussion",
+      "secret": "9ba33c10-e35c-40b3-82fb-93049ecc22f0",
+      "file": "sumosave-databook-discussion.html",
+      "title": "SumoSave Databook Discussion",
+      "description": "SumoSave operating review — network sales, margin, store economics, cohorts, P&L and store-by-store capital payback. Actuals to August 2026.",
+      "brand": "SumoSave",
+      "logo": "sumosave-logo.png",
+      "logoAlt": "SumoSave Logo",
+      "logoWidth": 1200,
+      "logoHeight": 630,
+      "logoType": "image/png"
+    },
+    {
+      "slug": "sumosave-store-playbook",
+      "secret": "678a69ea-c3bd-426e-ae81-07b361ac7c2f",
+      "file": "sumosave-store-playbook.html",
+      "title": "SumoSave — The Store Growth Playbook",
+      "description": "The store growth playbook — standardised neighbourhood formats, repeat purchasing and maturity-led economics across twenty-nine SumoSave stores.",
+      "brand": "SumoSave",
+      "logo": "sumosave-logo.png",
+      "logoAlt": "SumoSave Logo",
+      "logoWidth": 1200,
+      "logoHeight": 630,
+      "logoType": "image/png"
+    },
+    {
+      "slug": "jeh-aerospace-meeting-brief",
+      "secret": "3f52f803-0dab-449a-9b7f-f501b40b1ea6",
+      "file": "jeh-aerospace-meeting-brief.html",
+      "title": "Jeh Aerospace Meeting Brief",
+      "description": "Elluminate internal prep for meeting 2 with the Jeh Aerospace founders.",
+      "brand": "Elluminate",
+      "logo": "usethis.png",
+      "logoAlt": "Elluminate",
+      "logoWidth": 788,
+      "logoHeight": 272,
+      "logoType": "image/png"
+    }
+  ]
+}

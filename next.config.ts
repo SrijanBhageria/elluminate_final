@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import privateLinks from "./private-links.json";
 
 const nextConfig: NextConfig = {
   trailingSlash: true,
@@ -14,42 +15,19 @@ const nextConfig: NextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   async rewrites() {
+    // Private investor links: /p/<slug>/<secret>/ serves public/<file> directly
+    // so the document owns the viewport (no iframe). Defined in private-links.json.
+    return privateLinks.links.map((link) => ({
+      source: `/p/${link.slug}/${link.secret}/`,
+      destination: `/${link.file}`,
+    }));
+  },
+  async headers() {
+    // Keep private documents out of search engines even if a URL leaks.
+    const noIndex = [{ key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' }];
     return [
-      {
-        // Serve the deck HTML directly so it owns the viewport (no iframe)
-        source: '/p/elecbits-company-presentation/b75d3200-7979-4e85-8b08-154bd34ae22a/',
-        destination: '/elecbits-presentation.html',
-      },
-      {
-        // Serve growth pipeline HTML directly so phone/responsive CSS owns the viewport
-        source: '/p/elecbits-growth-pipeline/ee4f865b-044f-432d-8149-e947169f6a03/',
-        destination: '/elecbits-growth-pipeline.html',
-      },
-      {
-        // Serve business plan HTML directly so the model owns the viewport
-        source: '/p/elecbits-business-plan/2e85dc86-8372-4275-9af8-9f0deb2046a1/',
-        destination: '/elecbits-business-plan.html',
-      },
-      {
-        source: '/p/sumosave-databook-discussion/9ba33c10-e35c-40b3-82fb-93049ecc22f0/',
-        destination: '/sumosave-databook-discussion.html',
-      },
-      {
-        source: '/p/sumosave-store-playbook/678a69ea-c3bd-426e-ae81-07b361ac7c2f/',
-        destination: '/sumosave-store-playbook.html',
-      },
-      {
-        source: '/p/elecbits-xponentia-meeting-tracker/6980586b-5e77-4c22-9e7a-289a5e088408/',
-        destination: '/elecbits-xponentia-meeting-tracker.html',
-      },
-      {
-        source: '/p/jeh-aerospace-meeting-brief/3f52f803-0dab-449a-9b7f-f501b40b1ea6/',
-        destination: '/jeh-aerospace-meeting-brief.html',
-      },
-      {
-        source: '/p/elecbits-enterprise-engagements/b1d938f4-db46-4b6b-8254-51e6f354b0ea/',
-        destination: '/elecbits-enterprise-engagements.html',
-      },
+      { source: '/p/:path*', headers: noIndex },
+      ...privateLinks.links.map((link) => ({ source: `/${link.file}`, headers: noIndex })),
     ];
   },
 };

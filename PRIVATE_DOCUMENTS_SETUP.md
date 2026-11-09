@@ -1,3 +1,5 @@
+> **Outdated (Nov 2026):** private links are now all defined in `private-links.json`. See [PRIVATE_LINKS.md](PRIVATE_LINKS.md).
+
 # Private Document Sharing Setup
 
 This guide explains how the private document sharing feature works with email capture.

@@ -1,3 +1,5 @@
+> **Outdated (Nov 2026):** private links are now all defined in `private-links.json`. See [PRIVATE_LINKS.md](PRIVATE_LINKS.md).
+
 # 🔒 Elecbits Growth Pipeline - Private Link
 
 ## Share This Link
