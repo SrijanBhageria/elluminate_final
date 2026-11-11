@@ -158,16 +158,18 @@ export function wrapHtml(raw, link) {
   const cut = styleEnd === -1 ? 0 : styleEnd + raw.slice(styleEnd).match(/<\/style\s*>/i)[0].length;
   let headPart = stripManaged(raw.slice(0, cut));
   const bodyPart = raw.slice(cut).replace(/^\r?\n/, '');
-  const hasCharset = /<meta\s+charset=/i.test(headPart);
-  const hasViewport = /<meta\s+name=["']viewport["']/i.test(headPart);
-  const top = [
-    '<!doctype html>',
-    '<html lang="en">',
-    '<head>',
-    hasCharset ? null : '<meta charset="utf-8">',
-    hasViewport ? null : '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">',
-    tags,
-  ].filter(Boolean).join('\n');
+  // Charset and viewport always go first; take the export's own versions if it has them.
+  const take = (re) => {
+    const m = headPart.match(re);
+    if (!m) return null;
+    headPart = headPart.replace(m[0], '');
+    return m[0].trim();
+  };
+  const charset = take(/<meta\s+charset=[^>]*>\s*/i) ?? '<meta charset="utf-8">';
+  const viewport =
+    take(/<meta\s+name=["']viewport["'][^>]*>\s*/i) ??
+    '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">';
+  const top = ['<!doctype html>', '<html lang="en">', '<head>', charset, viewport, tags].join('\n');
   headPart = headPart.replace(/^\s+/, '');
   return `${top}\n${headPart}${headPart.endsWith('\n') || !headPart ? '' : '\n'}</head>\n<body>\n${bodyPart}${bodyPart.endsWith('\n') ? '' : '\n'}</body></html>\n`;
 }
